@@ -1,0 +1,27 @@
+{
+  "name": "qgis",
+  "version": "1.0.0",
+  "description": "server for qgis project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhargavisandur/QGIS.git"
+  },
+  "author": "Sejal-Atharva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhargavisandur/QGIS/issues"
+  },
+  "homepage": "https://github.com/bhargavisandur/QGIS#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "pg": "^7.18.2"
+  }
+}
