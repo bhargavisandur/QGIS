@@ -23,10 +23,10 @@ CREATE TABLE victim(
 	date date,
 	time time,
 	location character varying(100),
-	image bytea,
+	image character varying(50),
 	description character varying(100),
-	uid int,
-	FOREIGN KEY (uid) REFERENCES users(id)
+	uid int
+	-- FOREIGN KEY (uid) REFERENCES users(id)
 );
 
 CREATE TABLE orphanage(
@@ -53,7 +53,7 @@ CREATE TABLE manager(
 	name character varying(30),
 	contact bigint,
 	oid int,
-	password character varying(50),
+	-- password character varying(50),
 	FOREIGN KEY (oid) REFERENCES orphanage(id)
 );
 
@@ -61,7 +61,7 @@ CREATE TABLE missing_reports(
 	id SERIAL PRIMARY KEY,
 	name character varying(30),
 	age int,
-	image bytea,
+	image character varying(50),
 	identification character varying(50),
 	last_loc character varying(100)
 );
@@ -71,6 +71,6 @@ CREATE TABLE crime_cell(
 	name character varying(30),
 	region character varying(100),
 	report_id int,
-	password character varying(50),
+	-- password character varying(50),
 	FOREIGN KEY (report_id) REFERENCES missing_reports(id)
 );

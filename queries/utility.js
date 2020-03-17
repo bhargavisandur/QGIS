@@ -1,31 +1,34 @@
 // Utility for userqueries
-const { exec } = require('child_process');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 const moment = require('moment-timezone');
 
-const getLocation = (filename) => {
-	exec('exiftool ' + filename, function(error, stdout, stderr) {
-		if (error) {
-			console.log(`error: ${error.message}`);
-			return;
-		}
-		if (stderr) {
-			console.log(`stderr:${stderr}`);
-		}
-		// const s=JSON.parse(stdout);
-		// console.log(typeof(s));
-		const location =  getLatLong(stdout);
-		return location
-	});
-	const getLatLong = stdout => {
+const getLocation = async filename => {
+	try {
+		const { stdout, stderr } = await exec(
+			'exiftool -c "%.6f" ./Images/' + filename
+		);
+		console.log(`stderr:${stderr}`);
+
+		let location = '';
+		console.log(stdout);
 		const lines = stdout.toString().split('\n');
 		lines.forEach(line => {
 			const parts = line.split(':');
-			// if (parts[0].trim() === 'Image Size') {
-			// 	console.log(parts[0].trim() + ':' + parts[1]);
-			// }
+			if (
+				parts[0].trim() === 'GPS Latitude' ||
+				parts[0].trim() === 'GPS Longitude'
+			)
+				location += parts[0].trim() + '=' + parts[1].trim() + ' ';
 		});
+		console.log(location);
+		return location
+	} catch (error) {
+		console.log(`error: ${error.message}`);
+		return;
+	}
 
-	};
+	// callback(location);
 };
 
 const getDateTime = () => {

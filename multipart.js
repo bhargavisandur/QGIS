@@ -1,14 +1,34 @@
 // To add images to the server storage
 const multer = require('multer');
+const path = require('path');
+const crypto = require('crypto');
 
 const storage = multer.diskStorage({
 	destination: './Images',
-	filename: (req, file, callback) =>
-		callback(
-			null,
-			file.fieldname + '_' + Date.now() + '_' + file.originalname
-		)
+	filename: (req, file, cb) => {
+		return crypto.pseudoRandomBytes(16, function(err, raw) {
+			if (err) {
+				return cb(err);
+			}
+			return cb(
+				null,
+				'' + raw.toString('hex') + path.extname(file.originalname)
+			);
+		});
+	}
 });
-const multerObject = multer({ storage: storage }).single('upload');
 
-module.exports = multerObject
+const fileFilter = (req, file, cb) => {
+	if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+		cb(null, true);
+	} else {
+		cb(null, false);
+	}
+};
+
+const multerObject = multer({
+	storage: storage,
+	fileFilter: fileFilter
+}).single('image');
+
+module.exports = multerObject;
