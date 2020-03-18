@@ -24,8 +24,8 @@ app.post('/users/:id', multer, db.addVictimData);
 
 app.post('/addorphan', db.createOrphan);
 app.post('/addcrime_cell', db.createCrimeCell);
-app.post('/login', db.createUser);
-app.get('signup', db.getUser);
+app.post('/signup', db.createUser);
+app.get('/login', db.getUser);
 
 app.listen(port, () => {
 	console.log(`Server running on port: ${port}`);
