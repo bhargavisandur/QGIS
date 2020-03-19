@@ -29,9 +29,12 @@ const addVictimData = async (req, res) => {
 		],
 		(error, result) => {
 			if (error) throw error;
-			res.status(200).end(`Victim added with id: ${result.insertId}`);
+			res.writeContinue(200, {success: true});
 		}
 	);
+	pool.query('SELECT * FROM victim', (error, result) => {
+		res.status(200).json(result.rows);
+	});
 };
 
 const createUser = (req, res) => {
