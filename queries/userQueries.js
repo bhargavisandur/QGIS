@@ -29,7 +29,7 @@ const addVictimData = async (req, res) => {
 		],
 		(error, result) => {
 			if (error) throw error;
-			res.writeContinue(200, {success: true});
+			res.writeContinue(200, { success: true });
 		}
 	);
 	pool.query('SELECT * FROM victim', (error, result) => {
@@ -47,13 +47,13 @@ const createUser = (req, res) => {
 				throw error;
 			}
 
-			res.status(200).end(`User added with id:${result.insertId}`);
+			res.writeContinue(200, { success: true });
 		}
 	);
-	// pool.query('SELECT * FROM users', (error, result) => {
-	// 	if (error) throw error;
-	// 	res.status(200).send(result.rows);
-	// });
+	pool.query('SELECT * FROM users', (error, result) => {
+		if (error) throw error;
+		res.status(200).send(result.rows);
+	});
 };
 
 const getUser = (req, res) => {
@@ -63,7 +63,7 @@ const getUser = (req, res) => {
 		[email, password],
 		(error, result) => {
 			if (error) throw error;
-			res.status(200).end(result.rows);
+			res.writeContinue(200, { success: true });
 		}
 	);
 };
