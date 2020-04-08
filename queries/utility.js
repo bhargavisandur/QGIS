@@ -1,18 +1,20 @@
-// Utility for userqueries
+// Utility functions
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const moment = require("moment-timezone");
-let nodeGeocoder = require("node-geocoder");
+const nodeGeocoder = require("node-geocoder");
+const fs = require("fs");
+const path = require("path");
 
 const getLocation = async (filename) => {
     try {
         const { stdout, stderr } = await exec(
             'exiftool -c "%.6f" ./Images/' + filename
         );
-        console.log(`stderr:${stderr}`);
+        // console.log(`stderr:${stderr}`);
 
         let location = "";
-        console.log(stdout);
+        // console.log(stdout);
         const lines = stdout.toString().split("\n");
         lines.forEach((line) => {
             const parts = line.split(":");
@@ -22,14 +24,32 @@ const getLocation = async (filename) => {
             )
                 location += parts[0].trim() + "=" + parts[1].trim() + " ";
         });
-        console.log(location);
+        // console.log(location);
         return location;
     } catch (error) {
         console.log(`error: ${error.message}`);
         return;
     }
+};
 
-    // callback(location);
+const matchImage = async (filename) => {
+    try {
+        console.log(__dirname);
+        const image = path.join(
+            path.dirname(fs.realpathSync(__filename)),
+            `../Images/${filename}`
+        );
+        const { stdout, stderr } = await exec(
+            `cd ImageRecognition && python3 recognize_faces_image.py --encodings encodings.pickle --image ${image}`
+        );
+        // console.log(`stderr:${stderr}`);
+
+        let output = stdout.split("\n");
+        return !output[2].includes("Unknown");
+    } catch (error) {
+        console.log(`Error:${error}`);
+        return;
+    }
 };
 
 const getDateTime = () => {
@@ -63,4 +83,5 @@ module.exports = {
     getLocation,
     getDateTime,
     tolatlong,
+    matchImage,
 };

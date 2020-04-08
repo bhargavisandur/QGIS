@@ -8,8 +8,7 @@ const addVictimData = async (req, res) => {
     const uid = req.params.id;
     const { path, filename } = req.file;
     const { sex, age, pwdstat, activity, description } = req.body;
-    let location;
-    location = await utility.getLocation(filename);
+    let location = await utility.getLocation(filename);
     console.log(location);
     // console.log(path);
     const { date, time } = utility.getDateTime();
@@ -32,6 +31,10 @@ const addVictimData = async (req, res) => {
             res.writeContinue(200, { success: true });
         }
     );
+
+    let imageMatched = await utility.matchImage(filename);
+    console.log(imageMatched);
+
     pool.query("SELECT * FROM victim", (error, result) => {
         res.status(200).json(result.rows);
     });
