@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>
+            Victim Form
+        </title>
+        <link rel="stylesheet" href="css/formStyles.css">
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <style>
+     .toggle{
+       color: Black;
+     }
+   </style> 
+
+</head>
+</html>
+
+
+
+<div class="container"> 
+  <div class="container">
+  <a href="/logout" ><button class="btn btn-primary" style="margin-top: 60px;">Logout</button></a> 
+    <form id="contact" action="/users/<%=userId%>" method="post" enctype="multipart/form-data">
+      <h3>Victim Form</h3>
+      <h4>Fill the victim data</h4>
+      <fieldset>
+        <p><strong>Upload an image (required)</strong></p>
+        <input type="file" accept="image/*" name="image" capture> 
+      </fieldset>
+      <fieldset>
+        <!-- <input placeholder="Sex" type="text" name="sex" tabindex="1" required autofocus> -->
+        <div class="toggle">
+        <div style="width: auto; height: auto;">
+        <label for="female">Female</label>
+        <input placeholder="female" id="female" type="radio" value="female" name="sex" checked>
+        <label for="male">Male</label>
+        <input placeholder="male" id="male" type="radio" value="male" name="sex">
+        </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <!-- <input placeholder="Age" type="text" name="age" tabindex="2" required> -->
+        <label for="card">Age</label>
+        <select id="age" name="age">
+          <option value=5 >5</option>
+          <option value=10 >10</option>
+          <option value=15 >15</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <!-- <input placeholder="Pwdstat" type="text" name="pwdstat" tabindex="3" required> -->
+        <strong>Pwdstat</strong>
+        <label for="yes">Yes</label>
+        <input placeholder="yes" id="yes" type="radio" value="yes" name="pwdstat" checked>
+        <label for="no">No</label>
+        <input placeholder="no" id="no" type="radio" value="no" name="pwdstat">
+      </fieldset>
+      <fieldset>
+        <input placeholder="Activity" type="text" tabindex="4" name="activity" required>
+      </fieldset>
+      <fieldset>
+        <textarea placeholder="Further Description (optional)" tabindex="5" name="description" required></textarea>
+      </fieldset>
+      
+      <fieldset>
+        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+        
+      </fieldset>
+      
+    </form>
+  </div>
+
+    
+  </div>
