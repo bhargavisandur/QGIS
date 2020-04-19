@@ -1,5 +1,5 @@
-const adminQueries = require("./adminQueries");
-const userQueries = require("./userQueries");
+const adminQueries = require('./adminQueries');
+const userQueries = require('./userQueries');
 
 // List of all admin queries
 const createAdmin = adminQueries.createAdmin;
