@@ -9,7 +9,7 @@ const path = require('path');
 const getLocation = async (filename) => {
     try {
         const { stdout, stderr } = await exec(
-            'exiftool -c "%.6f" ./Images/' + filename
+            'exiftool -c "%.6f" ./public/images/' + filename
         );
         // console.log(`stderr:${stderr}`);
 
@@ -37,7 +37,7 @@ const matchImage = async (filename) => {
         console.log(__dirname);
         const image = path.join(
             path.dirname(fs.realpathSync(__filename)),
-            `../Images/${filename}`
+            `../public/images/${filename}`
         );
         console.log(image)
         const { stdout, stderr } = await exec(
