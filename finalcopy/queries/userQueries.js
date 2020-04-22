@@ -1,13 +1,15 @@
 const pool = require('../pool');
 const utility = require('./utility');
 const fs = require('fs');
+const sendEmail = require("../nodeMailer/sendEmail");
 
 const addVictimData = async (req, res) => {
     // console.log(req.file);
     // console.log(req.body);
-    const uid = req.params.id;
+    //const uid = req.params.id;
+    
     const { path, filename } = req.file;
-    const { age, pwdstat, activity, description } = req.body;
+    const { age, pwdstat, activity, description, uid } = req.body;
     let location = await utility.getLocation(filename);
     console.log(location);
     let sex=await utility.findGender(filename);
@@ -29,11 +31,16 @@ const addVictimData = async (req, res) => {
             uid,
         ],
         (error, result) => {
-            if (error) throw error;
+            if (error) {
+                console.log("error occured")
+                res.redirect("/victimform");
+                throw error;
+            }
+            sendEmail(req.body.uid, "Thank you for using the NoAbuse app!");
             res.writeContinue(200, { success: true });
         }
     );
-
+    
     let imageMatched = await utility.matchImage(filename);
     console.log(imageMatched);
 

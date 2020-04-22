@@ -26,12 +26,16 @@
 <div class="container"> 
   <div class="container">
   <a href="/logout" ><button class="btn btn-primary" style="margin-top: 60px;">Logout</button></a> 
-    <form id="contact" action="/users/<%=userId%>" method="post" enctype="multipart/form-data">
+    <form id="contact" action="/victimform" method="post" enctype="multipart/form-data">
       <h3>Victim Form</h3>
       <h4>Fill the victim data</h4>
       <fieldset>
         <p><strong>Upload an image (required)</strong></p>
         <input type="file" accept="image/*" name="image" capture> 
+      </fieldset>
+      <fieldset>
+        <p><strong>Enter your emailID to get updates</strong></p>
+        <input placeholder="Email" type="email" tabindex="4" name="uid" required>
       </fieldset>
       <fieldset>
         <!-- <input placeholder="Sex" type="text" name="sex" tabindex="1" required autofocus> -->
