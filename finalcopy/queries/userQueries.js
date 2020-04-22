@@ -7,9 +7,11 @@ const addVictimData = async (req, res) => {
     // console.log(req.body);
     const uid = req.params.id;
     const { path, filename } = req.file;
-    const { sex, age, pwdstat, activity, description } = req.body;
+    const { age, pwdstat, activity, description } = req.body;
     let location = await utility.getLocation(filename);
     console.log(location);
+    let sex=await utility.findGender(filename);
+    console.log(sex);
     // console.log(path);
     const { date, time } = utility.getDateTime();
     pool.query(

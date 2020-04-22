@@ -53,6 +53,24 @@ const matchImage = async (filename) => {
     }
 };
 
+const findGender=async (filename)=>{
+    try{
+        console.log(__dirname);
+        const image=path.join(
+            path.dirname(fs.realpathSync(__filename)),
+            `../public/images/${filename}`
+        );
+        const {stdout,stderr}=await exec(
+            `cd GenderRecognition && python3 AgeGender.py --input ${image}`
+        );
+        return(stdout);
+    }catch(error){
+        console.log(`Error: ${error}`);
+        return;
+    }
+};
+
+
 const getDateTime = () => {
     const m = moment.tz('Asia/Calcutta').format();
     const date = m.slice(0, 10);
@@ -85,4 +103,5 @@ module.exports = {
     getDateTime,
     tolatlong,
     matchImage,
+    findGender
 };
