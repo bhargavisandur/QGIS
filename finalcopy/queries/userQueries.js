@@ -13,9 +13,14 @@ const addVictimData = async (req, res) => {
     let ccid = 0;
     if (!imageMatched[2].includes('Unknown')) {
         ccid = imageMatched[2][0].split('_')[0];
-        oid=null;
+        oid = null;
     } else {
         ccid = null;
+        const { error, result } = await pool.query(
+            'SELECT id,( 6371*acos(cos(radians(37))*cos(radians(lat))*cos(radians(lng)-radians(-122))+sin(radians(37))*sin(radians(lat)))) AS distance FROM orphanage HAVING distance<8 ORDER BY distance'
+        );
+        if (error) throw error;
+        oid = result.rows[0].id;
     }
 
     const { age, pwdstat, activity, description, uid } = req.body;
@@ -26,7 +31,7 @@ const addVictimData = async (req, res) => {
     // console.log(path);
     const { date, time } = utility.getDateTime();
     pool.query(
-        'INSERT INTO victim (sex, age, pwdstat, activity, description, date, time, location, image, uid, ccid) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+        'INSERT INTO victim (sex, age, pwdstat, activity, description, date, time, location, image, uid, ccid,oid) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11)',
         [
             sex,
             age,
@@ -39,7 +44,8 @@ const addVictimData = async (req, res) => {
             path,
             uid,
             ccid,
-        ],
+            oid,
+         ],
         (error, result) => {
             if (error) {
                 console.log('error occured');

@@ -12,7 +12,7 @@ const addVictimData = userQueries.addVictimData;
 const createUser = userQueries.createUser;
 const getUser = userQueries.getUser;
 const getCrimeCell = crimeCellQueries.getCrimeCell;
-const getOrphanage=orphanageQueries.getOrphanage;
+const getOrphanage = orphanageQueries.getOrphanage;
 
 module.exports = {
     createAdmin,
@@ -22,5 +22,5 @@ module.exports = {
     createUser,
     getUser,
     getCrimeCell,
-    getOrphanage
+    getOrphanage,
 };

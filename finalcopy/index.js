@@ -270,7 +270,7 @@ app.get('/loginOrphanage', (req, res) => {
 });
 
 app.post('/loginCrimeCell', db.getCrimeCell);
-app.post('/loginOrphanage',db.getOrphanage);
+app.post('/loginOrphanage', db.getOrphanage);
 
 app.get('/crimeCellPage/:crimeCellId', (req, res) => {
     let crimeCellId = req.params.crimeCellId;
@@ -297,7 +297,7 @@ app.get('/orphanagePage/:orphanageId', (req, res) => {
             res.render('adminPageorphan', { victims: result.rows });
         }
     );
-})
+});
 app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);
     let vid = req.params.vid;
@@ -367,9 +367,6 @@ app.post('/rescuedChild/:orphanageId/:vid', (req, res) => {
         }
     );
 });
-
-
-
 
 //**************************************************** */
 
