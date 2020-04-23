@@ -15,6 +15,7 @@ const addVictimData = async (req, res) => {
         ccid = imageMatched[2][0].split('_')[0];
     }
     else{
+        
         ccid=null;
     }
     
