@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/adminPageStyles.css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+
+        <link href="https:/  /maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    </head>
+    <body>
+             
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1>Victim List</h1>
+                        </div>
+                        <div class="gaadiex-list">
+                            <!-- <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
+                            <div class="gaadiex-list-item-text">
+                                <h3><a href="#">Eric Graves</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            </div>
+                            <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
+                            <div class="gaadiex-list-item-text">
+                                <h3><a href="#">Catherine Crawford</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            </div>
+                            <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
+                            <div class="gaadiex-list-item-text">
+                                <h3><a href="#">Rosemary Jimenez</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            </div> -->
+                            <!-- <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
+                            <div class="gaadiex-list-item-text">
+                                <h3><a href="#">Guy Carpenter</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            </div> -->
+                            <%victims.forEach((victim)=>{%>
+                                <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="<%=victim.image.toString().substring(6,victim.image.toString().length)%>" >
+                                    <div class="gaadiex-list-item-text">
+                                        <h3><a href="#"><%=victim.date.toString().substring(0,15)%>, <%=victim.time%></a></h3>
+                                        <div class="container-fluid">
+                                            <%console.log(victim.image.toString().substring(6,victim.image.toString().length))%>
+                                        <h4>Sex: <%=victim.sex%></h4>
+                                        <h4>Age: <%=victim.age%></h4>
+                                        <h4>PwdStat: <%=victim.pwdstat%></h4>
+                                        <h4>Activity: <%=victim.activity%></h4>
+                                        <h4>Description: <%=victim.description%></h4>
+                                        
+                                        <form action="/rescuedChild/<%=victim.oid%>/<%=victim.id%>" method="post">
+                                            <input type="submit" name="rescued" value="rescued" />
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%})%>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Icons with text items</h4>
+                        </div>
+                            <div class="gaadiex-list">
+                            <div class="gaadiex-list-item border-b-1">
+                                <i class="fa fa-user"></i>
+                            <div class="gaadiex-list-item-text">
+                                <h3><a href="#">Eric Graves</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            </div>
+                                                <div class="gaadiex-list-item border-b-1">
+                                <i class="fa fa-user"></i>
+                            <div class="gaadiex-list-item-text">
+                                <h3><a href="#">Eric Graves</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            </div>
+                                                <div class="gaadiex-list-item border-b-1">
+                                <i class="fa fa-user"></i>
+                            <div class="gaadiex-list-item-text">
+                                <h3><a href="#">Eric Graves</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            </div>
+                                                <div class="gaadiex-list-item border-b-1">
+                                <i class="fa fa-user"></i>
+                            <div class="gaadiex-list-item-text">
+                                <h3><a href="#">Eric Graves</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            </div>
+
+
+
+                            </div>
+
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                    <div class="card-header">
+                            <h4>Plain text items</h4>
+                        </div>
+                        <div class="gaadiex-list">
+                            <div class="gaadiex-list-item">
+                                <h3><a href="#">Eric Graves</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            <div class="gaadiex-list-item">
+                                <h3><a href="#">Eric Graves</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            <div class="gaadiex-list-item">
+                                <h3><a href="#">Eric Graves</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+                            <div class="gaadiex-list-item">
+                                <h3><a href="#">Eric Graves</a></h3>
+                                <h4>Brunch this weekend?</h4>
+                                <p> I'll be in your neighborhood doing errands</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div> -->
+        </div>
+                <!--[if lt IE 7]>
+                    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+                <![endif]-->
+                
+        <script src="" async defer></script>
+    </body>
+</html>

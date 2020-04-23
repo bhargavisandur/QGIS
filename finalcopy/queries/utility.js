@@ -39,12 +39,12 @@ const matchImage = async (filename) => {
             path.dirname(fs.realpathSync(__filename)),
             `../public/images/${filename}`
         );
-        console.log(image)
+        console.log(image);
         const { stdout, stderr } = await exec(
             `cd ImageRecognition && python3 recognize_faces_image.py --encodings encodings.pickle --image ${image}`
         );
         // console.log(`stderr:${stderr}`);
-        
+
         let output = stdout.split('\n');
         return output;
         //return !output[2].includes('Unknown');
@@ -54,23 +54,22 @@ const matchImage = async (filename) => {
     }
 };
 
-const findGender=async (filename)=>{
-    try{
+const findGender = async (filename) => {
+    try {
         console.log(__dirname);
-        const image=path.join(
+        const image = path.join(
             path.dirname(fs.realpathSync(__filename)),
             `../public/images/${filename}`
         );
-        const {stdout,stderr}=await exec(
+        const { stdout, stderr } = await exec(
             `cd GenderRecognition && python3 AgeGender.py --input ${image}`
         );
-        return(stdout);
-    }catch(error){
+        return stdout;
+    } catch (error) {
         console.log(`Error: ${error}`);
         return;
     }
 };
-
 
 const getDateTime = () => {
     const m = moment.tz('Asia/Calcutta').format();
@@ -104,5 +103,5 @@ module.exports = {
     getDateTime,
     tolatlong,
     matchImage,
-    findGender
+    findGender,
 };

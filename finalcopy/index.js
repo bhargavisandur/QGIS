@@ -79,8 +79,8 @@ app.get('/', (req, res) => {
 
 app.get('/victimform', (req, res) => {
     // if (req.isAuthenticated()) {
-        //res.redirect("/users/"+req.user[0].id)
-        //res.render('victimform', { userId: req.user[0].id });
+    //res.redirect("/users/"+req.user[0].id)
+    //res.render('victimform', { userId: req.user[0].id });
     // } else {
     //     res.redirect('/userLogin');
     // }
@@ -252,7 +252,7 @@ app.post('/victimform', multer, db.addVictimData);
 app.get('/adminLogin', (req, res) => {
     res.render('adminLogin');
 });
-app.get('/adminPage', (req, res) => {
+app.get('/', (req, res) => {
     pool.query('SELECT * FROM victim', (error, result) => {
         if (error) throw error;
         //res.render("adminPage")
@@ -261,51 +261,115 @@ app.get('/adminPage', (req, res) => {
     });
 });
 
-app.get("/loginCrimeCell", (req, res)=>{
-    res.render("crimeCellLogin");
-})
+app.get('/loginCrimeCell', (req, res) => {
+    res.render('crimeCellLogin');
+});
 
-app.post("/loginCrimeCell", db.getCrimeCell);
+app.get('/loginOrphanage', (req, res) => {
+    res.render('orphanageLogin');
+});
 
-app.get('/crimeCellPage/:crimeCellId', (req, res)=>{
-    let crimeCellId= req.params.crimeCellId;
-    pool.query('SELECT * FROM victim WHERE ccid= $1',[crimeCellId], (error, result) => {
-        if (error) throw error;
-        //res.render("adminPage")
-        console.log(result.rows);
-        res.render('adminPage', { victims: result.rows});
-    });
-})
+app.post('/loginCrimeCell', db.getCrimeCell);
+app.post('/loginOrphanage',db.getOrphanage);
 
-app.post("/rescuedChild/:crimeCellId/:vid", (req, res)=>{
+app.get('/crimeCellPage/:crimeCellId', (req, res) => {
+    let crimeCellId = req.params.crimeCellId;
+    pool.query(
+        'SELECT * FROM victim WHERE ccid= $1',
+        [crimeCellId],
+        (error, result) => {
+            if (error) throw error;
+            //res.render("adminPage")
+            console.log(result.rows);
+            res.render('adminPage', { victims: result.rows });
+        }
+    );
+});
+app.get('/orphanagePage/:orphanageId', (req, res) => {
+    let orphanageID = req.params.orphanageID;
+    pool.query(
+        'SELECT * FROM victim WHERE oid= $1',
+        [orphanageID],
+        (error, result) => {
+            if (error) throw error;
+            //res.render("adminPage")
+            console.log(result.rows);
+            res.render('adminPageorphan', { victims: result.rows });
+        }
+    );
+});
+
+app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);
-    let vid= req.params.vid;
-    pool.query('SELECT * FROM victim WHERE id=$1',[vid], (err, results)=>{
-        if(err){
+    let vid = req.params.vid;
+    pool.query('SELECT * FROM victim WHERE id=$1', [vid], (err, results) => {
+        if (err) {
             throw err;
-        }
-        else{
-           console.log(results);
-           let row=results.rows[0];
-            pool.query('INSERT INTO rescued_child (sex, age, vid) VALUES($1, $2, $3)',[row.sex, row.age,row.id],(err, resulting)=>{
-                if(err){
-                    throw err;
+        } else {
+            console.log(results);
+            let row = results.rows[0];
+            pool.query(
+                'INSERT INTO rescued_child (sex, age, vid) VALUES($1, $2, $3)',
+                [row.sex, row.age, row.id],
+                (err, resulting) => {
+                    if (err) {
+                        throw err;
+                    }
                 }
-            })
+            );
         }
-    })
+    });
     // res.redirect("/crimeCellPage/"+req.params.crimeCellId);
-    pool.query('DELETE FROM victim WHERE id=$1',[req.params.vid], (err, result)=>{
-        if(err){
-            throw err;
+    pool.query(
+        'DELETE FROM victim WHERE id=$1',
+        [req.params.vid],
+        (err, result) => {
+            if (err) {
+                throw err;
+            } else {
+                console.log(result);
+                res.redirect('/crimeCellPage/' + req.params.crimeCellId);
+            }
         }
-        else{
-            console.log(result);
-            res.redirect("/crimeCellPage/"+req.params.crimeCellId);
-        }
-    })
+    );
+});
 
-})
+app.post('/rescuedChild/:orphanageId/:vid', (req, res) => {
+    console.log(req.params.vid);
+    let vid = req.params.vid;
+    pool.query('SELECT * FROM victim WHERE id=$1', [vid], (err, results) => {
+        if (err) {
+            throw err;
+        } else {
+            console.log(results);
+            let row = results.rows[0];
+            pool.query(
+                'INSERT INTO rescued_child (sex, age, vid) VALUES($1, $2, $3)',
+                [row.sex, row.age, row.id],
+                (err, resulting) => {
+                    if (err) {
+                        throw err;
+                    }
+                }
+            );
+        }
+    });
+    // res.redirect("/crimeCellPage/"+req.params.crimeCellId);
+    pool.query(
+        'DELETE FROM victim WHERE id=$1',
+        [req.params.vid],
+        (err, result) => {
+            if (err) {
+                throw err;
+            } else {
+                console.log(result);
+                res.redirect('/orphanagePage/' + req.params.orphanageID);
+            }
+        }
+    );
+});
+
+
 
 
 //**************************************************** */

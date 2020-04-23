@@ -1,7 +1,7 @@
 const pool = require('../pool');
 const utility = require('./utility');
 const fs = require('fs');
-const sendEmail = require("../nodeMailer/sendEmail");
+const sendEmail = require('../nodeMailer/sendEmail');
 
 const addVictimData = async (req, res) => {
     // console.log(req.file);
@@ -10,20 +10,17 @@ const addVictimData = async (req, res) => {
     const { path, filename } = req.file;
     let imageMatched = await utility.matchImage(filename);
     console.log(imageMatched);
-    let ccid=0;
-    if(!imageMatched[2].includes('Unknown')){
+    let ccid = 0;
+    if (!imageMatched[2].includes('Unknown')) {
         ccid = imageMatched[2][0].split('_')[0];
+    } else {
+        ccid = null;
     }
-    else{
-        
-        ccid=null;
-    }
-    
-    
+
     const { age, pwdstat, activity, description, uid } = req.body;
     let location = await utility.getLocation(filename);
     console.log(location);
-    let sex=await utility.findGender(filename);
+    let sex = await utility.findGender(filename);
     console.log(sex);
     // console.log(path);
     const { date, time } = utility.getDateTime();
@@ -40,19 +37,19 @@ const addVictimData = async (req, res) => {
             location,
             path,
             uid,
-            ccid
+            ccid,
         ],
         (error, result) => {
             if (error) {
-                console.log("error occured")
-                res.redirect("/victimform");
+                console.log('error occured');
+                res.redirect('/victimform');
                 throw error;
             }
-            sendEmail(req.body.uid, "Thank you for using the NoAbuse app!");
+            sendEmail(req.body.uid, 'Thank you for using the NoAbuse app!');
             res.writeContinue(200, { success: true });
         }
     );
-    
+
     // let imageMatched = await utility.matchImage(filename);
     // console.log(imageMatched);
 
