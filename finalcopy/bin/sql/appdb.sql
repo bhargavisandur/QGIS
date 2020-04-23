@@ -25,7 +25,8 @@ CREATE TABLE victim(
 	location character varying(100),
 	image character varying(50),
 	description character varying(100),
-	uid UUID
+	uid characer varying(100),
+	ccid integer
 	-- FOREIGN KEY (uid) REFERENCES users(id)
 );
 
@@ -71,6 +72,8 @@ CREATE TABLE crime_cell(
 	name character varying(30),
 	region character varying(100),
 	report_id int,
+	email character varying(50),
+	password characer varying(50)
 	-- password character varying(50),
 	FOREIGN KEY (report_id) REFERENCES missing_reports(id)
 );
