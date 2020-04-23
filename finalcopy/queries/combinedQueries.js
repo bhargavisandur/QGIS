@@ -1,5 +1,6 @@
 const adminQueries = require('./adminQueries');
 const userQueries = require('./userQueries');
+const crimeCellQueries = require('./crimeCellQueries');
 
 // List of all admin queries
 const createAdmin = adminQueries.createAdmin;
@@ -10,6 +11,7 @@ const createCrimeCell = adminQueries.createCrimeCell;
 const addVictimData = userQueries.addVictimData;
 const createUser = userQueries.createUser;
 const getUser = userQueries.getUser;
+const getCrimeCell = crimeCellQueries.getCrimeCell;
 
 module.exports = {
     createAdmin,
@@ -18,4 +20,5 @@ module.exports = {
     addVictimData,
     createUser,
     getUser,
+    getCrimeCell
 };

@@ -7,8 +7,18 @@ const addVictimData = async (req, res) => {
     // console.log(req.file);
     // console.log(req.body);
     //const uid = req.params.id;
-    
     const { path, filename } = req.file;
+    let imageMatched = await utility.matchImage(filename);
+    console.log(imageMatched);
+    let ccid=0;
+    if(!imageMatched[2].includes('Unknown')){
+        ccid = imageMatched[2][0].split('_')[0];
+    }
+    else{
+        ccid=null;
+    }
+    
+    
     const { age, pwdstat, activity, description, uid } = req.body;
     let location = await utility.getLocation(filename);
     console.log(location);
@@ -17,7 +27,7 @@ const addVictimData = async (req, res) => {
     // console.log(path);
     const { date, time } = utility.getDateTime();
     pool.query(
-        'INSERT INTO victim (sex, age, pwdstat, activity, description, date, time, location, image, uid) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+        'INSERT INTO victim (sex, age, pwdstat, activity, description, date, time, location, image, uid, ccid) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
         [
             sex,
             age,
@@ -29,6 +39,7 @@ const addVictimData = async (req, res) => {
             location,
             path,
             uid,
+            ccid
         ],
         (error, result) => {
             if (error) {
@@ -41,8 +52,13 @@ const addVictimData = async (req, res) => {
         }
     );
     
-    let imageMatched = await utility.matchImage(filename);
-    console.log(imageMatched);
+    // let imageMatched = await utility.matchImage(filename);
+    // console.log(imageMatched);
+
+    // if(!imageMatched[2].includes('Unknown')){
+    //     let ccid= imageMatched[2][0];
+    //     pool.query('UPDATE victim SET ccid= $1 where victm')
+    // }
 
     res.redirect('/');
 

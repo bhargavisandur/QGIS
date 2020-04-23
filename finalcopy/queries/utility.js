@@ -44,9 +44,10 @@ const matchImage = async (filename) => {
             `cd ImageRecognition && python3 recognize_faces_image.py --encodings encodings.pickle --image ${image}`
         );
         // console.log(`stderr:${stderr}`);
-
+        
         let output = stdout.split('\n');
-        return !output[2].includes('Unknown');
+        return output;
+        //return !output[2].includes('Unknown');
     } catch (error) {
         console.log(`Error:${error}`);
         return;

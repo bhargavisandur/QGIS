@@ -261,6 +261,53 @@ app.get('/adminPage', (req, res) => {
     });
 });
 
+app.get("/loginCrimeCell", (req, res)=>{
+    res.render("crimeCellLogin");
+})
+
+app.post("/loginCrimeCell", db.getCrimeCell);
+
+app.get('/crimeCellPage/:crimeCellId', (req, res)=>{
+    let crimeCellId= req.params.crimeCellId;
+    pool.query('SELECT * FROM victim WHERE ccid= $1',[crimeCellId], (error, result) => {
+        if (error) throw error;
+        //res.render("adminPage")
+        console.log(result.rows);
+        res.render('adminPage', { victims: result.rows});
+    });
+})
+
+app.post("/rescuedChild/:crimeCellId/:vid", (req, res)=>{
+    console.log(req.params.vid);
+    let vid= req.params.vid;
+    pool.query('SELECT * FROM victim WHERE id=$1',[vid], (err, results)=>{
+        if(err){
+            throw err;
+        }
+        else{
+           console.log(results);
+           let row=results.rows[0];
+            pool.query('INSERT INTO rescued_child (sex, age, vid) VALUES($1, $2, $3)',[row.sex, row.age,row.id],(err, resulting)=>{
+                if(err){
+                    throw err;
+                }
+            })
+        }
+    })
+    // res.redirect("/crimeCellPage/"+req.params.crimeCellId);
+    pool.query('DELETE FROM victim WHERE id=$1',[req.params.vid], (err, result)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            console.log(result);
+            res.redirect("/crimeCellPage/"+req.params.crimeCellId);
+        }
+    })
+
+})
+
+
 //**************************************************** */
 
 app.get('/directForm', (req, res) => {
@@ -275,8 +322,9 @@ app.post('/users/:id', multer, db.addVictimData);
 
 app.post('/addorphan', db.createOrphan);
 app.post('/addcrime_cell', db.createCrimeCell);
-app.post('/signup', db.createUser);
-app.get('/login', db.getUser);
+
+// app.post('/signup', db.createUser);
+// app.get('/login', db.getUser);
 
 // Get ip address of the connected wifi
 const ifaces = os.networkInterfaces();
