@@ -297,8 +297,7 @@ app.get('/orphanagePage/:orphanageId', (req, res) => {
             res.render('adminPageorphan', { victims: result.rows });
         }
     );
-});
-
+})
 app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);
     let vid = req.params.vid;

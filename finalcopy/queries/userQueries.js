@@ -13,6 +13,7 @@ const addVictimData = async (req, res) => {
     let ccid = 0;
     if (!imageMatched[2].includes('Unknown')) {
         ccid = imageMatched[2][0].split('_')[0];
+        oid=null;
     } else {
         ccid = null;
     }
