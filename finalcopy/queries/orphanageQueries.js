@@ -23,4 +23,26 @@ const getOrphanage = (req, res) => {
     );
 };
 
-module.exports = { getOrphanage };
+const displayMap=(req,res)=>{
+    var victimLat=req.params.victimLat;
+    var victimLng=req.params.victimLng;
+    
+    var orphanageID=req.params.orphanageID;
+    pool.query(
+        'SELECT * FROM orphanage WHERE id=$1',[orphanageID],(error,result)=>{
+            if(error) throw error;
+            let orphanLat= result.rows[0].lat;
+            let orphanLng=result.rows[0].lng;
+            console.log(orphanLat+" "+orphanLng);
+            res.render('map',{
+                vlat:victimLat,
+                vlng:victimLng,
+                olat:orphanLat,
+                olng:orphanLng
+            });
+        }
+    )
+
+}
+
+module.exports = { getOrphanage,displayMap };

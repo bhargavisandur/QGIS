@@ -48,6 +48,34 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
+
+
+
+
+
+// Get ip address of the connected wifi
+const ifaces = os.networkInterfaces();
+let address = '';
+Object.keys(ifaces).forEach((ifname) => {
+    let alias = 0;
+    ifaces[ifname].forEach((iface) => {
+        if ('IPv4' !== iface.family || iface.internal !== false) {
+            // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+            return;
+        }
+        if (alias >= 1) {
+            // this single interface has multiple ipv4 addresses
+            // console.log(ifname + ':' + alias, iface.address);
+            // This contains multiple values like ethernet and all
+        } else {
+            // this interface has only one ipv4 adress
+            // console.log(ifname, iface.address);
+            address = iface.address;
+        }
+        ++alias;
+    });
+});
+
 // app.get('/userLogin', function (req, res, next) {
 //     if (req.isAuthenticated()) {
 //         //res.redirect("/users/"+req.user[0].id)
@@ -286,7 +314,8 @@ app.get('/crimeCellPage/:crimeCellId', (req, res) => {
     );
 });
 app.get('/orphanagePage/:orphanageId', (req, res) => {
-    let orphanageID = req.params.orphanageID;
+    let orphanageID = req.params.orphanageId;
+    console.log(orphanageID);
     pool.query(
         'SELECT * FROM victim WHERE oid= $1',
         [orphanageID],
@@ -294,10 +323,13 @@ app.get('/orphanagePage/:orphanageId', (req, res) => {
             if (error) throw error;
             //res.render("adminPage")
             console.log(result.rows);
-            res.render('adminPageorphan', { victims: result.rows });
+            res.render('adminPageorphan', { victims: result.rows,address:address });
         }
     );
 });
+
+app.get('/displaymap/:victimLat/:victimLng/:orphanageID',db.displayMap);
+
 app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);
     let vid = req.params.vid;
@@ -386,28 +418,7 @@ app.post('/addcrime_cell', db.createCrimeCell);
 // app.post('/signup', db.createUser);
 // app.get('/login', db.getUser);
 
-// Get ip address of the connected wifi
-const ifaces = os.networkInterfaces();
-let address = '';
-Object.keys(ifaces).forEach((ifname) => {
-    let alias = 0;
-    ifaces[ifname].forEach((iface) => {
-        if ('IPv4' !== iface.family || iface.internal !== false) {
-            // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
-            return;
-        }
-        if (alias >= 1) {
-            // this single interface has multiple ipv4 addresses
-            // console.log(ifname + ':' + alias, iface.address);
-            // This contains multiple values like ethernet and all
-        } else {
-            // this interface has only one ipv4 adress
-            // console.log(ifname, iface.address);
-            address = iface.address;
-        }
-        ++alias;
-    });
-});
+
 
 app.listen(port, address, () => {
     console.log(`Server running on port: ${port} at address ${address}`);

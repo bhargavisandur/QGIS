@@ -59,7 +59,7 @@
                             <%victims.forEach((victim)=>{%>
                                 <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="<%=victim.image.toString().substring(6,victim.image.toString().length)%>" >
                                     <div class="gaadiex-list-item-text">
-                                        <h3><a href="#"><%=victim.date.toString().substring(0,15)%>, <%=victim.time%></a></h3>
+                                        <h3><a href="http://<%= address%>:8000/displaymap/<%= victim.lat%>/<%=victim.lng%>/<%=victim.oid%>"><%=victim.date.toString().substring(0,15)%>, <%=victim.time%></a></h3>
                                         <div class="container-fluid">
                                             <%console.log(victim.image.toString().substring(6,victim.image.toString().length))%>
                                         <h4>Sex: <%=victim.sex%></h4>
