@@ -84,7 +84,7 @@ const matchImage = async (filename) => {
 
 const findGender = async (filename) => {
     try {
-        console.log(__dirname);
+        // console.log(__dirname);
         const image = path.join(
             path.dirname(fs.realpathSync(__filename)),
             `../public/images/${filename}`

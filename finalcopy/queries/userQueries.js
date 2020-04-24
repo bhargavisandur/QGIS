@@ -17,22 +17,23 @@ const addVictimData = async (req, res) => {
         // Set the options.
         const options = {
             images: [path],
-            width: 640,
-            quality: 50
+            width: 500,
+            quality: 30
         };
         
         // Run the module.
         await resizeOptimizeImages(options);
     })();
 
-    // let imageMatched = await utility.matchImage(filename);
-    // console.log(imageMatched);
+    let imageMatched = await utility.matchImage(filename);
+    console.log(imageMatched);
     let ccid = null;
     let oid = null;
     const { lat, lng } = await utility.getLocation(filename); // This is correct
     // console.log('Latitude longitude of the image', lat, lng);
-    if (/*!imageMatched[2].includes('Unknown')*/ false) {
+    if (!imageMatched[2].includes('Unknown')) {
         ccid = imageMatched[2][0].split('_')[0];
+        console.log(`ccid: ${ccid}`);
     } else {
         const orphanage = await utility.getClosestOrphangeID(lat, lng, pool);
         console.log('In user queries', orphanage);
@@ -69,7 +70,7 @@ const addVictimData = async (req, res) => {
                 throw error;
             }
             sendEmail(req.body.uid, 'Thank you for using the NoAbuse app!');
-            res.writeContinue(200, { success: true });
+            // res.writeContinue(200, { success: true });
         }
     );
 
