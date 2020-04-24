@@ -5,10 +5,7 @@ const sendEmail = require('../nodeMailer/sendEmail');
 const resizeOptimizeImages = require('resize-optimize-images');
 
 const addVictimData = async (req, res) => {
-    // console.log(req.file);
-    // console.log(req.body);
-    //const uid = req.params.id;
-    const { path ,filename } = req.file;
+    const { path, filename } = req.file;
 
     /*******************************
      * Resizing image using sharp
@@ -17,28 +14,28 @@ const addVictimData = async (req, res) => {
         // Set the options.
         const options = {
             images: [path],
-            width: 500,
-            quality: 30
+            width: 300,
+            height: 300,
+            quality: 30,
         };
-        
+
         // Run the module.
         await resizeOptimizeImages(options);
     })();
 
-    let imageMatched = await utility.matchImage(filename);
-    console.log(imageMatched);
+    let output = await utility.matchImage(filename);
+    // console.log(output);
     let ccid = null;
     let oid = null;
     const { lat, lng } = await utility.getLocation(filename); // This is correct
     // console.log('Latitude longitude of the image', lat, lng);
-    if (!imageMatched[2].includes('Unknown')) {
-        ccid = imageMatched[2][0].split('_')[0];
+    if (!output[2].includes('Unknown')) {
+        ccid = output[2].split('_');
+        ccid = ccid[0].slice(2, ccid[0].length);
         console.log(`ccid: ${ccid}`);
     } else {
         const orphanage = await utility.getClosestOrphangeID(lat, lng, pool);
-        console.log('In user queries', orphanage);
         oid = orphanage.id;
-        console.log(oid);
     }
 
     const { age, pwdstat, activity, description, uid } = req.body;
@@ -65,13 +62,12 @@ const addVictimData = async (req, res) => {
         ],
         (error, result) => {
             if (error) {
-                console.log('error occured');
+                console.log(`error occured ${error}`);
                 res.redirect('/victimform');
-                
-            }else{
+            } else {
                 res.redirect('/');
+                sendEmail(req.body.uid, 'Thank you for using the NoAbuse app!');
             }
-            sendEmail(req.body.uid, 'Thank you for using the NoAbuse app!');
             // res.writeContinue(200, { success: true });
         }
     );
@@ -84,7 +80,7 @@ const addVictimData = async (req, res) => {
     //     pool.query('UPDATE victim SET ccid= $1 where victm')
     // }
 
-   // res.redirect('/');
+    // res.redirect('/');
 
     // pool.query("SELECT * FROM victim", (error, result) => {
     //     res.status(200).json(result.rows);

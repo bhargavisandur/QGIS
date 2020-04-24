@@ -130,13 +130,13 @@ const tolatlong = async (locate) => {
 
 // Get min distance orphanage id
 const getClosestOrphangeID = async (lat, lng, pool) => {
-    pool.query('SELECT * FROM orphanage', (error, result) => {
-        if (error) throw error;
+    try {
+        const result = await pool.query('SELECT * FROM orphanage');
         const R = 6371;
         const lat1 = lat * (Math.PI / 180);
         const lng1 = lng * (Math.PI / 180);
         const orphanageArray = [];
-        for(i = 0; i < result.rows.length; i++) {
+        for (i = 0; i < result.rows.length; i++) {
             const r = result.rows[i];
             const lat2 = r.lat * (Math.PI / 180);
             const lng2 = r.lng * (Math.PI / 180);
@@ -159,9 +159,10 @@ const getClosestOrphangeID = async (lat, lng, pool) => {
         orphanageArray.sort((a, b) => {
             return a.distance - b.distance;
         });
-        console.log("In utility", orphanageArray[0]);
         return orphanageArray[0];
-    });
+    } catch (err) {
+        throw err;
+    }
 };
 
 module.exports = {
