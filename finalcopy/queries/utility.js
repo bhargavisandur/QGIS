@@ -6,6 +6,8 @@ const nodeGeocoder = require('node-geocoder');
 const fs = require('fs');
 const path = require('path');
 
+// Get latitude and longitude from image
+
 const getLocation = async (filename) => {
     try {
         const { stdout, stderr } = await exec(
@@ -13,16 +15,38 @@ const getLocation = async (filename) => {
         );
         // console.log(`stderr:${stderr}`);
 
-        let location = '';
+        let location = {
+            lat: 0.0,
+            lng: 0.0,
+        };
         // console.log(stdout);
         const lines = stdout.toString().split('\n');
         lines.forEach((line) => {
             const parts = line.split(':');
-            if (
-                parts[0].trim() === 'GPS Latitude' ||
-                parts[0].trim() === 'GPS Longitude'
-            )
-                location += parts[0].trim() + '=' + parts[1].trim() + ' ';
+            if (parts[0].trim() === 'GPS Latitude') {
+                if (parts[1].trim().includes('N')) {
+                    parts[1] = parts[1]
+                        .trim()
+                        .slice(0, parts[1].trim().length - 1);
+                } else {
+                    parts[1] =
+                        '-' +
+                        parts[1].trim().slice(0, parts[1].trim().length - 1);
+                }
+                location.lat = parseFloat(parts[1].trim());
+            }
+            if (parts[0].trim() === 'GPS Longitude') {
+                if (parts[1].trim().includes('E')) {
+                    parts[1] = parts[1]
+                        .trim()
+                        .slice(0, parts[1].trim().length - 1);
+                } else {
+                    parts[1] =
+                        '-' +
+                        parts[1].trim().slice(0, parts[1].trim().length - 1);
+                }
+                location.lng = parseFloat(parts[1].trim());
+            }
         });
         // console.log(location);
         return location;
@@ -32,14 +56,16 @@ const getLocation = async (filename) => {
     }
 };
 
+// Match image with the trained model
+
 const matchImage = async (filename) => {
     try {
-        console.log(__dirname);
+        // console.log(__dirname);
         const image = path.join(
             path.dirname(fs.realpathSync(__filename)),
             `../public/images/${filename}`
         );
-        console.log(image);
+        // console.log(image);
         const { stdout, stderr } = await exec(
             `cd ImageRecognition && python3 recognize_faces_image.py --encodings encodings.pickle --image ${image}`
         );
@@ -53,6 +79,8 @@ const matchImage = async (filename) => {
         return;
     }
 };
+
+// Get gender from image
 
 const findGender = async (filename) => {
     try {
@@ -70,6 +98,8 @@ const findGender = async (filename) => {
         return;
     }
 };
+
+// Get date and time of upload
 
 const getDateTime = () => {
     const m = moment.tz('Asia/Calcutta').format();
@@ -98,10 +128,47 @@ const tolatlong = async (locate) => {
     return loc;
 };
 
+// Get min distance orphanage id
+const getClosestOrphangeID = async (lat, lng, pool) => {
+    pool.query('SELECT * FROM orphanage', (error, result) => {
+        if (error) throw error;
+        const R = 6371;
+        const lat1 = lat * (Math.PI / 180);
+        const lng1 = lng * (Math.PI / 180);
+        const orphanageArray = [];
+        for(i = 0; i < result.rows.length; i++) {
+            const r = result.rows[i];
+            const lat2 = r.lat * (Math.PI / 180);
+            const lng2 = r.lng * (Math.PI / 180);
+            const latDiff = (lat2 - lat1) * (Math.PI / 180);
+            const lngDiff = (lng2 - lng1) * (Math.PI / 180);
+            const a =
+                Math.sin(latDiff / 2) * Math.sin(latDiff / 2) +
+                Math.cos(lat1) *
+                    Math.cos(lat2) *
+                    Math.sin(lngDiff / 2) *
+                    Math.sin(lngDiff / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const d = R * c;
+            const obj = {
+                distance: d,
+                id: r.id,
+            };
+            orphanageArray.push(obj);
+        }
+        orphanageArray.sort((a, b) => {
+            return a.distance - b.distance;
+        });
+        console.log("In utility", orphanageArray[0]);
+        return orphanageArray[0];
+    });
+};
+
 module.exports = {
     getLocation,
     getDateTime,
     tolatlong,
     matchImage,
     findGender,
+    getClosestOrphangeID,
 };

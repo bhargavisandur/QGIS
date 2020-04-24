@@ -8,30 +8,28 @@ const addVictimData = async (req, res) => {
     // console.log(req.body);
     //const uid = req.params.id;
     const { path, filename } = req.file;
-    let imageMatched = await utility.matchImage(filename);
-    console.log(imageMatched);
-    let ccid = 0;
-    if (!imageMatched[2].includes('Unknown')) {
+    // let imageMatched = await utility.matchImage(filename);
+    // console.log(imageMatched);
+    let ccid = null;
+    let oid = null;
+    const { lat, lng } = await utility.getLocation(filename); // This is correct
+    // console.log('Latitude longitude of the image', lat, lng);
+    if (/*!imageMatched[2].includes('Unknown')*/ false) {
         ccid = imageMatched[2][0].split('_')[0];
-        oid = null;
     } else {
-        ccid = null;
-        const { error, result } = await pool.query(
-            'SELECT id,( 6371*acos(cos(radians(37))*cos(radians(lat))*cos(radians(lng)-radians(-122))+sin(radians(37))*sin(radians(lat)))) AS distance FROM orphanage HAVING distance<8 ORDER BY distance'
-        );
-        if (error) throw error;
-        oid = result.rows[0].id;
+        const orphanage = await utility.getClosestOrphangeID(lat, lng, pool);
+        console.log("In user queries", orphanage);
+        oid = orphanage.id;
+        console.log(oid);
     }
 
     const { age, pwdstat, activity, description, uid } = req.body;
-    let location = await utility.getLocation(filename);
-    console.log(location);
     let sex = await utility.findGender(filename);
-    console.log(sex);
+    console.log(`Sex of the person in the image:${sex}`);
     // console.log(path);
     const { date, time } = utility.getDateTime();
     pool.query(
-        'INSERT INTO victim (sex, age, pwdstat, activity, description, date, time, location, image, uid, ccid,oid) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11)',
+        'INSERT INTO victim (sex, age, pwdstat, activity, description, date, time, lat,lng, image, uid, ccid, oid) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)',
         [
             sex,
             age,
@@ -40,12 +38,13 @@ const addVictimData = async (req, res) => {
             description,
             date,
             time,
-            location,
+            lat,
+            lng,
             path,
             uid,
             ccid,
             oid,
-         ],
+        ],
         (error, result) => {
             if (error) {
                 console.log('error occured');
