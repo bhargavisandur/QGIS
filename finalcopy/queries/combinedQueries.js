@@ -14,6 +14,7 @@ const getUser = userQueries.getUser;
 const getCrimeCell = crimeCellQueries.getCrimeCell;
 const getOrphanage = orphanageQueries.getOrphanage;
 const displayMap=orphanageQueries.displayMap;
+const displayCrime=crimeCellQueries.displayCrime;
 
 module.exports = {
     createAdmin,
@@ -24,5 +25,6 @@ module.exports = {
     getUser,
     getCrimeCell,
     getOrphanage,
-    displayMap
+    displayMap,
+    displayCrime
 };

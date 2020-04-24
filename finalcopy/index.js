@@ -309,7 +309,7 @@ app.get('/crimeCellPage/:crimeCellId', (req, res) => {
             if (error) throw error;
             //res.render("adminPage")
             console.log(result.rows);
-            res.render('adminPage', { victims: result.rows });
+            res.render('adminPage', { victims: result.rows,address:address });
         }
     );
 });
@@ -329,6 +329,8 @@ app.get('/orphanagePage/:orphanageId', (req, res) => {
 });
 
 app.get('/displaymap/:victimLat/:victimLng/:orphanageID',db.displayMap);
+
+app.get('/displaycrimemap/:victimLat/:victimLng/:crimecellID',db.displayCrime);
 
 app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);

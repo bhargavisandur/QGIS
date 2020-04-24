@@ -23,4 +23,25 @@ const getCrimeCell = (req, res) => {
     );
 };
 
-module.exports = { getCrimeCell };
+const displayCrime=(req,res)=>{
+    var victimLat=req.params.victimLat;
+    var victimLng=req.params.victimLng;
+    var crimecellID=req.params.crimecellID;
+    pool.query(
+        'SELECT * FROM crime_cell WHERE id=$1',[crimecellID],(error,result)=>{
+            if(error)throw error;
+            cclat=result.rows[0].lat;
+            cclng=result.rows[0].lng;
+            console.log(cclat,cclng);
+            res.render('crime_map',{
+                vlat:victimLat,
+                vlng:victimLng,
+                clat:cclat,
+                clng:cclng
+            });
+
+        }
+    )
+}
+
+module.exports = { getCrimeCell,displayCrime };
