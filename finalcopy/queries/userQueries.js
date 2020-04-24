@@ -67,7 +67,9 @@ const addVictimData = async (req, res) => {
             if (error) {
                 console.log('error occured');
                 res.redirect('/victimform');
-                throw error;
+                
+            }else{
+                res.redirect('/');
             }
             sendEmail(req.body.uid, 'Thank you for using the NoAbuse app!');
             // res.writeContinue(200, { success: true });
@@ -82,7 +84,7 @@ const addVictimData = async (req, res) => {
     //     pool.query('UPDATE victim SET ccid= $1 where victm')
     // }
 
-    res.redirect('/');
+   // res.redirect('/');
 
     // pool.query("SELECT * FROM victim", (error, result) => {
     //     res.status(200).json(result.rows);
