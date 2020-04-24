@@ -2,12 +2,29 @@ const pool = require('../pool');
 const utility = require('./utility');
 const fs = require('fs');
 const sendEmail = require('../nodeMailer/sendEmail');
+const resizeOptimizeImages = require('resize-optimize-images');
 
 const addVictimData = async (req, res) => {
     // console.log(req.file);
     // console.log(req.body);
     //const uid = req.params.id;
-    const { path, filename } = req.file;
+    const { path ,filename } = req.file;
+
+    /*******************************
+     * Resizing image using sharp
+     ********************************/
+    (async () => {
+        // Set the options.
+        const options = {
+            images: [path],
+            width: 640,
+            quality: 50
+        };
+        
+        // Run the module.
+        await resizeOptimizeImages(options);
+    })();
+
     // let imageMatched = await utility.matchImage(filename);
     // console.log(imageMatched);
     let ccid = null;
@@ -18,7 +35,7 @@ const addVictimData = async (req, res) => {
         ccid = imageMatched[2][0].split('_')[0];
     } else {
         const orphanage = await utility.getClosestOrphangeID(lat, lng, pool);
-        console.log("In user queries", orphanage);
+        console.log('In user queries', orphanage);
         oid = orphanage.id;
         console.log(oid);
     }

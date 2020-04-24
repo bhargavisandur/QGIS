@@ -41,6 +41,7 @@
     "passport-local": "^1.0.0",
     "pg": "^7.18.2",
     "request": "^2.88.2",
+    "resize-optimize-images": "^1.1.0",
     "uuid": "^7.0.3"
   },
   "devDependencies": {
