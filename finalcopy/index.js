@@ -280,12 +280,12 @@ app.post('/victimform', multer, db.addVictimData);
 app.get('/adminLogin', (req, res) => {
     res.render('adminLogin');
 });
-app.get('/', (req, res) => {
-    pool.query('SELECT * FROM victim', (error, result) => {
+app.get('/statistics', (req, res) => {
+    pool.query('SELECT * FROM rescued_child', (error, result) => {
         if (error) throw error;
         //res.render("adminPage")
         console.log(result.rows);
-        res.render('adminPage', { victims: result.rows });
+        res.render('mainAdmin', { victims: result.rows });
     });
 });
 
@@ -332,6 +332,8 @@ app.get('/displaymap/:victimLat/:victimLng/:orphanageID',db.displayMap);
 
 app.get('/displaycrimemap/:victimLat/:victimLng/:crimecellID',db.displayCrime);
 
+app.get('/displayrescued',db.displayRescued);
+
 app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);
     let vid = req.params.vid;
@@ -342,8 +344,8 @@ app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
             console.log(results);
             let row = results.rows[0];
             pool.query(
-                'INSERT INTO rescued_child (sex, age, vid) VALUES($1, $2, $3)',
-                [row.sex, row.age, row.id],
+                'INSERT INTO rescued_child (sex, age, vid,lat,lng) VALUES($1, $2, $3,$4,$5)',
+                [row.sex, row.age, row.id,row.lat,row.lng],
                 (err, resulting) => {
                     if (err) {
                         throw err;
