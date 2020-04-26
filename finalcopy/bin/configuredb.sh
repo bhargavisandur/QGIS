@@ -21,3 +21,10 @@ createdb -U me appdb
 psql -U me appdb < ./bin/sql/appdb.sql
 
 echo "$database configured"
+
+echo "Populating database"
+
+orphanagePath=$(locate orphanage-data.csv)
+psql -U me appdb -c "\copy orphanage FROM '$orphanagePath' csv;"
+
+echo "Database populated"
