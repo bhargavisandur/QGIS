@@ -280,6 +280,8 @@ app.post('/victimform', multer, db.addVictimData);
 app.get('/adminLogin', (req, res) => {
     res.render('adminLogin');
 });
+
+app.post('/adminLogin',db.getAdmin);
 app.get('/statistics', (req, res) => {
     pool.query('SELECT * FROM rescued_child', (error, result) => {
         if (error) throw error;

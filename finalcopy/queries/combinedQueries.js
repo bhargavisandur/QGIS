@@ -7,6 +7,7 @@ const createAdmin = adminQueries.createAdmin;
 const createOrphan = adminQueries.createOrphan;
 const createCrimeCell = adminQueries.createCrimeCell;
 const displayRescued=adminQueries.displayRescued;
+const getAdmin=adminQueries.getAdmin;
 
 // List of all user queries
 const addVictimData = userQueries.addVictimData;
@@ -28,5 +29,6 @@ module.exports = {
     getOrphanage,
     displayMap,
     displayCrime,
-    displayRescued
+    displayRescued,
+    getAdmin
 };

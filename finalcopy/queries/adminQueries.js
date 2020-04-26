@@ -17,6 +17,28 @@ const createAdmin = (req, res) => {
     });
 };
 
+const getAdmin = (req, res) => {
+    const { email, password } = req.body;
+    console.log(email,password);
+    pool.query(
+        'SELECT * FROM admin WHERE "password" = $1',
+        [ password],
+        (error, result) => {
+            if (error) throw error;
+            else {
+                    console.log(result.rows);
+                if (result.rows.length == 0) {
+                    res.redirect('/adminLogin');
+                } else {
+                    res.redirect('/statistics');
+                }
+                //console.log(result);
+            }
+            //res.writeContinue(200, { success: true });
+        }
+    );
+};
+
 const createOrphan = async (req, res) => {
     const { name, address, capacity } = req.body;
     let location;
@@ -74,4 +96,4 @@ const displayRescued=(req,res)=>{
 
 }
 
-module.exports = { createAdmin, createOrphan, createCrimeCell,displayRescued };
+module.exports = { createAdmin, createOrphan, createCrimeCell,displayRescued,getAdmin };
