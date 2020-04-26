@@ -16,7 +16,7 @@ module.exports = function sendEmail(to, subject, message) {
         from: 'noabuseapp@gmail.com',
         to,
         subject,
-        message
+        html:message
             //'<h1>Thank you for using the NoAbuse App and helping another child! We will constantly give you updates on the child! Stay blessed.',
     };
 

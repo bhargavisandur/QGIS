@@ -39,13 +39,13 @@ const addVictimData = async (req, res) => {
     }
 
     if(oid!=null){
-        pool.query('SELECT email FROM orphanage where oid=$1 ', [oid], (err , result)=>{
+        pool.query('SELECT * FROM manager where oid=$1 ', [oid], (err , result)=>{
             let email= result.rows[0].email;
             sendEmail(email, "Child Found", "<h1> A child has been reported <h1>");
         })
     }
     else{
-        pool.query('SELECT email FROM crime_cell where cid=$1 ', [cid], (err , result)=>{
+        pool.query('SELECT * FROM crime_cell where id=$1 ', [ccid], (err , result)=>{
             let email= result.rows[0].email;
             sendEmail(email, "Missing Child Found", "<h1> A child that had been reported missing has been found <h1>");
         })

@@ -80,6 +80,6 @@ CREATE TABLE crime_cell(
 	report_id int,
 	email character varying(50),
 	
-	password character varying(50),
-	FOREIGN KEY (report_id) REFERENCES missing_reports(id)
+	password character varying(50)
+	
 );
