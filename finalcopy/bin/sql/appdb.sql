@@ -41,6 +41,7 @@ CREATE TABLE orphanage(
 );
 
 CREATE TABLE rescued_child(
+	id SERIAL PRIMARY KEY,
 	name character varying(30),
 	age int,
 	sex character varying(12),
@@ -48,8 +49,8 @@ CREATE TABLE rescued_child(
 	weight int,
 	oid int,
 	vid int,
-	FOREIGN KEY (oid) REFERENCES orphanage(id),
-	FOREIGN KEY (vid) REFERENCES victim(id)
+	FOREIGN KEY (oid) REFERENCES orphanage(id)
+
 );
 
 CREATE TABLE manager(
