@@ -28,7 +28,7 @@ const addVictimData = async (req, res) => {
     let ccid = null;
     let oid = null;
     const { lat, lng } = await utility.getLocation(filename); // This is correct
-    // console.log('Latitude longitude of the image', lat, lng);
+     console.log('Latitude longitude of the image', lat, lng);
     if (!output[2].includes('Unknown')) {
         ccid = output[2].split('_');
         ccid = ccid[0].slice(2, ccid[0].length);

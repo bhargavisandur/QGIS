@@ -17,6 +17,9 @@ const getCrimeCell = crimeCellQueries.getCrimeCell;
 const getOrphanage = orphanageQueries.getOrphanage;
 const displayMap=orphanageQueries.displayMap;
 const displayCrime=crimeCellQueries.displayCrime;
+const rescuedbyMe=crimeCellQueries.rescuedbyMe;
+const rescuedMale=crimeCellQueries.rescuedMale;
+const rescuedFemale=crimeCellQueries.rescuedFemale;
 
 module.exports = {
     createAdmin,
@@ -30,5 +33,8 @@ module.exports = {
     displayMap,
     displayCrime,
     displayRescued,
-    getAdmin
+    getAdmin,
+    rescuedbyMe,
+    rescuedMale,
+    rescuedFemale
 };

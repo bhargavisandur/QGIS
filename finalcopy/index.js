@@ -311,7 +311,7 @@ app.get('/crimeCellPage/:crimeCellId', (req, res) => {
             if (error) throw error;
             //res.render("adminPage")
             console.log(result.rows);
-            res.render('adminPage', { victims: result.rows,address:address });
+            res.render('adminPage', { victims: result.rows,address:address,ccid:crimeCellId });
         }
     );
 });
@@ -336,18 +336,26 @@ app.get('/displaycrimemap/:victimLat/:victimLng/:crimecellID',db.displayCrime);
 
 app.get('/displayrescued',db.displayRescued);
 
+app.get('/rescuedbymecc/:crimeCellId',db.rescuedbyMe);
+
+app.get('/rescuedmalecc/:crimeCellId',db.rescuedMale);
+
+app.get('/rescuedfemalecc/:crimeCellId',db.rescuedFemale);
+
 app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);
     let vid = req.params.vid;
+    let ccid=req.params.crimeCellId;
     pool.query('SELECT * FROM victim WHERE id=$1', [vid], (err, results) => {
         if (err) {
             throw err;
         } else {
             console.log(results);
             let row = results.rows[0];
+            console.log(row);
             pool.query(
-                'INSERT INTO rescued_child (sex, age, vid,lat,lng) VALUES($1, $2, $3,$4,$5)',
-                [row.sex, row.age, row.id,row.lat,row.lng],
+                'INSERT INTO rescued_child (sex, age, vid,lat,lng,ccid) VALUES($1, $2, $3,$4,$5,$6)',
+                [row.sex, row.age, row.id,row.lat,row.lng,row.ccid],
                 (err, resulting) => {
                     if (err) {
                         throw err;

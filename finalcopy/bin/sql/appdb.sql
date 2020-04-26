@@ -48,7 +48,8 @@ CREATE TABLE rescued_child(
 	lng float,
 	oid int,
 	vid int,
-	FOREIGN KEY (oid) REFERENCES orphanage(id)
+	ccid int
+	
 
 );
 

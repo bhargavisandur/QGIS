@@ -57,26 +57,26 @@
                             </div>
                             </div> -->
                             <%victims.forEach((victim)=>{%>
-                                <!-- <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="<%=victim.image.toString().substring(6,victim.image.toString().length)%>" > -->
+                
                                     <div class="gaadiex-list-item-text">
-                                        <!-- <h3><a href="http://<%=address%>:8000/displaycrimemap/<%=victim.lat%>/<%=victim.lng%>/<%=victim.ccid%>"><%=victim.date.toString().substring(0,15)%>, <%=victim.time%></a></h3> -->
+                                        
                                         <div class="container-fluid">
-                                            <!-- <%console.log(victim.image.toString().substring(6,victim.image.toString().length))%> -->
+                                            
                                         <h4>Sex: <%=victim.sex%></h4>
                                         <h4>Age: <%=victim.age%></h4>
                                         <h4>vid: <%=victim.vid%></h4>
-                                        <!-- <h4>Activity: <%=victim.activity%></h4> -->
-                                        <!-- <h4>Description: <%=victim.description%></h4> -->
+                                        
                                         
                                        
                                         </div>
                                     </div>
-                                    <form action="/displayrescued" method="post">
-                                        <input type="submit" name="rescued" value="rescued" />
-                                    </form>
+                                    
                                 </div>
                             <%})%>
                         </div>
+                        <form action="/displayrescued" method="post">
+                            <input type="submit" name="View statistics" value="View statistics" />
+                        </form>
                     </div>
                 </div>
                 <!-- <div class="col-md-12">
