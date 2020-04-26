@@ -26,5 +26,11 @@ echo "Populating database"
 
 orphanagePath=$(locate orphanage-data.csv)
 psql -U me appdb -c "\copy orphanage FROM '$orphanagePath' csv;"
+crimeCellPath=$(locate crime-cell-data.csv)
+psql -U me appdb -c "\copy crime_cell FROM '$crimeCellPath' csv;"
+managerPath=$(locate orphanage-manager.csv)
+psql -U me appdb -c "\copy manager FROM '$managerPath' csv;"
+adminPath=$(locate admin.csv)
+psql -U me appdb -c "\copy admin FROM '$adminPath' csv;"
 
 echo "Database populated"
