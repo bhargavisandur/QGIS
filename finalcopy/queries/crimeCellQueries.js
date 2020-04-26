@@ -5,6 +5,7 @@ const sendEmail = require('../nodeMailer/sendEmail');
 
 const getCrimeCell = (req, res) => {
     const { email, password } = req.body;
+    console.log(email,password);
     pool.query(
         'SELECT * FROM crime_cell WHERE "password" = $2 and "email" = $1',
         [email, password],
@@ -12,6 +13,7 @@ const getCrimeCell = (req, res) => {
             if (error) throw error;
             else {
                 if (result.rows.length == 0) {
+                    console.log(result.rows);
                     res.redirect('/loginCrimeCell');
                 } else {
                     res.redirect('/crimeCellPage/' + result.rows[0].id);

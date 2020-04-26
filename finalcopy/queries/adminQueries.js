@@ -54,4 +54,24 @@ const createCrimeCell = async (req, res) => {
     });
 };
 
-module.exports = { createAdmin, createOrphan, createCrimeCell };
+const displayRescued=(req,res)=>{
+    pool.query(
+        'SELECT * FROM rescued_child',(err,result)=>{
+            if(err) throw err;
+            console.log(result.rows);
+            var rescue=[];
+            for(var i=0;i<result.rows.length;i++){
+                const obj={
+                    lat:result.rows[i].lat,
+                    lng:result.rows[i].lng
+                }
+                rescue.push(obj);
+
+            }
+            res.render('rescue_map',{rescue:rescue});
+        }
+    )
+
+}
+
+module.exports = { createAdmin, createOrphan, createCrimeCell,displayRescued };

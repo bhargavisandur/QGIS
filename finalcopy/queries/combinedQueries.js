@@ -6,6 +6,7 @@ const orphanageQueries = require('./orphanageQueries');
 const createAdmin = adminQueries.createAdmin;
 const createOrphan = adminQueries.createOrphan;
 const createCrimeCell = adminQueries.createCrimeCell;
+const displayRescued=adminQueries.displayRescued;
 
 // List of all user queries
 const addVictimData = userQueries.addVictimData;
@@ -26,5 +27,6 @@ module.exports = {
     getCrimeCell,
     getOrphanage,
     displayMap,
-    displayCrime
+    displayCrime,
+    displayRescued
 };
