@@ -11,6 +11,7 @@ const getCrimeCell = (req, res) => {
         (error, result) => {
             if (error) throw error;
             else {
+                console.log(result, result.rows);
                 if (result.rows.length == 0) {
                     res.redirect('/loginCrimeCell');
                 } else {

@@ -14,23 +14,26 @@ echo "Configuring $database"
 
 if psql -U postgres -lqt | cut -d \| -f 1 | grep -qw appdb;
 then
+	echo "Droping $database"
 	dropdb -U me appdb
 fi
+echo "Recreating $database"
 createdb -U me appdb
 
+echo "Adding tables to $database"
 psql -U me appdb < ./bin/sql/appdb.sql
 
 echo "$database configured"
 
 echo "Populating database"
 
-orphanagePath=$(locate orphanage-data.csv)
-psql -U me appdb -c "\copy orphanage FROM '$orphanagePath' csv;"
-crimeCellPath=$(locate crime-cell-data.csv)
-psql -U me appdb -c "\copy crime_cell FROM '$crimeCellPath' csv;"
-managerPath=$(locate orphanage-manager.csv)
-psql -U me appdb -c "\copy manager FROM '$managerPath' csv;"
-adminPath=$(locate admin.csv)
-psql -U me appdb -c "\copy admin FROM '$adminPath' csv;"
+echo "Adding admin data"
+psql -U me appdb < ./bin/sql/admin.sql
+echo "Adding crime cell data"
+psql -U me appdb < ./bin/sql/crime-cell.sql
+echo "Adding orphanage data"
+psql -U me appdb < ./bin/sql/orphanage.sql
+echo "Adding orphanage manager data"
+psql -U me appdb < ./bin/sql/manager.sql
 
 echo "Database populated"
