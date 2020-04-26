@@ -38,6 +38,19 @@ const addVictimData = async (req, res) => {
         oid = orphanage.id;
     }
 
+    if(oid!=null){
+        pool.query('SELECT email FROM orphanage where oid=$1 ', [oid], (err , result)=>{
+            let email= result.rows[0].email;
+            sendEmail(email, "Child Found", "<h1> A child has been reported <h1>");
+        })
+    }
+    else{
+        pool.query('SELECT email FROM crime_cell where cid=$1 ', [cid], (err , result)=>{
+            let email= result.rows[0].email;
+            sendEmail(email, "Missing Child Found", "<h1> A child that had been reported missing has been found <h1>");
+        })
+
+    }
     const { age, pwdstat, activity, description, uid } = req.body;
     let sex = await utility.findGender(filename);
     console.log(`Sex of the person in the image:${sex}`);
@@ -66,7 +79,7 @@ const addVictimData = async (req, res) => {
                 res.redirect('/victimform');
             } else {
                 res.redirect('/');
-                sendEmail(req.body.uid, 'Thank you for using the NoAbuse app!');
+                sendEmail(req.body.uid, 'Thank you for using the NoAbuse app!', "<h1>Thank you for using noAbuse app<h1>");
             }
             // res.writeContinue(200, { success: true });
         }

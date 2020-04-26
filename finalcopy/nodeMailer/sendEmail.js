@@ -11,13 +11,13 @@ const transport = nodemailer.createTransport({
     },
 });
 
-module.exports = function sendEmail(to, subject) {
+module.exports = function sendEmail(to, subject, message) {
     const mailOptions = {
         from: 'noabuseapp@gmail.com',
         to,
         subject,
-        html:
-            '<h1>Thank you for using the NoAbuse App and helping another child! We will constantly give you updates on the child! Stay blessed.',
+        message
+            //'<h1>Thank you for using the NoAbuse App and helping another child! We will constantly give you updates on the child! Stay blessed.',
     };
 
     transport.sendMail(mailOptions, (error) => {
