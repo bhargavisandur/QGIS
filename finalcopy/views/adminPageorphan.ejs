@@ -91,6 +91,12 @@
                         <%}%>
 
                         </div>
+                    </div>
+                    <div>
+        
+                    </div>
+                </div>
+                </div>
                         <div class="gaadiex-list-item">
                         <form action="/rescuedbymeo/<%=oid%>" method="get">
                         <input type="submit" name="Rescued by Me" value="Rescued by Me" class="btn btn-primary" />
@@ -116,14 +122,14 @@
                     </div>
                     <div class="gaadiex-list-item">
                         <form action="/rescuedlt5o/<%=oid%>" method="get">
-                            <input type="submit" name="Age less than equal to 5"
-                                value="Age less than equal to 5" class="btn btn-primary" />
+                            <input type="submit" name="Age less than equal to 5" value="Age less than equal to 5"
+                                class="btn btn-primary" />
                         </form>
                     </div>
                     <div class="gaadiex-list-item">
                         <form action="/rescuedlt10o/<%=oid%>" method="get">
-                            <input type="submit" name="Age between 5 and 10"
-                                value="Age between 5 and 10" class="btn btn-primary" />
+                            <input type="submit" name="Age between 5 and 10" value="Age between 5 and 10"
+                                class="btn btn-primary" />
                         </form>
                     </div>
                     <div class="gaadiex-list-item">
@@ -132,15 +138,17 @@
                                 value="Age greater than equal to 15" class="btn btn-primary" />
                         </form>
                     </div>
+                    <div>
+                        <label for="count">Count of all victims matched: <span class="badge"><%=victims.length%></span></label><br>
+                        <label for="count">Count of all male victims:<span class="badge"> <%=male%></span></label><br>
+                        <label for="count">Count of all female victims:<span class="badge"> <%=female%></span></label><br>
+                        <label for="count">Count of all PWD: <span class="badge"><%=disabled%></span></label>
+                    </div>
 
                 </div>
 
 
-            </div>
-            <div>
-
-            </div>
-        </div>
+           
         <!-- <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
@@ -220,12 +228,12 @@
                     </div>
                 </div>
             </div> -->
-    </div>
-    <!--[if lt IE 7]>
+
+        <!--[if lt IE 7]>
                     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
                 <![endif]-->
 
-    <script src="" async defer></script>
+        <script src="" async defer></script>
 </body>
 
 </html>

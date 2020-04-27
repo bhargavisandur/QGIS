@@ -31,7 +31,7 @@ const addVictimData = async (req, res) => {
     let ccid = null;
     let oid = null;
     
-    if (!output[2].length>2) {
+    if (output[2].length>2 && !output[2].includes('Unknown')) {
         ccid = output[2].split('_');
         ccid = ccid[0].slice(2, ccid[0].length);
         console.log(`ccid: ${ccid}`);

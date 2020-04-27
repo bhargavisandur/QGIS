@@ -21,6 +21,9 @@ const rescuedbyMecc=crimeCellQueries.rescuedbyMe;
 const rescuedMalecc=crimeCellQueries.rescuedMale;
 const rescuedFemalecc=crimeCellQueries.rescuedFemale;
 const rescuedPwdcc=crimeCellQueries.rescuedPwd;
+const rescuedlt5cc=crimeCellQueries.rescuedlt5;
+const rescuedlt10cc=crimeCellQueries.rescuedlt10;
+const rescuedlt15cc=crimeCellQueries.rescuedlt15;
 const rescuedbyMeo=orphanageQueries.rescuedbyMe;
 const rescuedMaleo=orphanageQueries.rescuedMale;
 const rescuedFemaleo=orphanageQueries.rescuedFemale;
@@ -51,5 +54,7 @@ module.exports = {
     rescuedMaleo,
     rescuedPwdo,rescuedlt5o,
     rescuedlt10o,
-    rescuedlt15o
+    rescuedlt15o,
+    rescuedlt5cc,
+    rescuedlt10cc,rescuedlt15cc
 };
