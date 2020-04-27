@@ -93,10 +93,46 @@ const displayRescued = (req, res) => {
     });
 };
 
+const displayCC=(req,res)=>{
+    pool.query('SELECT * FROM crime_cell', (err, result) => {
+        if (err) throw err;
+        console.log(result.rows);
+        var rescue = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            const obj = {
+                lat: result.rows[i].lat,
+                lng: result.rows[i].lng,
+            };
+            rescue.push(obj);
+        }
+        res.render('rescue_map', { rescue: rescue });
+    });
+
+}
+
+const displayO=(req,res)=>{
+    pool.query('SELECT * FROM orphanage', (err, result) => {
+        if (err) throw err;
+        console.log(result.rows);
+        var rescue = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            const obj = {
+                lat: result.rows[i].lat,
+                lng: result.rows[i].lng,
+            };
+            rescue.push(obj);
+        }
+        res.render('rescue_map', { rescue: rescue });
+    });
+
+}
+
 module.exports = {
     createAdmin,
     createOrphan,
     createCrimeCell,
     displayRescued,
     getAdmin,
+    displayCC,
+    displayO
 };

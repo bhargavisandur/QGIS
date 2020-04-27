@@ -408,6 +408,10 @@ app.get('/displaycrimemap/:victimLat/:victimLng/:crimecellID', db.displayCrime);
 
 app.get('/displayrescued', db.displayRescued);
 
+app.get('/displaycc',db.displayCC);
+
+app.get('/displayorphan',db.displayO);
+
 app.get('/rescuedbymecc/:crimecellId', db.rescuedbyMecc);
 
 app.get('/rescuedbymeccmap/:crimeCellId', db.rescuedbyMeccMap);
@@ -451,6 +455,18 @@ app.get('/rescuedlt5o/:orphanageID', db.rescuedlt5o);
 app.get('/rescuedlt10o/:orphanageID', db.rescuedlt10o);
 
 app.get('/rescuedlt15o/:orphanageID', db.rescuedlt15o);
+
+app.get('/rescuedlt5ccmap/:crimecellId',db.rescuedlt5ccmap);
+
+app.get('/rescuedlt10ccmap/:crimecellId',db.rescuedlt10ccmap);
+
+app.get('/rescuedlt5ccmap/:crimecellId',db.rescuedlt15ccmap);
+
+app.get('/rescuedlt5omap/:orphanageID',db.rescuedlt5omap);
+
+app.get('/rescuedlt10omap/:orphanageID',db.rescuedlt10omap);
+
+app.get('/rescuedlt5omap/:orphanageID',db.rescuedlt15omap);
 
 app.post('/rescuedChildcc/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);

@@ -74,11 +74,21 @@
                                 </div>
                             <%})%>
                         </div>
-                        <form action="/displayrescued" method="post">
-                            <input type="submit" name="View statistics" value="View statistics" />
-                        </form>
+                        
                     </div>
                 </div>
+        </div>
+        <div>
+        <form action="/displayrescued" method="get">
+            <input type="submit" name="Display Rescued" value="Display Rescued" class="btn btn-primary"/>
+        </form>
+        </div>
+        <form action="/displayorphan" method="get">
+            <input type="submit" name="Display Orphanage" value="Display Orphanage" class="btn btn-primary" />
+        </form>
+        <form action="/displaycc" method="get"> 
+            <input type="submit" name="Display Crime Cell" value="Display Crime Cell" class="btn btn-primary" />
+        </form>
                 <!-- <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">

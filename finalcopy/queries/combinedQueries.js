@@ -8,6 +8,8 @@ const createOrphan = adminQueries.createOrphan;
 const createCrimeCell = adminQueries.createCrimeCell;
 const displayRescued = adminQueries.displayRescued;
 const getAdmin = adminQueries.getAdmin;
+const displayCC=adminQueries.displayCC;
+const displayO=adminQueries.displayO;
 
 // List of all user queries
 const addVictimData = userQueries.addVictimData;
@@ -39,6 +41,12 @@ const rescuedPwdoMap = orphanageQueries.rescuedPwdMap;
 const rescuedlt5o = orphanageQueries.rescuedlt5;
 const rescuedlt10o = orphanageQueries.rescuedlt10;
 const rescuedlt15o = orphanageQueries.rescuedlt15;
+const rescuedlt5ccmap=crimeCellQueries.rescuedlt5map;
+const rescuedlt10ccmap=crimeCellQueries.rescuedlt10map;
+const rescuedlt15ccmap=crimeCellQueries.rescuedlt15map;
+const rescuedlt5omap=orphanageQueries.rescuedlt5map;
+const rescuedlt10omap=orphanageQueries.rescuedlt10map;
+const rescuedlt15omap=orphanageQueries.rescuedlt15map;
 
 module.exports = {
     createAdmin,
@@ -75,4 +83,13 @@ module.exports = {
     rescuedlt5cc,
     rescuedlt10cc,
     rescuedlt15cc,
+    displayCC,
+    displayO,
+    rescuedlt5ccmap,
+    rescuedlt10ccmap,
+    rescuedlt15ccmap,
+    rescuedlt5omap,
+    rescuedlt10omap,
+    rescuedlt15omap
+
 };

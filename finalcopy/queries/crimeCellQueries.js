@@ -257,6 +257,32 @@ const rescuedlt5 = async (req, res) => {
     );
 };
 
+const rescuedlt5map = async (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    var age = 5;
+    console.log(crimecellId);
+    pool.query(
+        'SELECT * FROM rescued_child WHERE ccid=$1 and age=$2',
+        [crimecellId, age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+
+
+
 const rescuedlt10 = async (req, res) => {
     var crimecellId = req.params.crimecellId;
     var age = 10;
@@ -282,6 +308,33 @@ const rescuedlt10 = async (req, res) => {
         }
     );
 };
+
+
+const rescuedlt10map = async (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    var age = 10;
+    console.log(crimecellId);
+    pool.query(
+        'SELECT * FROM rescued_child WHERE ccid=$1 and age=$2',
+        [crimecellId, age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+            
+        }
+    );
+};
+
+
 
 const rescuedlt15 = async (req, res) => {
     var crimecellId = req.params.crimecellId;
@@ -309,6 +362,32 @@ const rescuedlt15 = async (req, res) => {
     );
 };
 
+const rescuedlt15map = async (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    var age = 15;
+    console.log(crimecellId);
+    pool.query(
+        'SELECT * FROM rescued_child WHERE ccid=$1 and age=$2',
+        [crimecellId, age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+            
+        }
+    );
+};
+
+
+
 module.exports = {
     getCrimeCell,
     displayCrime,
@@ -323,4 +402,7 @@ module.exports = {
     rescuedlt5,
     rescuedlt10,
     rescuedlt15,
+    rescuedlt5map,
+    rescuedlt10map,
+    rescuedlt15map
 };
