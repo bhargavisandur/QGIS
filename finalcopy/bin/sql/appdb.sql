@@ -1,9 +1,9 @@
 CREATE TABLE admin(
 	id SERIAL PRIMARY KEY,
-	name character varying(30),
-	contact bigint,
-	password character varying(50),
-	email character varying(50)
+	name character varying(30) NOT NULL,
+	contact bigint NOT NULL UNIQUE CHECK(contact > 999999999),
+	password character varying(50) NOT NULL,
+	email character varying(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE users(
@@ -11,7 +11,7 @@ CREATE TABLE users(
 	name character varying(30),
 	email character varying(50),
 	password character varying(50),
-	contact bigint
+	contact bigint NOT NULL UNIQUE CHECK(contact > 999999999)
 );
 
 CREATE TABLE victim(
@@ -34,7 +34,7 @@ CREATE TABLE victim(
 
 CREATE TABLE orphanage(
 	id SERIAL PRIMARY KEY,
-	name character varying(50),
+	name character varying(50) NOT NULL,
 	lat float,
 	lng float,
 	capacity int
@@ -56,11 +56,11 @@ CREATE TABLE rescued_child(
 
 CREATE TABLE manager(
 	id SERIAL PRIMARY KEY,
-	name character varying(30),
-	contact bigint,
-	oid int,
-	email character varying(50),
-	password character varying(50),
+	name character varying(30) NOT NULL,
+	contact bigint NOT NULL CHECK(contact > 999999999),
+	oid int NOT NULL,
+	email character varying(50) NOT NULL,
+	password character varying(50) NOT NULL,
 	FOREIGN KEY (oid) REFERENCES orphanage(id)
 );
 
@@ -76,12 +76,11 @@ CREATE TABLE missing_reports(
 
 CREATE TABLE crime_cell(
 	id SERIAL PRIMARY KEY,
-	name character varying(30),
+	name character varying(30) NOT NULL,
 	lat float,
 	lng float,
 	report_id int,
-	email character varying(50),
-	
-	password character varying(50)
+	email character varying(50) NOT NULL,
+	password character varying(50) NOT NULL
 	
 );
