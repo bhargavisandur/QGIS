@@ -8,6 +8,8 @@ const createOrphan = adminQueries.createOrphan;
 const createCrimeCell = adminQueries.createCrimeCell;
 const displayRescued = adminQueries.displayRescued;
 const getAdmin = adminQueries.getAdmin;
+const displayCC=adminQueries.displayCC;
+const displayO=adminQueries.displayO;
 
 // List of all user queries
 const addVictimData = userQueries.addVictimData;
@@ -75,4 +77,6 @@ module.exports = {
     rescuedlt5cc,
     rescuedlt10cc,
     rescuedlt15cc,
+    displayCC,
+    displayO
 };

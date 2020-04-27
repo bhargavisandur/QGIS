@@ -408,6 +408,10 @@ app.get('/displaycrimemap/:victimLat/:victimLng/:crimecellID', db.displayCrime);
 
 app.get('/displayrescued', db.displayRescued);
 
+app.get('/displaycc',db.displayCC);
+
+app.get('/displayorphan',db.displayO);
+
 app.get('/rescuedbymecc/:crimecellId', db.rescuedbyMecc);
 
 app.get('/rescuedbymeccmap/:crimeCellId', db.rescuedbyMeccMap);
