@@ -29,10 +29,10 @@ const getCrimeCell = (req, res) => {
 const displayCrime = (req, res) => {
     var victimLat = req.params.victimLat;
     var victimLng = req.params.victimLng;
-    var crimecellID = req.params.crimecellID;
+    var crimecellId = req.params.crimecellId;
     pool.query(
         'SELECT * FROM crime_cell WHERE id=$1 ',
-        [crimecellID],
+        [crimecellId],
         (error, result) => {
             if (error) throw error;
             cclat = result.rows[0].lat;
@@ -71,11 +71,11 @@ const rescuedbyMe = async (req, res) => {
 };
 
 const rescuedbyMeMap = (req, res) => {
-    var crimeCellId = req.params.crimeCellId;
-    console.log('crimecellid is:' + crimeCellId);
+    var crimecellId = req.params.crimecellId;
+    console.log('crimecellId is:' + crimecellId);
     pool.query(
         'SELECT * FROM rescued_child WHERE ccid=$1',
-        [crimeCellId],
+        [crimecellId],
         (err, result) => {
             if (err) throw err;
             rescue = [];
@@ -90,6 +90,29 @@ const rescuedbyMeMap = (req, res) => {
         }
     );
 };
+
+const myvicccMap = (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    console.log('crimecellId is:' + crimecellId);
+    pool.query(
+        'SELECT * FROM victim WHERE ccid=$1',
+        [crimecellId],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+
 
 const rescuedMale = async (req, res) => {
     var crimecellId = req.params.crimecellId;
@@ -116,11 +139,11 @@ const rescuedMale = async (req, res) => {
 };
 
 const rescuedMaleMap = (req, res) => {
-    var crimeCellId = req.params.crimeCellId;
+    var crimecellId = req.params.crimecellId;
     var sex = 'Male';
     pool.query(
         'SELECT * FROM rescued_child WHERE ccid=$1 and "sex"=$2',
-        [crimeCellId, sex],
+        [crimecellId, sex],
         (err, result) => {
             if (err) throw err;
             rescue = [];
@@ -135,6 +158,28 @@ const rescuedMaleMap = (req, res) => {
         }
     );
 };
+
+const vicMaleccMap = (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    var sex = 'Male';
+    pool.query(
+        'SELECT * FROM victim WHERE ccid=$1 and "sex"=$2',
+        [crimecellId, sex],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
 
 const rescuedFemale = async (req, res) => {
     var crimecellId = req.params.crimecellId;
@@ -162,11 +207,11 @@ const rescuedFemale = async (req, res) => {
 };
 
 const rescuedFemaleMap = (req, res) => {
-    var crimeCellId = req.params.crimeCellId;
+    var crimecellId = req.params.crimecellId;
     var sex = 'Female';
     pool.query(
         'SELECT * FROM rescued_child WHERE ccid=$1 and "sex"=$2',
-        [crimeCellId, sex],
+        [crimecellId, sex],
         (err, result) => {
             if (err) throw err;
             rescue = [];
@@ -182,6 +227,29 @@ const rescuedFemaleMap = (req, res) => {
         }
     );
 };
+
+const vicFemaleccMap = (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    var sex = 'Female';
+    pool.query(
+        'SELECT * FROM victim WHERE ccid=$1 and "sex"=$2',
+        [crimecellId, sex],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
 
 const rescuedPwd = async (req, res) => {
     var crimecellId = req.params.crimecellId;
@@ -208,12 +276,12 @@ const rescuedPwd = async (req, res) => {
 };
 
 const rescuedPwdMap = (req, res) => {
-    var crimeCellId = req.params.crimeCellId;
+    var crimecellId = req.params.crimecellId;
     var pwd = 'yes';
-    console.log('crimecellid is:' + crimeCellId);
+    console.log('crimecellId is:' + crimecellId);
     pool.query(
         'SELECT * FROM rescued_child WHERE ccid=$1 and pwdstat=$2',
-        [crimeCellId, pwd],
+        [crimecellId, pwd],
         (err, result) => {
             if (err) throw err;
             rescue = [];
@@ -229,6 +297,30 @@ const rescuedPwdMap = (req, res) => {
         }
     );
 };
+
+const vicPwdccMap = (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    var pwd = 'yes';
+    console.log('crimecellId is:' + crimecellId);
+    pool.query(
+        'SELECT * FROM victim WHERE ccid=$1 and pwdstat=$2',
+        [crimecellId, pwd],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
 
 const rescuedlt5 = async (req, res) => {
     var crimecellId = req.params.crimecellId;
@@ -279,6 +371,31 @@ const rescuedlt5map = async (req, res) => {
         }
     );
 };
+const viclt5ccMap = async (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    var age = 5;
+    console.log(crimecellId);
+    pool.query(
+        'SELECT * FROM victim WHERE ccid=$1 and age=$2',
+        [crimecellId, age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+
+
 
 
 
@@ -310,6 +427,8 @@ const rescuedlt10 = async (req, res) => {
 };
 
 
+
+
 const rescuedlt10map = async (req, res) => {
     var crimecellId = req.params.crimecellId;
     var age = 10;
@@ -333,6 +452,30 @@ const rescuedlt10map = async (req, res) => {
         }
     );
 };
+const viclt10ccMap = async (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    var age = 10;
+    console.log(crimecellId);
+    pool.query(
+        'SELECT * FROM victim WHERE ccid=$1 and age=$2',
+        [crimecellId, age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+            
+        }
+    );
+};
+
 
 
 
@@ -386,6 +529,31 @@ const rescuedlt15map = async (req, res) => {
     );
 };
 
+const viclt15ccMap = async (req, res) => {
+    var crimecellId = req.params.crimecellId;
+    var age = 15;
+    console.log(crimecellId);
+    pool.query(
+        'SELECT * FROM victim WHERE ccid=$1 and age=$2',
+        [crimecellId, age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+            
+        }
+    );
+};
+
+
 
 
 module.exports = {
@@ -404,5 +572,12 @@ module.exports = {
     rescuedlt15,
     rescuedlt5map,
     rescuedlt10map,
-    rescuedlt15map
+    rescuedlt15map,
+    myvicccMap,
+    vicMaleccMap,
+    vicFemaleccMap,
+    vicPwdccMap,
+    viclt5ccMap,
+    viclt10ccMap,
+    viclt15ccMap
 };
