@@ -315,8 +315,8 @@ app.get('/crimeCellPage/:crimeCellId', (req, res) => {
         }
     );
 });
-app.get('/orphanagePage/:orphanageId', (req, res) => {
-    let orphanageID = req.params.orphanageId;
+app.get('/orphanagePage/:orphanageID', (req, res) => {
+    let orphanageID = req.params.orphanageID;
     console.log(orphanageID);
     pool.query(
         'SELECT * FROM victim WHERE oid= $1',
@@ -325,7 +325,7 @@ app.get('/orphanagePage/:orphanageId', (req, res) => {
             if (error) throw error;
             //res.render("adminPage")
             console.log(result.rows);
-            res.render('adminPageorphan', { victims: result.rows,address:address });
+            res.render('adminPageorphan', { victims: result.rows,address:address,oid:orphanageID });
         }
     );
 });
@@ -336,13 +336,29 @@ app.get('/displaycrimemap/:victimLat/:victimLng/:crimecellID',db.displayCrime);
 
 app.get('/displayrescued',db.displayRescued);
 
-app.get('/rescuedbymecc/:crimeCellId',db.rescuedbyMe);
+app.get('/rescuedbymecc/:crimeCellId',db.rescuedbyMecc);
 
-app.get('/rescuedmalecc/:crimeCellId',db.rescuedMale);
+app.get('/rescuedmalecc/:crimeCellId',db.rescuedMalecc);
 
-app.get('/rescuedfemalecc/:crimeCellId',db.rescuedFemale);
+app.get('/rescuedfemalecc/:crimeCellId',db.rescuedFemalecc);
 
-app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
+app.get('/rescuedpwdcc/:crimeCellId',db.rescuedPwdcc);
+
+app.get('/rescuedbymeo/:orphanageID',db.rescuedbyMeo);
+
+app.get('/rescuedmaleo/:orphanageID',db.rescuedMaleo);
+
+app.get('/rescuedfemaleo/:orphanageID',db.rescuedFemaleo);
+
+app.get('/rescuedpwdo/:orphanageID',db.rescuedPwdo);
+
+app.get('/rescuedlt5o/:orphanageID',db.rescuedlt5o);
+
+app.get('/rescuedlt10o/:orphanageID',db.rescuedlt10o);
+
+app.get('/rescuedlt15o/:orphanageID',db.rescuedlt15o);
+
+app.post('/rescuedChildcc/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);
     let vid = req.params.vid;
     let ccid=req.params.crimeCellId;
@@ -354,8 +370,8 @@ app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
             let row = results.rows[0];
             console.log(row);
             pool.query(
-                'INSERT INTO rescued_child (sex, age, vid,lat,lng,ccid) VALUES($1, $2, $3,$4,$5,$6)',
-                [row.sex, row.age, row.id,row.lat,row.lng,row.ccid],
+                'INSERT INTO rescued_child (sex, age, vid,lat,lng,ccid,pwdstat) VALUES($1, $2, $3,$4,$5,$6,$7)',
+                [row.sex, row.age, row.id,row.lat,row.lng,row.ccid,row.pwdstat],
                 (err, resulting) => {
                     if (err) {
                         throw err;
@@ -379,18 +395,20 @@ app.post('/rescuedChild/:crimeCellId/:vid', (req, res) => {
     );
 });
 
-app.post('/rescuedChild/:orphanageId/:vid', (req, res) => {
+app.post('/rescuedChildo/:orphanageID/:vid', (req, res) => {
     console.log(req.params.vid);
     let vid = req.params.vid;
+    let oid=req.params.orphanageID;
     pool.query('SELECT * FROM victim WHERE id=$1', [vid], (err, results) => {
         if (err) {
             throw err;
         } else {
             console.log(results);
             let row = results.rows[0];
+            console.log(row);
             pool.query(
-                'INSERT INTO rescued_child (sex, age, vid) VALUES($1, $2, $3)',
-                [row.sex, row.age, row.id],
+                'INSERT INTO rescued_child (sex, age, vid,lat,lng,oid,pwdstat) VALUES($1, $2, $3,$4,$5,$6,$7)',
+                [row.sex, row.age, row.id,row.lat,row.lng,row.oid,row.pwdstat],
                 (err, resulting) => {
                     if (err) {
                         throw err;
@@ -413,6 +431,8 @@ app.post('/rescuedChild/:orphanageId/:vid', (req, res) => {
         }
     );
 });
+
+
 
 //**************************************************** */
 

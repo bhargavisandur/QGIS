@@ -63,7 +63,7 @@ const rescuedbyMe=(req,res)=>{
 const rescuedMale=(req,res)=>{
     var crimeCellId=req.params.crimeCellId;
    
-    var sex='male';
+    var sex='Male';
     pool.query(
         'SELECT * FROM rescued_child WHERE ccid=$1 and "sex"=$2' ,[crimeCellId,sex],(err,result)=>{
             if(err) throw err;
@@ -88,4 +88,19 @@ const rescuedFemale=(req,res)=>{
     )
 }
 
-module.exports = { getCrimeCell,displayCrime ,rescuedbyMe,rescuedMale,rescuedFemale};
+const rescuedPwd=(req,res)=>{
+    var crimeCellId=req.params.crimeCellId;
+    var pwd='yes';
+    console.log("crimecellid is:"+crimeCellId);
+    pool.query(
+        'SELECT * FROM rescued_child WHERE ccid=$1 and pwdstat=$2',[crimeCellId,pwd],(err,result)=>{
+            if(err) throw err;
+             var victims=result.rows;
+             console.log(victims)
+            res.render('rescuedPage',{victims:victims});
+
+        }
+    )
+}
+
+module.exports = { getCrimeCell,displayCrime ,rescuedbyMe,rescuedMale,rescuedFemale,rescuedPwd};

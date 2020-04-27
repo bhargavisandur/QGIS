@@ -45,4 +45,107 @@ const displayMap=(req,res)=>{
 
 }
 
-module.exports = { getOrphanage,displayMap };
+const rescuedbyMe=(req,res)=>{
+    var orphanageID=req.params.orphanageID;
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM rescued_child WHERE oid=$1',[orphanageID],(err,result)=>{
+            if(err) throw err;
+             var victims=result.rows;
+             console.log(victims)
+            res.render('rescuedPage',{victims:victims});
+
+        }
+    )
+}
+
+const rescuedMale=(req,res)=>{
+    var orphanageID=req.params.orphanageID;
+   
+    var sex='Male';
+    pool.query(
+        'SELECT * FROM rescued_child WHERE oid=$1 and "sex"=$2' ,[orphanageID,sex],(err,result)=>{
+            if(err) throw err;
+            var victims=result.rows;
+            res.render('rescuedPage',{victims:victims});
+        }
+    )
+}
+
+const rescuedFemale=(req,res)=>{
+    var orphanageID=req.params.orphanageID;
+    console.log('ccid:'+orphanageID);
+    var sex='Female';
+    pool.query(
+        'SELECT * FROM rescued_child WHERE oid=$1 and "sex"=$2' ,[orphanageID,'Female'],(err,result)=>{
+            if(err) throw err;
+           // console.log(result.rows);
+            var victims=result.rows;
+            console.log("females rescued are:"+victims);
+            res.render('rescuedPage',{victims:victims});
+        }
+    )
+}
+
+const rescuedPwd=(req,res)=>{
+    var orphanageID=req.params.orphanageID;
+    var pwd='yes';
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM rescued_child WHERE oid=$1 and pwdstat=$2',[orphanageID,pwd],(err,result)=>{
+            if(err) throw err;
+             var victims=result.rows;
+             console.log(victims)
+            res.render('rescuedPage',{victims:victims});
+
+        }
+    )
+}
+
+
+const rescuedlt5=(req,res)=>{
+    var orphanageID=req.params.orphanageID;
+    var age=5;
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM rescued_child WHERE oid=$1 and age=$2',[orphanageID,age],(err,result)=>{
+            if(err) throw err;
+             var victims=result.rows;
+             console.log(`victims:${victims}`)
+            res.render('rescuedPage',{victims:victims});
+
+        }
+    )
+}
+
+const rescuedlt10=(req,res)=>{
+    var orphanageID=req.params.orphanageID;
+    var age=10;
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM rescued_child WHERE oid=$1 and age=$2',[orphanageID,age],(err,result)=>{
+            if(err) throw err;
+             var victims=result.rows;
+             console.log(victims)
+            res.render('rescuedPage',{victims:victims});
+
+        }
+    )
+}
+
+const rescuedlt15=(req,res)=>{
+    var orphanageID=req.params.orphanageID;
+    var age=15;
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM rescued_child WHERE oid=$1 and age=$2',[orphanageID,age],(err,result)=>{
+            if(err) throw err;
+             var victims=result.rows;
+             console.log(victims)
+            res.render('rescuedPage',{victims:victims});
+
+        }
+    )
+}
+
+module.exports = { getOrphanage,displayMap ,rescuedbyMe,rescuedMale,rescuedFemale,rescuedPwd,rescuedlt5,rescuedlt10,rescuedlt15};

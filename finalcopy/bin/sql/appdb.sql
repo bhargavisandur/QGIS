@@ -48,7 +48,8 @@ CREATE TABLE rescued_child(
 	lng float,
 	oid int,
 	vid int,
-	ccid int
+	ccid int,
+	pwdstat character varying(5)
 	
 
 );

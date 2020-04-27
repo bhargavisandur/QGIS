@@ -21,6 +21,7 @@ const getLocation = async (filename) => {
         };
         // console.log(stdout);
         const lines = stdout.toString().split('\n');
+        console.log(lines);
         lines.forEach((line) => {
             const parts = line.split(':');
             if (parts[0].trim() === 'GPS Latitude') {
@@ -48,7 +49,7 @@ const getLocation = async (filename) => {
                 location.lng = parseFloat(parts[1].trim());
             }
         });
-        // console.log(location);
+         console.log(location);
         return location;
     } catch (error) {
         console.log(`error: ${error.message}`);
@@ -61,6 +62,7 @@ const getLocation = async (filename) => {
 const matchImage = async (filename) => {
     try {
         // console.log(__dirname);
+        console.log(filename);
         const image = path.join(
             path.dirname(fs.realpathSync(__filename)),
             `../public/images/${filename}`

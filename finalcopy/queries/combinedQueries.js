@@ -17,9 +17,17 @@ const getCrimeCell = crimeCellQueries.getCrimeCell;
 const getOrphanage = orphanageQueries.getOrphanage;
 const displayMap=orphanageQueries.displayMap;
 const displayCrime=crimeCellQueries.displayCrime;
-const rescuedbyMe=crimeCellQueries.rescuedbyMe;
-const rescuedMale=crimeCellQueries.rescuedMale;
-const rescuedFemale=crimeCellQueries.rescuedFemale;
+const rescuedbyMecc=crimeCellQueries.rescuedbyMe;
+const rescuedMalecc=crimeCellQueries.rescuedMale;
+const rescuedFemalecc=crimeCellQueries.rescuedFemale;
+const rescuedPwdcc=crimeCellQueries.rescuedPwd;
+const rescuedbyMeo=orphanageQueries.rescuedbyMe;
+const rescuedMaleo=orphanageQueries.rescuedMale;
+const rescuedFemaleo=orphanageQueries.rescuedFemale;
+const rescuedPwdo=orphanageQueries.rescuedPwd;
+const rescuedlt5o=orphanageQueries.rescuedlt5;
+const rescuedlt10o=orphanageQueries.rescuedlt10;
+const rescuedlt15o=orphanageQueries.rescuedlt15;
 
 module.exports = {
     createAdmin,
@@ -34,7 +42,14 @@ module.exports = {
     displayCrime,
     displayRescued,
     getAdmin,
-    rescuedbyMe,
-    rescuedMale,
-    rescuedFemale
+    rescuedbyMecc,
+    rescuedMalecc,
+    rescuedFemalecc,
+    rescuedPwdcc,
+    rescuedbyMeo,
+    rescuedFemaleo,
+    rescuedMaleo,
+    rescuedPwdo,rescuedlt5o,
+    rescuedlt10o,
+    rescuedlt15o
 };

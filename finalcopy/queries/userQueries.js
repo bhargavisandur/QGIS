@@ -6,6 +6,9 @@ const resizeOptimizeImages = require('resize-optimize-images');
 
 const addVictimData = async (req, res) => {
     const { path, filename } = req.file;
+    console.log(filename);
+    const { lat, lng } = await utility.getLocation(filename); // This is correct
+     console.log('Latitude longitude of the image', lat, lng);
 
     /*******************************
      * Resizing image using sharp
@@ -27,15 +30,15 @@ const addVictimData = async (req, res) => {
     // console.log(output);
     let ccid = null;
     let oid = null;
-    const { lat, lng } = await utility.getLocation(filename); // This is correct
-     console.log('Latitude longitude of the image', lat, lng);
-    if (!output[2].includes('Unknown')) {
+    
+    if (!output[2].length>2) {
         ccid = output[2].split('_');
         ccid = ccid[0].slice(2, ccid[0].length);
         console.log(`ccid: ${ccid}`);
     } else {
         const orphanage = await utility.getClosestOrphangeID(lat, lng, pool);
         oid = orphanage.id;
+        console.log(`oid:${oid}`)
     }
 
     if(oid!=null){
@@ -53,6 +56,8 @@ const addVictimData = async (req, res) => {
     }
     const { age, pwdstat, activity, description, uid } = req.body;
     let sex = await utility.findGender(filename);
+    sex=sex.trim();
+    console.log(sex.length);
     console.log(`Sex of the person in the image:${sex}`);
     // console.log(path);
     const { date, time } = utility.getDateTime();

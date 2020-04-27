@@ -80,7 +80,7 @@
                                     <h4>Activity: <%=victim.activity%></h4>
                                     <h4>Description: <%=victim.description%></h4>
 
-                                    <form action="/rescuedChild/<%=victim.ccid%>/<%=victim.id%>" method="post">
+                                    <form action="/rescuedChildcc/<%=victim.ccid%>/<%=victim.id%>" method="post">
                                         <input type="submit" name="rescued" value="rescued" />
                                     </form>
                                 </div>
@@ -93,19 +93,24 @@
                         </div>
                         <div class="gaadiex-list-item">
                         <form action="/rescuedbymecc/<%=ccid%>" method="get">
-                        <input type="submit" name="Rescued by Me" value="Rescued by Me" />
+                        <input type="submit" name="Rescued by Me" value="Rescued by Me" class="btn btn-primary"/>
                         </form>
                         </div>
                         <div class="gaadiex-list-item">
                         <form action="/rescuedmalecc/<%=ccid%>" method="get">
-                            <input type="submit" name="Display rescued males" value="Display rescued males" />
+                            <input type="submit" name="Display rescued males" value="Display rescued males" class="btn btn-primary" />
                         </form>
                         </div>
                         <div class="gaadiex-list-item">
                         <form action="/rescuedfemalecc/<%=ccid%>" method="get">
-                            <input type="submit" name="Display rescued females" value="Display rescued females" />
+                            <input type="submit" name="Display rescued females" value="Display rescued females" class="btn btn-primary"/>
                         </form>
                         </div>
+                        <div class="gaadiex-list-item">
+                            <form action="/rescuedpwdcc/<%=ccid%>" method="get">
+                                <input type="submit" name="Display person with disability" value="Display person with disability" class="btn btn-primary"/>
+                            </form>
+                            </div>
 
                     </div>
 
