@@ -428,25 +428,39 @@ app.get('/displayrescuedlt15', db.displayRescuedlt15);
 
 app.get('/rescuedbymecc/:crimecellId', db.rescuedbyMecc);
 
-app.get('/rescuedbymeccmap/:crimeCellId', db.rescuedbyMeccMap);
+app.get('/rescuedbymeccmap/:crimecellId', db.rescuedbyMeccMap);
 
 app.get('/rescuedmalecc/:crimecellId', db.rescuedMalecc);
 
-app.get('/rescuedmaleccmap/:crimeCellId', db.rescuedMaleccMap);
+app.get('/rescuedmaleccmap/:crimecellId', db.rescuedMaleccMap);
 
 app.get('/rescuedfemalecc/:crimecellId', db.rescuedFemalecc);
 
-app.get('/rescuedfemaleccmap/:crimeCellId', db.rescuedFemaleccMap);
+app.get('/rescuedfemaleccmap/:crimecellId', db.rescuedFemaleccMap);
 
 app.get('/rescuedpwdcc/:crimecellId', db.rescuedPwdcc);
 
-app.get('/rescuedpwdccmap/:crimeCellId', db.rescuedPwdccMap);
+app.get('/rescuedpwdccmap/:crimecellId', db.rescuedPwdccMap);
 
 app.get('/rescuedlt5cc/:crimecellId', db.rescuedlt5cc);
 
 app.get('/rescuedlt10cc/:crimecellId', db.rescuedlt10cc);
 
 app.get('/rescuedlt15cc/:crimecellId', db.rescuedlt15cc);
+
+app.get('/myvicccmap/:crimecellId',db.myvicccMap);
+
+app.get('/vicmaleccmap/:crimecellId',db.vicMaleccMap);
+
+app.get('/vicfemaleccmap/:crimecellId',db.vicFemaleccMap);
+
+app.get('/vicpwdccmap/:crimecellId',db.vicPwdccMap);
+
+app.get('/viclt5ccmap/:crimecellId',db.viclt5ccMap);
+
+app.get('/viclt10ccmap/:crimecellId',db.viclt10ccMap);
+
+app.get('/viclt15ccmap/:crimecellId',db.viclt15ccMap);
 
 app.get('/rescuedbymeo/:orphanageID', db.rescuedbyMeo);
 

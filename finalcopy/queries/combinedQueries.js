@@ -54,6 +54,14 @@ const rescuedlt15ccmap=crimeCellQueries.rescuedlt15map;
 const rescuedlt5omap=orphanageQueries.rescuedlt5map;
 const rescuedlt10omap=orphanageQueries.rescuedlt10map;
 const rescuedlt15omap=orphanageQueries.rescuedlt15map;
+const myvicccMap=crimeCellQueries.myvicccMap;
+const vicMaleccMap=crimeCellQueries.vicMaleccMap;
+const vicFemaleccMap=crimeCellQueries.vicFemaleccMap;
+const vicPwdccMap=crimeCellQueries.vicPwdccMap;
+const viclt5ccMap=crimeCellQueries.viclt5ccMap;
+const viclt10ccMap=crimeCellQueries.viclt10ccMap;
+const viclt15ccMap=crimeCellQueries.viclt15ccMap;
+
 
 module.exports = {
     createAdmin,
@@ -103,6 +111,13 @@ module.exports = {
     displayRescuedlt5,
     displayRescuedlt10,
     displayRescuedlt15,
-    displayRescuedpwd
+    displayRescuedpwd,
+    myvicccMap,
+    vicMaleccMap,
+    vicFemaleccMap,
+    vicPwdccMap,
+    viclt5ccMap,
+    viclt10ccMap,
+    viclt15ccMap
 
 };

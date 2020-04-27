@@ -154,42 +154,92 @@
                         <form action="/rescuedfemaleccmap/<%=ccid%>" action="get">
                             <input type="submit" name="View all female victims rescued by me"
                                 value="Display rescued females map" class="btn btn-primary" />
-                              </form>
-                              </div>
-                              <div class="gaadiex-list-item">
-                                <form action="/rescuedlt5ccmap/<%=ccid%>" method="get">
-                                    <input type="submit" name="Age greater than equal to 15"
-                                        value="Age greater than equal to 5 map" class="btn btn-primary" />
-                                </form>
-                            </div>
+                        </form>
+                    </div>
+                    <div class="gaadiex-list-item">
+                        <form action="/rescuedlt5ccmap/<%=ccid%>" method="get">
+                            <input type="submit" name="Age greater than equal to 15"
+                                value="Age greater than equal to 5 map" class="btn btn-primary" />
+                        </form>
+                    </div>
+                    <div class="gaadiex-list-item">
+                        <form action="/rescuedlt10ccmap/<%=ccid%>" method="get">
+                            <input type="submit" name="Age greater than equal to 10"
+                                value="Age greater than equal to 10 map" class="btn btn-primary" />
+                        </form>
+                    </div>
+                    <div class="gaadiex-list-item">
+                        <form action="/rescuedlt15ccmap/<%=ccid%>" method="get">
+                            <input type="submit" name="Age greater than equal to 15"
+                                value="Age greater than equal to 15 map" class="btn btn-primary" />
+                        </form>
+                    </div>
+                    <div class="gaadiex-list-item">
+                        <form action="/myvicccmap/<%=ccid%>" method="get">
+                            <input type="submit" name="View all reported to me"
+                                value="Reported to me map" class="btn btn-primary" />
+                        </form>
+                    </div>
+                    <div>
+                        <div class="gaadiex-list-item">
+                            <form action="/vicmaleccmap/<%=ccid%>" method="get">
+                                <input type="submit" name="Display male victims"
+                                    value="Display male victims map" class="btn btn-primary" />
+                            </form>
+                        </div>
+                        <div>
                             <div class="gaadiex-list-item">
-                                <form action="/rescuedlt10ccmap/<%=ccid%>" method="get">
-                                    <input type="submit" name="Age greater than equal to 10"
-                                        value="Age greater than equal to 10 map" class="btn btn-primary" />
-                                </form>
-                            </div>  
-                            <div class="gaadiex-list-item">
-                                <form action="/rescuedlt15ccmap/<%=ccid%>" method="get">
-                                    <input type="submit" name="Age greater than equal to 15"
-                                        value="Age greater than equal to 15 map" class="btn btn-primary" />
+                                <form action="/vicfemaleccmap/<%=ccid%>" method="get">
+                                    <input type="submit" name="Display female victims"
+                                        value="Display female victims map" class="btn btn-primary" />
                                 </form>
                             </div>
                             <div>
-                                <label for="count">Count of all victims matched:
-                                    <span class="badge"><%=victims.length%></span></label><br />
-                                <label for="count">Count of all male victims:<span class="badge">
-                                        <%=male%></span></label><br />
-                                <label for="count">Count of all female victims:<span class="badge">
-                                        <%=female%></span></label><br />
-                                <label for="count">Count of all PWD:
-                                    <span class="badge"><%=disabled%></span></label>
-                            </div>
-                    
-                </div>
-            </div>
-            <div></div>
-        </div>
-        <!-- <div class="col-md-12">
+                                <div class="gaadiex-list-item">
+                                    <form action="/vicpwdccmap/<%=ccid%>" method="get">
+                                        <input type="submit" name="Display PWD victims"
+                                            value="Display PWD victims map" class="btn btn-primary" />
+                                    </form>
+                                </div>
+                                <div>
+                                    <div class="gaadiex-list-item">
+                                        <form action="/viclt5ccmap/<%=ccid%>" method="get">
+                                            <input type="submit" name="Display victims with age less than equal to 5"
+                                                value="Display victims with age less than equal to 5 map" class="btn btn-primary" />
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <div class="gaadiex-list-item">
+                                            <form action="/viclt10ccmap/<%=ccid%>" method="get">
+                                                <input type="submit" name="Display victims with age less than equal to 10"
+                                                    value="Display victims with age less than equal to 10 map" class="btn btn-primary" />
+                                            </form>
+                                        </div>
+                                        <div>
+                                            <div class="gaadiex-list-item">
+                                                <form action="/viclt15ccmap/<%=ccid%>" method="get">
+                                                    <input type="submit" name="Display victims with age less than equal to 15"
+                                                        value="Display victims with age less than equal to 15 map" class="btn btn-primary" />
+                                                </form>
+                                            </div>
+                                            <div>
+
+                                                <div>
+                                                    <label for="count">Count of all victims matched:
+                                                        <span class="badge"><%=victims.length%></span></label><br />
+                                                    <label for="count">Count of all male victims:<span class="badge">
+                                                            <%=male%></span></label><br />
+                                                    <label for="count">Count of all female victims:<span class="badge">
+                                                            <%=female%></span></label><br />
+                                                    <label for="count">Count of all PWD:
+                                                        <span class="badge"><%=disabled%></span></label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div></div>
+                                    </div>
+                                    <!-- <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Icons with text items</h4>
@@ -235,7 +285,7 @@
                     </div>
                 </div>
             </div> -->
-        <!-- <div class="row">
+                                    <!-- <div class="row">
                 <div class="col-md-6">
                     <div class="card">
                     <div class="card-header">
@@ -268,15 +318,15 @@
                     </div>
                 </div>
             </div> -->
-        <!-- </div> -->
-        <!--[if lt IE 7]>
+                                    <!-- </div> -->
+                                    <!--[if lt IE 7]>
             <p class="browsehappy">
                 You are using an <strong>outdated</strong> browser. Please
                 <a href="#">upgrade your browser</a> to improve your experience.
             </p>
         <![endif]-->
 
-        <script src="" async defer></script>
+                                    <script src="" async defer></script>
 </body>
 
 </html>
