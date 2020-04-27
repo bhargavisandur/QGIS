@@ -18,15 +18,16 @@ const createAdmin = (req, res) => {
 };
 
 const getAdmin = (req, res) => {
-    const { email, password } = req.body;
-    console.log(email,password);
+    const { username, password } = req.body;
+    // console.log(req.body);
+    // console.log(username, password);
     pool.query(
-        'SELECT * FROM admin WHERE "password" = $1',
-        [ password],
+        'SELECT * FROM admin WHERE "password" = $1 AND "email" = $2',
+        [password, username],
         (error, result) => {
             if (error) throw error;
             else {
-                    console.log(result.rows);
+                console.log(result.rows);
                 if (result.rows.length == 0) {
                     res.redirect('/adminLogin');
                 } else {
@@ -76,24 +77,26 @@ const createCrimeCell = async (req, res) => {
     });
 };
 
-const displayRescued=(req,res)=>{
-    pool.query(
-        'SELECT * FROM rescued_child',(err,result)=>{
-            if(err) throw err;
-            console.log(result.rows);
-            var rescue=[];
-            for(var i=0;i<result.rows.length;i++){
-                const obj={
-                    lat:result.rows[i].lat,
-                    lng:result.rows[i].lng
-                }
-                rescue.push(obj);
-
-            }
-            res.render('rescue_map',{rescue:rescue});
+const displayRescued = (req, res) => {
+    pool.query('SELECT * FROM rescued_child', (err, result) => {
+        if (err) throw err;
+        console.log(result.rows);
+        var rescue = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            const obj = {
+                lat: result.rows[i].lat,
+                lng: result.rows[i].lng,
+            };
+            rescue.push(obj);
         }
-    )
+        res.render('rescue_map', { rescue: rescue });
+    });
+};
 
-}
-
-module.exports = { createAdmin, createOrphan, createCrimeCell,displayRescued,getAdmin };
+module.exports = {
+    createAdmin,
+    createOrphan,
+    createCrimeCell,
+    displayRescued,
+    getAdmin,
+};

@@ -1,27 +1,27 @@
-<html><body>
-    <div id="mapdiv"></div>
-    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-    <script>
-      map = new OpenLayers.Map("mapdiv");
-      map.addLayer(new OpenLayers.Layer.OSM());
-  
-     for(var i=0;i<"<%=rescue.length%>";i++){
-        var lonLat = new OpenLayers.LonLat( "<%=rescue[i].lng%>","<%=rescue[i].lat%>")
-            .transform(
-              new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-              map.getProjectionObject() // to Spherical Mercator Projection
-            );
-         
-            
-      var zoom=14;
-  
-      var markers = new OpenLayers.Layer.Markers( "Markers" );
-      map.addLayer(markers);
-      
-      markers.addMarker(new OpenLayers.Marker(lonLat));
-      
-     }
-      
-      map.setCenter (lonLat, zoom);
-    </script>
-  </body></html>
+<html>
+    <body>
+        <div id="mapdiv"></div>
+        <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+        <script>
+            if ('<%=rescue.length%>' > 0) {
+                map = new OpenLayers.Map('mapdiv');
+                map.addLayer(new OpenLayers.Layer.OSM());
+                var zoom = 14;
+                var markers = new OpenLayers.Layer.Markers('Markers');
+                map.addLayer(markers);
+                var lonLat;
+                ('<%for (var i = 0; i < rescue.length; i++) {%>');
+                lonLat = new OpenLayers.LonLat(
+                    '<%=rescue[i].lng%>',
+                    '<%=rescue[i].lat%>'
+                ).transform(
+                    new OpenLayers.Projection('EPSG:4326'), // transform from WGS 1984
+                    map.getProjectionObject() // to Spherical Mercator Projection
+                );
+                markers.addMarker(new OpenLayers.Marker(lonLat));
+                ('<%}%>');
+                map.setCenter(lonLat, zoom);
+            }
+        </script>
+    </body>
+</html>
