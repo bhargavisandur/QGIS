@@ -111,6 +111,34 @@
                                 <input type="submit" name="Display person with disability" value="Display person with disability" class="btn btn-primary"/>
                             </form>
                             </div>
+                            <div class="gaadiex-list-item">
+                                <form action="/rescuedlt5cc/<%=ccid%>" method="get">
+                                    <input type="submit" name="Age less than equal to 5" value="Age less than equal to 5"
+                                        class="btn btn-primary" />
+                                </form>
+                            </div>
+                            <div class="gaadiex-list-item">
+                                <form action="/rescuedlt10cc/<%=ccid%>" method="get">
+                                    <input type="submit" name="Age between 5 and 10" value="Age between 5 and 10"
+                                        class="btn btn-primary" />
+                                </form>
+                            </div>
+                            <div class="gaadiex-list-item">
+                                <form action="/rescuedlt15cc/<%=ccid%>" method="get">
+                                    <input type="submit" name="Age greater than equal to 15"
+                                        value="Age greater than equal to 15" class="btn btn-primary" />
+                                </form>
+                            </div>
+                            <div>
+                                <label for="count">Count of all victims matched: <span class="badge"><%=victims.length%></span></label><br>
+                                <label for="count">Count of all male victims:<span class="badge"> <%=male%></span></label><br>
+                                <label for="count">Count of all female victims:<span class="badge"> <%=female%></span></label><br>
+                                <label for="count">Count of all PWD: <span class="badge"><%=disabled%></span></label>
+                            </div>
+        
+                        </div>
+        
+           
 
                     </div>
 

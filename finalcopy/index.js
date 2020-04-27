@@ -281,7 +281,7 @@ app.get('/adminLogin', (req, res) => {
     res.render('adminLogin');
 });
 
-app.post('/adminLogin',db.getAdmin);
+app.post('/adminLogin', db.getAdmin);
 app.get('/statistics', (req, res) => {
     pool.query('SELECT * FROM rescued_child', (error, result) => {
         if (error) throw error;
@@ -304,64 +304,124 @@ app.post('/loginOrphanage', db.getOrphanage);
 
 app.get('/crimeCellPage/:crimeCellId', (req, res) => {
     let crimeCellId = req.params.crimeCellId;
+    var total_victims;
+    var females;
+    var males;
+    var sex;
+    var disabled;
+    console.log(crimeCellId);
     pool.query(
         'SELECT * FROM victim WHERE ccid= $1',
         [crimeCellId],
-        (error, result) => {
+       async (error, res1) => {
             if (error) throw error;
-            //res.render("adminPage")
-            console.log(result.rows);
-            res.render('adminPage', { victims: result.rows,address:address,ccid:crimeCellId });
+            else {
+               let result=await pool.query(
+                    'SELECT count(*) FROM victim AS cnt WHERE ccid=$1',[crimeCellId] 
+                );
+                total_victims=result.rows[0].count;
+                sex = "Female";
+                result=await pool.query(
+                    'SELECT count(*) FROM victim AS cnt WHERE "sex"=$1 and ccid=$2' , [sex,crimeCellId]
+                )
+                females=result.rows[0].count;
+                sex = "Male";
+                result=await pool.query(
+                    'SELECT count(*) FROM victim AS cnt WHERE"sex"=$1 and ccid=$2', [sex,crimeCellId]
+                )
+                males=result.rows[0].count;
+                var pwd = "yes";
+                 result=await pool.query(
+                    'SELECT count(*) FROM victim AS cnt WHERE pwdstat=$1 and ccid=$2', [pwd,crimeCellId]
+                )
+                disabled=result.rows[0].count;
+                //res.render("adminPage")
+                console.log(res1.rows);
+                res.render('adminPage', { victims: res1.rows, address: address, ccid: crimeCellId, viccount: total_victims, male: males, female: females, disabled: disabled });
+            }
         }
     );
+    
 });
-app.get('/orphanagePage/:orphanageID', (req, res) => {
+app.get('/orphanagePage/:orphanageID', async (req, res) => {
     let orphanageID = req.params.orphanageID;
+    var total_victims;
+    var females;
+    var males;
+    var sex;
+    var disabled;
     console.log(orphanageID);
     pool.query(
         'SELECT * FROM victim WHERE oid= $1',
         [orphanageID],
-        (error, result) => {
+       async (error, res1) => {
             if (error) throw error;
-            //res.render("adminPage")
-            console.log(result.rows);
-            res.render('adminPageorphan', { victims: result.rows,address:address,oid:orphanageID });
+            else {
+               let result=await pool.query(
+                    'SELECT count(*) FROM victim AS cnt and oid=$1',[orphanageID] 
+                );
+                total_victims=result.rows[0].count;
+                sex = "Female";
+                result=await pool.query(
+                    'SELECT count(*) FROM victim AS cnt WHERE "sex"=$1 and oid=$2', [sex,orphanageID]
+                )
+                females=result.rows[0].count;
+                sex = "Male";
+                result=await pool.query(
+                    'SELECT count(*) FROM victim AS cnt WHERE"sex"=$1 and oid=$2', [sex,orphanageID]
+                )
+                males=result.rows[0].count;
+                var pwd = "yes";
+                 result=await pool.query(
+                    'SELECT count(*) FROM victim AS cnt WHERE pwdstat=$1 and oid=$2', [pwd,orphanageID]
+                )
+                disabled=result.rows[0].count;
+                //res.render("adminPage")
+                console.log(res1.rows);
+                res.render('adminPageorphan', { victims: res1.rows, address: address, oid: orphanageID, viccount: total_victims, male: males, female: females, disabled: disabled });
+            }
         }
     );
 });
 
-app.get('/displaymap/:victimLat/:victimLng/:orphanageID',db.displayMap);
+app.get('/displaymap/:victimLat/:victimLng/:orphanageID', db.displayMap);
 
-app.get('/displaycrimemap/:victimLat/:victimLng/:crimecellID',db.displayCrime);
+app.get('/displaycrimemap/:victimLat/:victimLng/:crimecellID', db.displayCrime);
 
-app.get('/displayrescued',db.displayRescued);
+app.get('/displayrescued', db.displayRescued);
 
-app.get('/rescuedbymecc/:crimeCellId',db.rescuedbyMecc);
+app.get('/rescuedbymecc/:crimecellId', db.rescuedbyMecc);
 
-app.get('/rescuedmalecc/:crimeCellId',db.rescuedMalecc);
+app.get('/rescuedmalecc/:crimecellId', db.rescuedMalecc);
 
-app.get('/rescuedfemalecc/:crimeCellId',db.rescuedFemalecc);
+app.get('/rescuedfemalecc/:crimecellId', db.rescuedFemalecc);
 
-app.get('/rescuedpwdcc/:crimeCellId',db.rescuedPwdcc);
+app.get('/rescuedpwdcc/:crimecellId', db.rescuedPwdcc);
 
-app.get('/rescuedbymeo/:orphanageID',db.rescuedbyMeo);
+app.get('/rescuedlt5cc/:crimecellId', db.rescuedlt5cc);
 
-app.get('/rescuedmaleo/:orphanageID',db.rescuedMaleo);
+app.get('/rescuedlt10cc/:crimecellId', db.rescuedlt10cc);
 
-app.get('/rescuedfemaleo/:orphanageID',db.rescuedFemaleo);
+app.get('/rescuedlt15cc/:crimecellId', db.rescuedlt15cc);
 
-app.get('/rescuedpwdo/:orphanageID',db.rescuedPwdo);
+app.get('/rescuedbymeo/:orphanageID', db.rescuedbyMeo);
 
-app.get('/rescuedlt5o/:orphanageID',db.rescuedlt5o);
+app.get('/rescuedmaleo/:orphanageID', db.rescuedMaleo);
 
-app.get('/rescuedlt10o/:orphanageID',db.rescuedlt10o);
+app.get('/rescuedfemaleo/:orphanageID', db.rescuedFemaleo);
 
-app.get('/rescuedlt15o/:orphanageID',db.rescuedlt15o);
+app.get('/rescuedpwdo/:orphanageID', db.rescuedPwdo);
+
+app.get('/rescuedlt5o/:orphanageID', db.rescuedlt5o);
+
+app.get('/rescuedlt10o/:orphanageID', db.rescuedlt10o);
+
+app.get('/rescuedlt15o/:orphanageID', db.rescuedlt15o);
 
 app.post('/rescuedChildcc/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);
     let vid = req.params.vid;
-    let ccid=req.params.crimeCellId;
+    let ccid = req.params.crimeCellId;
     pool.query('SELECT * FROM victim WHERE id=$1', [vid], (err, results) => {
         if (err) {
             throw err;
@@ -371,7 +431,7 @@ app.post('/rescuedChildcc/:crimeCellId/:vid', (req, res) => {
             console.log(row);
             pool.query(
                 'INSERT INTO rescued_child (sex, age, vid,lat,lng,ccid,pwdstat) VALUES($1, $2, $3,$4,$5,$6,$7)',
-                [row.sex, row.age, row.id,row.lat,row.lng,row.ccid,row.pwdstat],
+                [row.sex, row.age, row.id, row.lat, row.lng, row.ccid, row.pwdstat],
                 (err, resulting) => {
                     if (err) {
                         throw err;
@@ -398,7 +458,7 @@ app.post('/rescuedChildcc/:crimeCellId/:vid', (req, res) => {
 app.post('/rescuedChildo/:orphanageID/:vid', (req, res) => {
     console.log(req.params.vid);
     let vid = req.params.vid;
-    let oid=req.params.orphanageID;
+    let oid = req.params.orphanageID;
     pool.query('SELECT * FROM victim WHERE id=$1', [vid], (err, results) => {
         if (err) {
             throw err;
@@ -408,7 +468,7 @@ app.post('/rescuedChildo/:orphanageID/:vid', (req, res) => {
             console.log(row);
             pool.query(
                 'INSERT INTO rescued_child (sex, age, vid,lat,lng,oid,pwdstat) VALUES($1, $2, $3,$4,$5,$6,$7)',
-                [row.sex, row.age, row.id,row.lat,row.lng,row.oid,row.pwdstat],
+                [row.sex, row.age, row.id, row.lat, row.lng, row.oid, row.pwdstat],
                 (err, resulting) => {
                     if (err) {
                         throw err;
