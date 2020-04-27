@@ -10,6 +10,13 @@ const displayRescued = adminQueries.displayRescued;
 const getAdmin = adminQueries.getAdmin;
 const displayCC=adminQueries.displayCC;
 const displayO=adminQueries.displayO;
+const displayRescuedmale=adminQueries.displayRescuedmale;
+const displayRescuedfemale=adminQueries.displayRescuedfemale;
+const displayRescuedpwd=adminQueries.displayRescuedpwd;
+const displayRescuedlt5=adminQueries.displayRescuedlt5;
+const displayRescuedlt10=adminQueries.displayRescuedlt10;
+const displayRescuedlt15=adminQueries.displayRescuedlt15;
+
 
 // List of all user queries
 const addVictimData = userQueries.addVictimData;
@@ -90,6 +97,12 @@ module.exports = {
     rescuedlt15ccmap,
     rescuedlt5omap,
     rescuedlt10omap,
-    rescuedlt15omap
+    rescuedlt15omap,
+    displayRescuedmale,
+    displayRescuedfemale,
+    displayRescuedlt5,
+    displayRescuedlt10,
+    displayRescuedlt15,
+    displayRescuedpwd
 
 };

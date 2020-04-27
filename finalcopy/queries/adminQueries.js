@@ -127,6 +127,113 @@ const displayO=(req,res)=>{
 
 }
 
+const displayRescuedmale=(req,res)=>{
+    var sex="Male";
+    pool.query('SELECT * FROM rescued_child where "sex"=$1 ',[sex], (err, result) => {
+        if (err) throw err;
+        console.log(result.rows);
+        var rescue = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            const obj = {
+                lat: result.rows[i].lat,
+                lng: result.rows[i].lng,
+            };
+            rescue.push(obj);
+        }
+        res.render('rescue_map', { rescue: rescue });
+    });
+
+}
+const displayRescuedfemale=(req,res)=>{
+    var sex="Female";
+    pool.query('SELECT * FROM rescued_child where "sex"=$1 ',[sex], (err, result) => {
+        if (err) throw err;
+        console.log(result.rows);
+        var rescue = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            const obj = {
+                lat: result.rows[i].lat,
+                lng: result.rows[i].lng,
+            };
+            rescue.push(obj);
+        }
+        res.render('rescue_map', { rescue: rescue });
+    });
+
+}
+const displayRescuedpwd=(req,res)=>{
+    var pwd="yes";
+    pool.query('SELECT * FROM rescued_child where "pwdstat"=$1 ',[pwd], (err, result) => {
+        if (err) throw err;
+        console.log(result.rows);
+        var rescue = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            const obj = {
+                lat: result.rows[i].lat,
+                lng: result.rows[i].lng,
+            };
+            rescue.push(obj);
+        }
+        res.render('rescue_map', { rescue: rescue });
+    });
+
+}
+
+const displayRescuedlt5=(req,res)=>{
+    var age=5;
+    pool.query('SELECT * FROM rescued_child where age=$1 ',[age], (err, result) => {
+        if (err) throw err;
+        console.log(result.rows);
+        var rescue = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            const obj = {
+                lat: result.rows[i].lat,
+                lng: result.rows[i].lng,
+            };
+            rescue.push(obj);
+        }
+        res.render('rescue_map', { rescue: rescue });
+    });
+
+}
+
+const displayRescuedlt10=(req,res)=>{
+    var age=10;
+    pool.query('SELECT * FROM rescued_child where age=$1 ',[age], (err, result) => {
+        if (err) throw err;
+        console.log(result.rows);
+        var rescue = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            const obj = {
+                lat: result.rows[i].lat,
+                lng: result.rows[i].lng,
+            };
+            rescue.push(obj);
+        }
+        res.render('rescue_map', { rescue: rescue });
+    });
+
+}
+
+const displayRescuedlt15=(req,res)=>{
+    var age=15;
+    pool.query('SELECT * FROM rescued_child where age=$1 ',[age], (err, result) => {
+        if (err) throw err;
+        console.log(result.rows);
+        var rescue = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            const obj = {
+                lat: result.rows[i].lat,
+                lng: result.rows[i].lng,
+            };
+            rescue.push(obj);
+        }
+        res.render('rescue_map', { rescue: rescue });
+    });
+
+}
+
+
 module.exports = {
     createAdmin,
     createOrphan,
@@ -134,5 +241,11 @@ module.exports = {
     displayRescued,
     getAdmin,
     displayCC,
-    displayO
+    displayO,
+    displayRescuedmale,
+    displayRescuedfemale,
+    displayRescuedpwd,
+    displayRescuedlt5,
+    displayRescuedlt10,
+    displayRescuedlt15
 };

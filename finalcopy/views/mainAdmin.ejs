@@ -2,33 +2,38 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/adminPageStyles.css">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!------ Include the above in your HEAD tag ---------->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
-        <link href="https:/  /maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-    </head>
-    <body>
-             
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/adminPageStyles.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h1>Rescued Children</h1>
-                        </div>
-                        <div class="gaadiex-list">
-                            <!-- <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
+    <link href="https:/  /maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Rescued Children</h1>
+                    </div>
+                    <div class="gaadiex-list">
+                        <!-- <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
                             <div class="gaadiex-list-item-text">
                                 <h3><a href="#">Eric Graves</a></h3>
                                 <h4>Brunch this weekend?</h4>
@@ -49,47 +54,81 @@
                                 <p> I'll be in your neighborhood doing errands</p>
                             </div>
                             </div> -->
-                            <!-- <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
+                        <!-- <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
                             <div class="gaadiex-list-item-text">
                                 <h3><a href="#">Guy Carpenter</a></h3>
                                 <h4>Brunch this weekend?</h4>
                                 <p> I'll be in your neighborhood doing errands</p>
                             </div>
                             </div> -->
-                            <%victims.forEach((victim)=>{%>
-                
-                                    <div class="gaadiex-list-item-text">
-                                        
-                                        <div class="container-fluid">
-                                            
-                                        <h4>Sex: <%=victim.sex%></h4>
-                                        <h4>Age: <%=victim.age%></h4>
-                                        <h4>vid: <%=victim.vid%></h4>
-                                        
-                                        
-                                       
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            <%})%>
+                        <%victims.forEach((victim)=>{%>
+
+                        <div class="gaadiex-list-item-text">
+
+                            <div class="container-fluid">
+
+                                <h4>Sex: <%=victim.sex%></h4>
+                                <h4>Age: <%=victim.age%></h4>
+                                <h4>vid: <%=victim.vid%></h4>
+
+
+
+                            </div>
                         </div>
-                        
+
                     </div>
+                    <%})%>
                 </div>
+
+            </div>
         </div>
-        <div>
+    </div>
+    <div>
         <form action="/displayrescued" method="get">
-            <input type="submit" name="Display Rescued" value="Display Rescued" class="btn btn-primary"/>
+            <input type="submit" name="Display Rescued" value="Display Rescued" class="btn btn-primary" />
         </form>
-        </div>
+    </div>
+    <div>
         <form action="/displayorphan" method="get">
             <input type="submit" name="Display Orphanage" value="Display Orphanage" class="btn btn-primary" />
         </form>
-        <form action="/displaycc" method="get"> 
-            <input type="submit" name="Display Crime Cell" value="Display Crime Cell" class="btn btn-primary" />
+    </div>
+    <div>
+        <form action="/displayrescuedmale" method="get">
+            <input type="submit" name="Display Rescued Males" value="Display Rescued Males" class="btn btn-primary" />
         </form>
-                <!-- <div class="col-md-12">
+    </div>
+    <div>
+        <form action="/displayrescuedfemale" method="get">
+            <input type="submit" name="Display Rescued Females" value="Display Rescued Females"
+                class="btn btn-primary" />
+        </form>
+    </div>
+    <div>
+        <form action="/displayrescuedpwd" method="get">
+            <input type="submit" name="Display Rescued PWD" value="Display Rescued PWD" class="btn btn-primary" />
+        </form>
+    </div>
+    <div>
+        <form action="/displayrescuedlt5" method="get">
+            <input type="submit" name="Display Rescued with age less than equal to 5"
+                value="Display Rescued with age less thsn equal to 5" class="btn btn-primary" />
+        </form>
+    </div>
+    <div>
+        <form action="/displayrescuedlt10" method="get">
+            <input type="submit" name="Display Rescued with age less than equal to 10 "
+                value="Display Rescued with age less than equal to 10" class="btn btn-primary" />
+        </form>
+    </div>
+    <div>
+        <form action="/displayrescuedlt15" method="get">
+            <input type="submit" name="Display Rescued with age less than equal to 15"
+                value="Display Rescued with age less than equal to 15" class="btn btn-primary" />
+        </form>
+    </div>
+
+    <!-- <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Icons with text items</h4>
@@ -135,7 +174,7 @@
                     </div>
                 </div>
             </div> -->
-            <!-- <div class="row">
+    <!-- <div class="row">
                 <div class="col-md-6">
                     <div class="card">
                     <div class="card-header">
@@ -168,11 +207,12 @@
                     </div>
                 </div>
             </div> -->
-        </div>
-                <!--[if lt IE 7]>
+    </div>
+    <!--[if lt IE 7]>
                     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
                 <![endif]-->
-                
-        <script src="" async defer></script>
-    </body>
+
+    <script src="" async defer></script>
+</body>
+
 </html>

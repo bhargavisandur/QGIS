@@ -412,6 +412,20 @@ app.get('/displaycc',db.displayCC);
 
 app.get('/displayorphan',db.displayO);
 
+app.get('/displayrescuedmale', db.displayRescuedmale);
+
+app.get('/displayrescuedfemale', db.displayRescuedfemale);
+
+app.get('/displayrescuedpwd', db.displayRescuedpwd);
+
+app.get('/displayrescuedlt5', db.displayRescuedlt5);
+
+app.get('/displayrescuedlt10', db.displayRescuedlt10);
+
+app.get('/displayrescuedlt15', db.displayRescuedlt15);
+
+
+
 app.get('/rescuedbymecc/:crimecellId', db.rescuedbyMecc);
 
 app.get('/rescuedbymeccmap/:crimeCellId', db.rescuedbyMeccMap);
@@ -460,13 +474,13 @@ app.get('/rescuedlt5ccmap/:crimecellId',db.rescuedlt5ccmap);
 
 app.get('/rescuedlt10ccmap/:crimecellId',db.rescuedlt10ccmap);
 
-app.get('/rescuedlt5ccmap/:crimecellId',db.rescuedlt15ccmap);
+app.get('/rescuedlt15ccmap/:crimecellId',db.rescuedlt15ccmap);
 
 app.get('/rescuedlt5omap/:orphanageID',db.rescuedlt5omap);
 
 app.get('/rescuedlt10omap/:orphanageID',db.rescuedlt10omap);
 
-app.get('/rescuedlt5omap/:orphanageID',db.rescuedlt15omap);
+app.get('/rescuedlt15omap/:orphanageID',db.rescuedlt15omap);
 
 app.post('/rescuedChildcc/:crimeCellId/:vid', (req, res) => {
     console.log(req.params.vid);
