@@ -24,7 +24,7 @@ CREATE TABLE victim(
 	time time,
 	lat float,
 	lng float,
-	image character varying(50),
+	image character varying(150),
 	description character varying(100),
 	uid character varying(100),
 	ccid integer,

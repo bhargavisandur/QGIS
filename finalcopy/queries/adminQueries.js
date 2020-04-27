@@ -267,48 +267,40 @@ const displayVic = (req, res) => {
 
 const displayVicMale = (req, res) => {
     var sex = 'Male';
-    pool.query(
-        'SELECT * FROM rescued_child WHERE "sex"=$1',
-        [sex],
-        (err, result) => {
-            if (err) throw err;
-            rescue = [];
-            result.rows.forEach((r) => {
-                obj = {
-                    lat: r.lat,
-                    lng: r.lng,
-                };
-                rescue.push(obj);
-            });
-            res.render('rescue_map', { rescue: rescue });
-        }
-    );
+    pool.query('SELECT * FROM victim WHERE "sex"=$1', [sex], (err, result) => {
+        if (err) throw err;
+        rescue = [];
+        result.rows.forEach((r) => {
+            obj = {
+                lat: r.lat,
+                lng: r.lng,
+            };
+            rescue.push(obj);
+        });
+        res.render('rescue_map', { rescue: rescue });
+    });
 };
 
 const displayVicFemale = (req, res) => {
     var sex = 'Female';
-    pool.query(
-        'SELECT * FROM rescued_child WHERE "sex"=$1',
-        [sex],
-        (err, result) => {
-            if (err) throw err;
-            rescue = [];
-            result.rows.forEach((r) => {
-                obj = {
-                    lat: r.lat,
-                    lng: r.lng,
-                };
-                rescue.push(obj);
-            });
-            res.render('rescue_map', { rescue: rescue });
-        }
-    );
+    pool.query('SELECT * FROM victim WHERE "sex"=$1', [sex], (err, result) => {
+        if (err) throw err;
+        rescue = [];
+        result.rows.forEach((r) => {
+            obj = {
+                lat: r.lat,
+                lng: r.lng,
+            };
+            rescue.push(obj);
+        });
+        res.render('rescue_map', { rescue: rescue });
+    });
 };
 
 const displayVicPwd = (req, res) => {
     var pwd = 'yes';
     pool.query(
-        'SELECT * FROM rescued_child WHERE pwdstat=$1',
+        'SELECT * FROM victim WHERE pwdstat=$1',
         [pwd],
         (err, result) => {
             if (err) throw err;
@@ -329,7 +321,7 @@ const displayVicPwd = (req, res) => {
 const displayViclt5 = async (req, res) => {
     var age = 5;
     pool.query(
-        'SELECT * FROM rescued_child WHERE age=$1',
+        'SELECT * FROM victim WHERE age=$1',
         [age],
         async (err, result) => {
             if (err) throw err;
@@ -350,7 +342,7 @@ const displayViclt5 = async (req, res) => {
 const displayViclt10 = async (req, res) => {
     var age = 10;
     pool.query(
-        'SELECT * FROM rescued_child WHERE age=$1',
+        'SELECT * FROM victim WHERE age=$1',
         [age],
         async (err, result) => {
             if (err) throw err;
@@ -371,7 +363,7 @@ const displayViclt10 = async (req, res) => {
 const displayViclt15 = async (req, res) => {
     var age = 15;
     pool.query(
-        'SELECT * FROM rescued_child WHERE age=$1',
+        'SELECT * FROM victim WHERE age=$1',
         [age],
         async (err, result) => {
             if (err) throw err;
