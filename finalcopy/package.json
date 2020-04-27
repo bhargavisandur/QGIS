@@ -30,6 +30,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.17.0",
     "jQuery": "^1.7.4",
+    "jimp": "^0.10.3",
     "jquery": "^3.5.0",
     "moment-timezone": "^0.5.28",
     "mongodb": "^3.5.5",

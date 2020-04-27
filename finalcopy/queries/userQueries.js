@@ -2,61 +2,69 @@ const pool = require('../pool');
 const utility = require('./utility');
 const fs = require('fs');
 const sendEmail = require('../nodeMailer/sendEmail');
-const resizeOptimizeImages = require('resize-optimize-images');
+const jimp = require('jimp');
 
 const addVictimData = async (req, res) => {
     const { path, filename } = req.file;
-    console.log(filename);
-    const { lat, lng } = await utility.getLocation(filename); // This is correct
-     console.log('Latitude longitude of the image', lat, lng);
 
     /*******************************
-     * Resizing image using sharp
+     * Resizing image using jimp
      ********************************/
-    (async () => {
-        // Set the options.
-        const options = {
-            images: [path],
-            width: 300,
-            height: 300,
-            quality: 30,
-        };
-
-        // Run the module.
-        await resizeOptimizeImages(options);
-    })();
+    const result = await jimp.read(path);
+    fs.unlinkSync('./public/images/' + filename);
+    result
+        .resize(256, 256)
+        .quality(40)
+        .write('./public/images/' + filename);
 
     let output = await utility.matchImage(filename);
     // console.log(output);
     let ccid = null;
     let oid = null;
-    
-    if (output[2].length>2 && !output[2].includes('Unknown')) {
+
+    const { lat, lng } = await utility.getLocation(filename); // This is correct
+    console.log('Latitude longitude of the image', lat, lng);
+
+    if (output[2].length > 2 && !output[2].includes('Unknown')) {
         ccid = output[2].split('_');
         ccid = ccid[0].slice(2, ccid[0].length);
         console.log(`ccid: ${ccid}`);
     } else {
         const orphanage = await utility.getClosestOrphangeID(lat, lng, pool);
         oid = orphanage.id;
-        console.log(`oid:${oid}`)
+        console.log(`oid:${oid}`);
     }
 
-    if(oid!=null){
-        pool.query('SELECT * FROM manager where oid=$1 ', [oid], (err , result)=>{
-            let email= result.rows[0].email;
-            sendEmail(email, "Child Found", "<h1> A child has been reported <h1>");
-        })
-    }
-    else{
-        pool.query('SELECT * FROM crime_cell where id=$1 ', [ccid], (err , result)=>{
-            let email= result.rows[0].email;
-            sendEmail(email, "Missing Child Found", "<h1> A child that had been reported missing has been found <h1>");
-        })
-
+    if (oid != null) {
+        pool.query(
+            'SELECT * FROM manager where oid=$1 ',
+            [oid],
+            (err, result) => {
+                let email = result.rows[0].email;
+                sendEmail(
+                    email,
+                    'Child Found',
+                    '<h1> A child has been reported <h1>'
+                );
+            }
+        );
+    } else {
+        pool.query(
+            'SELECT * FROM crime_cell where id=$1 ',
+            [ccid],
+            (err, result) => {
+                let email = result.rows[0].email;
+                sendEmail(
+                    email,
+                    'Missing Child Found',
+                    '<h1> A child that had been reported missing has been found <h1>'
+                );
+            }
+        );
     }
     const { age, pwdstat, activity, description, uid } = req.body;
     let sex = await utility.findGender(filename);
-    sex=sex.trim();
+    sex = sex.trim();
     console.log(sex.length);
     console.log(`Sex of the person in the image:${sex}`);
     // console.log(path);
@@ -84,11 +92,22 @@ const addVictimData = async (req, res) => {
                 res.redirect('/victimform');
             } else {
                 res.redirect('/');
-                sendEmail(req.body.uid, 'Thank you for using the NoAbuse app!', "<h1>Thank you for using noAbuse app<h1>");
+                sendEmail(
+                    req.body.uid,
+                    'Thank you for using the NoAbuse app!',
+                    '<h1>Thank you for using noAbuse app<h1>'
+                );
             }
             // res.writeContinue(200, { success: true });
         }
     );
+
+    if (oid) {
+        await pool.query(
+            'UPDATE orphanage SET capacity=((SELECT capacity FROM orphanage where id=$1)-1)',
+            [oid]
+        );
+    }
 
     // let imageMatched = await utility.matchImage(filename);
     // console.log(imageMatched);
