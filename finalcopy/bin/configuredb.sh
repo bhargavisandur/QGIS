@@ -31,6 +31,8 @@ echo "Adding orphanage data"
 psql -U me appdb <./bin/sql/orphanage.sql
 echo "Adding orphanage manager data"
 psql -U me appdb <./bin/sql/manager.sql
+echo "Adding missing report data"
+psql -U me appdb <./bin/sql/missing-reports.sql
 echo "Database populated"
 
 echo "Adding triggers"
