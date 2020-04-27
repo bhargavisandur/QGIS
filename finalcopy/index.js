@@ -364,7 +364,7 @@ app.get('/orphanagePage/:orphanageID', async (req, res) => {
             if (error) throw error;
             else {
                 let result = await pool.query(
-                    'SELECT count(*) FROM victim AS cnt and oid=$1',
+                    'SELECT count(*) FROM victim AS cnt where oid=$1',
                     [orphanageID]
                 );
                 total_victims = result.rows[0].count;
