@@ -8,15 +8,22 @@ const createOrphan = adminQueries.createOrphan;
 const createCrimeCell = adminQueries.createCrimeCell;
 const displayRescued = adminQueries.displayRescued;
 const getAdmin = adminQueries.getAdmin;
-const displayCC=adminQueries.displayCC;
-const displayO=adminQueries.displayO;
-const displayRescuedmale=adminQueries.displayRescuedmale;
-const displayRescuedfemale=adminQueries.displayRescuedfemale;
-const displayRescuedpwd=adminQueries.displayRescuedpwd;
-const displayRescuedlt5=adminQueries.displayRescuedlt5;
-const displayRescuedlt10=adminQueries.displayRescuedlt10;
-const displayRescuedlt15=adminQueries.displayRescuedlt15;
-
+const displayCC = adminQueries.displayCC;
+const displayO = adminQueries.displayO;
+const displayRescuedmale = adminQueries.displayRescuedmale;
+const displayRescuedfemale = adminQueries.displayRescuedfemale;
+const displayRescuedpwd = adminQueries.displayRescuedpwd;
+const displayRescuedlt5 = adminQueries.displayRescuedlt5;
+const displayRescuedlt10 = adminQueries.displayRescuedlt10;
+const displayRescuedlt15 = adminQueries.displayRescuedlt15;
+const displayVic = adminQueries.displayVic;
+const displayVicMale = adminQueries.displayVicMale;
+const displayVicFemale = adminQueries.displayVicFemale;
+const displayVicPwd = adminQueries.displayVicPwd;
+const displayViclt5 = adminQueries.displayViclt5;
+const displayViclt10 = adminQueries.displayViclt10;
+const displayViclt15 = adminQueries.displayViclt15;
+const displayMissingReports = adminQueries.displayMissingReports;
 
 // List of all user queries
 const addVictimData = userQueries.addVictimData;
@@ -48,20 +55,26 @@ const rescuedPwdoMap = orphanageQueries.rescuedPwdMap;
 const rescuedlt5o = orphanageQueries.rescuedlt5;
 const rescuedlt10o = orphanageQueries.rescuedlt10;
 const rescuedlt15o = orphanageQueries.rescuedlt15;
-const rescuedlt5ccmap=crimeCellQueries.rescuedlt5map;
-const rescuedlt10ccmap=crimeCellQueries.rescuedlt10map;
-const rescuedlt15ccmap=crimeCellQueries.rescuedlt15map;
-const rescuedlt5omap=orphanageQueries.rescuedlt5map;
-const rescuedlt10omap=orphanageQueries.rescuedlt10map;
-const rescuedlt15omap=orphanageQueries.rescuedlt15map;
-const myvicccMap=crimeCellQueries.myvicccMap;
-const vicMaleccMap=crimeCellQueries.vicMaleccMap;
-const vicFemaleccMap=crimeCellQueries.vicFemaleccMap;
-const vicPwdccMap=crimeCellQueries.vicPwdccMap;
-const viclt5ccMap=crimeCellQueries.viclt5ccMap;
-const viclt10ccMap=crimeCellQueries.viclt10ccMap;
-const viclt15ccMap=crimeCellQueries.viclt15ccMap;
-
+const rescuedlt5ccmap = crimeCellQueries.rescuedlt5map;
+const rescuedlt10ccmap = crimeCellQueries.rescuedlt10map;
+const rescuedlt15ccmap = crimeCellQueries.rescuedlt15map;
+const rescuedlt5omap = orphanageQueries.rescuedlt5map;
+const rescuedlt10omap = orphanageQueries.rescuedlt10map;
+const rescuedlt15omap = orphanageQueries.rescuedlt15map;
+const myvicccMap = crimeCellQueries.myvicccMap;
+const vicMaleccMap = crimeCellQueries.vicMaleccMap;
+const vicFemaleccMap = crimeCellQueries.vicFemaleccMap;
+const vicPwdccMap = crimeCellQueries.vicPwdccMap;
+const viclt5ccMap = crimeCellQueries.viclt5ccMap;
+const viclt10ccMap = crimeCellQueries.viclt10ccMap;
+const viclt15ccMap = crimeCellQueries.viclt15ccMap;
+const myVicoMap = orphanageQueries.myVicMap;
+const vicMaleoMap = orphanageQueries.vicMaleMap;
+const vicFemaleoMap = orphanageQueries.vicFemaleMap;
+const vicPwdoMap = orphanageQueries.vicPwdMap;
+const viclt5oMap = orphanageQueries.viclt5map;
+const viclt10oMap = orphanageQueries.viclt10map;
+const viclt15oMap = orphanageQueries.viclt15map;
 
 module.exports = {
     createAdmin,
@@ -118,6 +131,20 @@ module.exports = {
     vicPwdccMap,
     viclt5ccMap,
     viclt10ccMap,
-    viclt15ccMap
-
+    viclt15ccMap,
+    displayVic,
+    displayVicMale,
+    displayVicFemale,
+    displayVicPwd,
+    displayViclt5,
+    displayViclt10,
+    displayViclt15,
+    displayMissingReports,
+    myVicoMap,
+    vicMaleoMap,
+    vicFemaleoMap,
+    vicPwdoMap,
+    viclt5oMap,
+    viclt10oMap,
+    viclt15oMap,
 };

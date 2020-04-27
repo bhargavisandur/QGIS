@@ -93,7 +93,7 @@ const displayRescued = (req, res) => {
     });
 };
 
-const displayCC=(req,res)=>{
+const displayCC = (req, res) => {
     pool.query('SELECT * FROM crime_cell', (err, result) => {
         if (err) throw err;
         console.log(result.rows);
@@ -107,10 +107,9 @@ const displayCC=(req,res)=>{
         }
         res.render('rescue_map', { rescue: rescue });
     });
+};
 
-}
-
-const displayO=(req,res)=>{
+const displayO = (req, res) => {
     pool.query('SELECT * FROM orphanage', (err, result) => {
         if (err) throw err;
         console.log(result.rows);
@@ -124,12 +123,134 @@ const displayO=(req,res)=>{
         }
         res.render('rescue_map', { rescue: rescue });
     });
+};
 
-}
+const displayRescuedmale = (req, res) => {
+    var sex = 'Male';
+    pool.query(
+        'SELECT * FROM rescued_child where "sex"=$1 ',
+        [sex],
+        (err, result) => {
+            if (err) throw err;
+            console.log(result.rows);
+            var rescue = [];
+            for (var i = 0; i < result.rows.length; i++) {
+                const obj = {
+                    lat: result.rows[i].lat,
+                    lng: result.rows[i].lng,
+                };
+                rescue.push(obj);
+            }
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+const displayRescuedfemale = (req, res) => {
+    var sex = 'Female';
+    pool.query(
+        'SELECT * FROM rescued_child where "sex"=$1 ',
+        [sex],
+        (err, result) => {
+            if (err) throw err;
+            console.log(result.rows);
+            var rescue = [];
+            for (var i = 0; i < result.rows.length; i++) {
+                const obj = {
+                    lat: result.rows[i].lat,
+                    lng: result.rows[i].lng,
+                };
+                rescue.push(obj);
+            }
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+const displayRescuedpwd = (req, res) => {
+    var pwd = 'yes';
+    pool.query(
+        'SELECT * FROM rescued_child where "pwdstat"=$1 ',
+        [pwd],
+        (err, result) => {
+            if (err) throw err;
+            console.log(result.rows);
+            var rescue = [];
+            for (var i = 0; i < result.rows.length; i++) {
+                const obj = {
+                    lat: result.rows[i].lat,
+                    lng: result.rows[i].lng,
+                };
+                rescue.push(obj);
+            }
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
 
-const displayRescuedmale=(req,res)=>{
-    var sex="Male";
-    pool.query('SELECT * FROM rescued_child where "sex"=$1 ',[sex], (err, result) => {
+const displayRescuedlt5 = (req, res) => {
+    var age = 5;
+    pool.query(
+        'SELECT * FROM rescued_child where age=$1 ',
+        [age],
+        (err, result) => {
+            if (err) throw err;
+            console.log(result.rows);
+            var rescue = [];
+            for (var i = 0; i < result.rows.length; i++) {
+                const obj = {
+                    lat: result.rows[i].lat,
+                    lng: result.rows[i].lng,
+                };
+                rescue.push(obj);
+            }
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const displayRescuedlt10 = (req, res) => {
+    var age = 10;
+    pool.query(
+        'SELECT * FROM rescued_child where age=$1 ',
+        [age],
+        (err, result) => {
+            if (err) throw err;
+            console.log(result.rows);
+            var rescue = [];
+            for (var i = 0; i < result.rows.length; i++) {
+                const obj = {
+                    lat: result.rows[i].lat,
+                    lng: result.rows[i].lng,
+                };
+                rescue.push(obj);
+            }
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const displayRescuedlt15 = (req, res) => {
+    var age = 15;
+    pool.query(
+        'SELECT * FROM rescued_child where age=$1 ',
+        [age],
+        (err, result) => {
+            if (err) throw err;
+            console.log(result.rows);
+            var rescue = [];
+            for (var i = 0; i < result.rows.length; i++) {
+                const obj = {
+                    lat: result.rows[i].lat,
+                    lng: result.rows[i].lng,
+                };
+                rescue.push(obj);
+            }
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const displayVic = (req, res) => {
+    pool.query('SELECT * FROM victim', (err, result) => {
         if (err) throw err;
         console.log(result.rows);
         var rescue = [];
@@ -142,11 +263,134 @@ const displayRescuedmale=(req,res)=>{
         }
         res.render('rescue_map', { rescue: rescue });
     });
+};
 
-}
-const displayRescuedfemale=(req,res)=>{
-    var sex="Female";
-    pool.query('SELECT * FROM rescued_child where "sex"=$1 ',[sex], (err, result) => {
+const displayVicMale = (req, res) => {
+    var sex = 'Male';
+    pool.query(
+        'SELECT * FROM rescued_child WHERE "sex"=$1',
+        [sex],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const displayVicFemale = (req, res) => {
+    var sex = 'Female';
+    pool.query(
+        'SELECT * FROM rescued_child WHERE "sex"=$1',
+        [sex],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const displayVicPwd = (req, res) => {
+    var pwd = 'yes';
+    pool.query(
+        'SELECT * FROM rescued_child WHERE pwdstat=$1',
+        [pwd],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const displayViclt5 = async (req, res) => {
+    var age = 5;
+    pool.query(
+        'SELECT * FROM rescued_child WHERE age=$1',
+        [age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const displayViclt10 = async (req, res) => {
+    var age = 10;
+    pool.query(
+        'SELECT * FROM rescued_child WHERE age=$1',
+        [age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const displayViclt15 = async (req, res) => {
+    var age = 15;
+    pool.query(
+        'SELECT * FROM rescued_child WHERE age=$1',
+        [age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const displayMissingReports = (req, res) => {
+    pool.query('SELECT * FROM missing_reports', (err, result) => {
         if (err) throw err;
         console.log(result.rows);
         var rescue = [];
@@ -159,80 +403,7 @@ const displayRescuedfemale=(req,res)=>{
         }
         res.render('rescue_map', { rescue: rescue });
     });
-
-}
-const displayRescuedpwd=(req,res)=>{
-    var pwd="yes";
-    pool.query('SELECT * FROM rescued_child where "pwdstat"=$1 ',[pwd], (err, result) => {
-        if (err) throw err;
-        console.log(result.rows);
-        var rescue = [];
-        for (var i = 0; i < result.rows.length; i++) {
-            const obj = {
-                lat: result.rows[i].lat,
-                lng: result.rows[i].lng,
-            };
-            rescue.push(obj);
-        }
-        res.render('rescue_map', { rescue: rescue });
-    });
-
-}
-
-const displayRescuedlt5=(req,res)=>{
-    var age=5;
-    pool.query('SELECT * FROM rescued_child where age=$1 ',[age], (err, result) => {
-        if (err) throw err;
-        console.log(result.rows);
-        var rescue = [];
-        for (var i = 0; i < result.rows.length; i++) {
-            const obj = {
-                lat: result.rows[i].lat,
-                lng: result.rows[i].lng,
-            };
-            rescue.push(obj);
-        }
-        res.render('rescue_map', { rescue: rescue });
-    });
-
-}
-
-const displayRescuedlt10=(req,res)=>{
-    var age=10;
-    pool.query('SELECT * FROM rescued_child where age=$1 ',[age], (err, result) => {
-        if (err) throw err;
-        console.log(result.rows);
-        var rescue = [];
-        for (var i = 0; i < result.rows.length; i++) {
-            const obj = {
-                lat: result.rows[i].lat,
-                lng: result.rows[i].lng,
-            };
-            rescue.push(obj);
-        }
-        res.render('rescue_map', { rescue: rescue });
-    });
-
-}
-
-const displayRescuedlt15=(req,res)=>{
-    var age=15;
-    pool.query('SELECT * FROM rescued_child where age=$1 ',[age], (err, result) => {
-        if (err) throw err;
-        console.log(result.rows);
-        var rescue = [];
-        for (var i = 0; i < result.rows.length; i++) {
-            const obj = {
-                lat: result.rows[i].lat,
-                lng: result.rows[i].lng,
-            };
-            rescue.push(obj);
-        }
-        res.render('rescue_map', { rescue: rescue });
-    });
-
-}
-
+};
 
 module.exports = {
     createAdmin,
@@ -247,5 +418,13 @@ module.exports = {
     displayRescuedpwd,
     displayRescuedlt5,
     displayRescuedlt10,
-    displayRescuedlt15
+    displayRescuedlt15,
+    displayVic,
+    displayVicMale,
+    displayVicFemale,
+    displayViclt10,
+    displayViclt15,
+    displayViclt5,
+    displayVicPwd,
+    displayMissingReports,
 };

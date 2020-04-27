@@ -286,8 +286,6 @@ const rescuedlt5map = async (req, res) => {
     );
 };
 
-
-
 const rescuedlt10 = async (req, res) => {
     var orphanageID = req.params.orphanageID;
     var age = 10;
@@ -337,7 +335,6 @@ const rescuedlt10map = async (req, res) => {
     );
 };
 
-
 const rescuedlt15 = async (req, res) => {
     var orphanageID = req.params.orphanageID;
     var age = 15;
@@ -386,6 +383,165 @@ const rescuedlt15map = async (req, res) => {
     );
 };
 
+const myVicMap = (req, res) => {
+    var orphanageID = req.params.orphanageID;
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM victim WHERE oid=$1',
+        [orphanageID],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const vicMaleMap = (req, res) => {
+    var orphanageID = req.params.orphanageID;
+    var sex = 'Male';
+    pool.query(
+        'SELECT * FROM victim WHERE oid=$1 and "sex"=$2',
+        [orphanageID, sex],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const vicFemaleMap = (req, res) => {
+    var orphanageID = req.params.orphanageID;
+    console.log('ccid:' + orphanageID);
+    var sex = 'Female';
+    pool.query(
+        'SELECT * FROM victim WHERE oid=$1 and "sex"=$2',
+        [orphanageID, 'Female'],
+        (err, result) => {
+            if (err) throw err;
+            // console.log(result.rows);
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const vicPwdMap = (req, res) => {
+    var orphanageID = req.params.orphanageID;
+    var pwd = 'yes';
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM victim WHERE oid=$1 and pwdstat=$2',
+        [orphanageID, pwd],
+        (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const viclt5map = async (req, res) => {
+    var orphanageID = req.params.orphanageID;
+    var age = 5;
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM victim WHERE oid=$1 and age=$2',
+        [orphanageID, age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const viclt10map = async (req, res) => {
+    var orphanageID = req.params.orphanageID;
+    var age = 10;
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM victim WHERE oid=$1 and age=$2',
+        [orphanageID, age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
+
+const viclt15map = async (req, res) => {
+    var orphanageID = req.params.orphanageID;
+    var age = 15;
+    console.log(orphanageID);
+    pool.query(
+        'SELECT * FROM victim WHERE oid=$1 and age=$2',
+        [orphanageID, age],
+        async (err, result) => {
+            if (err) throw err;
+            rescue = [];
+            result.rows.forEach((r) => {
+                obj = {
+                    lat: r.lat,
+                    lng: r.lng,
+                };
+                rescue.push(obj);
+            });
+            console.log(rescue);
+            res.render('rescue_map', { rescue: rescue });
+        }
+    );
+};
 
 module.exports = {
     getOrphanage,
@@ -403,5 +559,12 @@ module.exports = {
     rescuedlt15,
     rescuedlt5map,
     rescuedlt10map,
-    rescuedlt15map
+    rescuedlt15map,
+    myVicMap,
+    vicFemaleMap,
+    viclt10map,
+    viclt15map,
+    viclt5map,
+    vicMaleMap,
+    vicPwdMap,
 };
