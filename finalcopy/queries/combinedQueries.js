@@ -6,8 +6,8 @@ const orphanageQueries = require('./orphanageQueries');
 const createAdmin = adminQueries.createAdmin;
 const createOrphan = adminQueries.createOrphan;
 const createCrimeCell = adminQueries.createCrimeCell;
-const displayRescued=adminQueries.displayRescued;
-const getAdmin=adminQueries.getAdmin;
+const displayRescued = adminQueries.displayRescued;
+const getAdmin = adminQueries.getAdmin;
 
 // List of all user queries
 const addVictimData = userQueries.addVictimData;
@@ -15,22 +15,30 @@ const createUser = userQueries.createUser;
 const getUser = userQueries.getUser;
 const getCrimeCell = crimeCellQueries.getCrimeCell;
 const getOrphanage = orphanageQueries.getOrphanage;
-const displayMap=orphanageQueries.displayMap;
-const displayCrime=crimeCellQueries.displayCrime;
-const rescuedbyMecc=crimeCellQueries.rescuedbyMe;
-const rescuedMalecc=crimeCellQueries.rescuedMale;
-const rescuedFemalecc=crimeCellQueries.rescuedFemale;
-const rescuedPwdcc=crimeCellQueries.rescuedPwd;
-const rescuedlt5cc=crimeCellQueries.rescuedlt5;
-const rescuedlt10cc=crimeCellQueries.rescuedlt10;
-const rescuedlt15cc=crimeCellQueries.rescuedlt15;
-const rescuedbyMeo=orphanageQueries.rescuedbyMe;
-const rescuedMaleo=orphanageQueries.rescuedMale;
-const rescuedFemaleo=orphanageQueries.rescuedFemale;
-const rescuedPwdo=orphanageQueries.rescuedPwd;
-const rescuedlt5o=orphanageQueries.rescuedlt5;
-const rescuedlt10o=orphanageQueries.rescuedlt10;
-const rescuedlt15o=orphanageQueries.rescuedlt15;
+const displayMap = orphanageQueries.displayMap;
+const displayCrime = crimeCellQueries.displayCrime;
+const rescuedbyMecc = crimeCellQueries.rescuedbyMe;
+const rescuedbyMeccMap = crimeCellQueries.rescuedbyMeMap;
+const rescuedMalecc = crimeCellQueries.rescuedMale;
+const rescuedMaleccMap = crimeCellQueries.rescuedMaleMap;
+const rescuedFemalecc = crimeCellQueries.rescuedFemale;
+const rescuedFemaleccMap = crimeCellQueries.rescuedFemaleMap;
+const rescuedPwdcc = crimeCellQueries.rescuedPwd;
+const rescuedPwdccMap = crimeCellQueries.rescuedPwdMap;
+const rescuedlt5cc = crimeCellQueries.rescuedlt5;
+const rescuedlt10cc = crimeCellQueries.rescuedlt10;
+const rescuedlt15cc = crimeCellQueries.rescuedlt15;
+const rescuedbyMeo = orphanageQueries.rescuedbyMe;
+const rescuedbyMeoMap = orphanageQueries.rescuedbyMeMap;
+const rescuedMaleo = orphanageQueries.rescuedMale;
+const rescuedMaleoMap = orphanageQueries.rescuedMaleMap;
+const rescuedFemaleo = orphanageQueries.rescuedFemale;
+const rescuedFemaleoMap = orphanageQueries.rescuedFemaleMap;
+const rescuedPwdo = orphanageQueries.rescuedPwd;
+const rescuedPwdoMap = orphanageQueries.rescuedPwdMap;
+const rescuedlt5o = orphanageQueries.rescuedlt5;
+const rescuedlt10o = orphanageQueries.rescuedlt10;
+const rescuedlt15o = orphanageQueries.rescuedlt15;
 
 module.exports = {
     createAdmin,
@@ -46,15 +54,25 @@ module.exports = {
     displayRescued,
     getAdmin,
     rescuedbyMecc,
+    rescuedbyMeccMap,
     rescuedMalecc,
+    rescuedMaleccMap,
     rescuedFemalecc,
+    rescuedFemaleccMap,
     rescuedPwdcc,
+    rescuedPwdccMap,
     rescuedbyMeo,
+    rescuedbyMeoMap,
     rescuedFemaleo,
+    rescuedFemaleoMap,
     rescuedMaleo,
-    rescuedPwdo,rescuedlt5o,
+    rescuedMaleoMap,
+    rescuedPwdo,
+    rescuedPwdoMap,
+    rescuedlt5o,
     rescuedlt10o,
     rescuedlt15o,
     rescuedlt5cc,
-    rescuedlt10cc,rescuedlt15cc
+    rescuedlt10cc,
+    rescuedlt15cc,
 };
