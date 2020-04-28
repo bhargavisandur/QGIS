@@ -34,8 +34,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
+                    
+                        <div class="card-header1">
                             <h1>Victim List</h1>
                         </div>
                         <div class="gaadiex-list">
@@ -72,6 +72,7 @@
                             <h3>no child to be rescued</h3>
                             <%} else{%> <%victims.forEach((victim)=>{%>
                             <div class="gaadiex-list-item">
+                                <div class="card">
                                 <img
                                     class="gaadiex-list-item-img"
                                     src="<%=victim.image.toString().substring(6,victim.image.toString().length)%>"
@@ -101,7 +102,8 @@
                                             <input
                                                 type="submit"
                                                 name="rescued"
-                                                value="rescued"
+                                                value="Rescue Child"
+                                                class="btn btn-primary"
                                             />
                                         </form>
                                     </div>
@@ -109,11 +111,13 @@
                             </div>
                             <%})%> <%}%>
                         </div>
-                    </div>
-                    <div></div>
+                    
                 </div>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="dropdown">
+                <button class="dropbtn">View Statistics</button>
+                            <div class="dropdown-content">
+            <div class="card-header">
                 <form action="/rescuedbymeo/<%=oid%>" method="get">
                     <input
                         type="submit"
@@ -122,16 +126,18 @@
                         class="btn btn-primary"
                     />
                 </form>
+                </div>
+                <div class="card-header">
                 <form action="/rescuedbymeomap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Rescued by Me Map"
-                        value="Rescued by Me Map"
+                        value="Rescued by Me map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/rescuedmaleo/<%=oid%>" method="get">
                     <input
                         type="submit"
@@ -140,16 +146,18 @@
                         class="btn btn-primary"
                     />
                 </form>
+                </div>
+                <div class="card-header">
                 <form action="/rescuedmaleomap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Display rescued males Map"
-                        value="Display rescued males Map"
+                        value="Display rescued males map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/rescuedfemaleo/<%=oid%>" method="get">
                     <input
                         type="submit"
@@ -158,16 +166,18 @@
                         class="btn btn-primary"
                     />
                 </form>
+                </div>
+                <div class="card-header">
                 <form action="/rescuedfemaleomap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Display rescued females Map"
-                        value="Display rescued females Map"
+                        value="Display rescued females map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/rescuedpwdo/<%=oid%>" method="get">
                     <input
                         type="submit"
@@ -176,140 +186,150 @@
                         class="btn btn-primary"
                     />
                 </form>
+                </div>
+                <div class="card-header">
                 <form action="/rescuedpwdomap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Display person with disability Map"
-                        value="Display person with disability Map"
+                        value="Display PWD map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/rescuedlt5o/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Age less than equal to 5"
-                        value="Age less than equal to 5"
+                        value="Age &lt =5"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/rescuedlt10o/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Age between 5 and 10"
-                        value="Age between 5 and 10"
+                        value="Age &lt =10"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/rescuedlt15o/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Age less than equal to 15"
-                        value="Age less than equal to 15"
+                        value="Age &lt =15"
                         class="btn btn-primary"
                     />
                 </form>
+                </div>
+                <div class="card-header">
                 <form action="/rescuedlt5omap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Display person with disability Map"
-                        value="Age less than equal to 5 map"
+                        value="Age &lt = 5 map"
                         class="btn btn-primary"
                     />
                 </form>
+                </div>
+                <div class="card-header">
                 <form action="/rescuedlt10omap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Display person with disability Map"
-                        value="Age between 10 and 15 map"
+                        value="Age &lt = 10 map"
                         class="btn btn-primary"
                     />
                 </form>
+                </div>
+                <div class="card-header">
                 <form action="/rescuedlt15omap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Display person with disability Map"
-                        value="Age greater than equal to 15 map"
+                        value="Age &lt = 15 map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/myvicomap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Victims to be rescued"
-                        value="Victims to be rescued"
+                        value="Victims to be rescued map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/vicmaleomap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Male victims to be rescued"
-                        value="Male victims to be rescued"
+                        value="Male victims map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/vicfemaleomap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Female victims to be rescued"
-                        value="Female victims to be rescued"
+                        value="Female victims map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/vicpwdomap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Victims with disability to be rescued"
-                        value="Victims with disability to be rescued"
+                        value="PWD victims map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/viclt5omap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Victims with age less than 5 to be rescued"
-                        value="Victims with age less than 5 to be rescued"
+                        value="Victims age &lt =5 map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/viclt10omap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Victims with age less than 10 to be rescued"
-                        value="Victims with age less than 10 to be rescued"
+                        value="Victims age &lt =10 map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div class="gaadiex-list-item">
+            <div class="card-header">
                 <form action="/viclt15omap/<%=oid%>" method="get">
                     <input
                         type="submit"
                         name="Victims with age less than 15 to be rescued"
-                        value="Victims with age less than 15 to be rescued"
+                        value="Victims age &lt =15 map"
                         class="btn btn-primary"
                     />
                 </form>
             </div>
-            <div>
+            </div>
+            </div>
+            <div class="card-header">
                 <label for="count"
                     >Count of all victims matched:
                     <span class="badge"><%=victims.length%></span></label
