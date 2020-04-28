@@ -50,8 +50,6 @@ CREATE TABLE rescued_child(
 	vid int,
 	ccid int,
 	pwdstat character varying(5)
-	
-
 );
 
 CREATE TABLE manager(
@@ -82,5 +80,4 @@ CREATE TABLE crime_cell(
 	report_id int,
 	email character varying(50) NOT NULL,
 	password character varying(50) NOT NULL
-	
 );

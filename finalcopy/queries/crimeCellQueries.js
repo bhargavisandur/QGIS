@@ -29,7 +29,7 @@ const getCrimeCell = (req, res) => {
 const displayCrime = (req, res) => {
     var victimLat = req.params.victimLat;
     var victimLng = req.params.victimLng;
-    var crimecellId = req.params.crimecellId;
+    var crimecellId = req.params.crimecellID;
     pool.query(
         'SELECT * FROM crime_cell WHERE id=$1 ',
         [crimecellId],

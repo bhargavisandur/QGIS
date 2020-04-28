@@ -1,8 +1,8 @@
 insert into orphanage(name, lat, lng, capacity)
 values(
     'Aarna Foundation',
-    19.23977,
-    72.905445,
+    19.0632128,
+    72.8975909,
     1000
   );
 insert into orphanage(name, lat, lng, capacity)

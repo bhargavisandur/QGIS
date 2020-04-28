@@ -48,8 +48,8 @@ values(
     '',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
-    19.2287385,
-    72.8568773,
+    19.2396111,
+    72.8592682,
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
@@ -76,8 +76,8 @@ values(
     '',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
-    19.2297385,
-    72.8578773,
+    19.2499111,
+    72.8595682,
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
@@ -104,8 +104,8 @@ values(
     '',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
-    19.2043739,
-    72.851978,
+    19.2446111,
+    72.8552682,
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
@@ -132,8 +132,8 @@ values(
     '',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
-    19.2033739,
-    72.850978,
+    19.2596111,
+    72.8692682,
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
@@ -160,8 +160,8 @@ values(
     '',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
-    19.2053739,
-    72.852978,
+    19.2494111,
+    72.8596682,
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
@@ -223,7 +223,35 @@ values(
     1,
     2
   );
--- Victim data for oid = 2
+-- Victim data for oid = 4
+insert into victim(
+    sex,
+    age,
+    pwdstat,
+    activity,
+    date,
+    time,
+    lat,
+    lng,
+    image,
+    description,
+    uid,
+    oid
+  )
+values(
+    'Male',
+    15,
+    'yes',
+    '',
+    CURRENT_TIMESTAMP,
+    CURRENT_TIME,
+    19.2506111,
+    72.8602682,
+    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
+    '',
+    1,
+    4
+  );
 insert into victim(
     sex,
     age,
@@ -250,7 +278,7 @@ values(
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
-    2
+    4
   );
 insert into victim(
     sex,
@@ -278,7 +306,7 @@ values(
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
-    2
+    4
   );
 insert into victim(
     sex,
@@ -306,7 +334,7 @@ values(
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
-    2
+    4
   );
 insert into victim(
     sex,
@@ -334,7 +362,7 @@ values(
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
-    2
+    4
   );
 insert into victim(
     sex,
@@ -362,7 +390,7 @@ values(
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
-    2
+    4
   );
 insert into victim(
     sex,
@@ -390,7 +418,7 @@ values(
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
-    2
+    4
   );
 insert into victim(
     sex,
@@ -418,7 +446,7 @@ values(
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
-    2
+    4
   );
 insert into victim(
     sex,
@@ -446,7 +474,7 @@ values(
     '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
-    2
+    4
   );
 insert into victim(
     sex,
@@ -532,3 +560,117 @@ values(
     1,
     1
   );
+insert into victim(
+    sex,
+    age,
+    pwdstat,
+    activity,
+    date,
+    time,
+    lat,
+    lng,
+    image,
+    description,
+    uid,
+    oid
+  )
+values(
+    'Male',
+    10,
+    'no',
+    '',
+    CURRENT_TIMESTAMP,
+    CURRENT_TIME,
+    19.1187195,
+    72.9073476,
+    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
+    '',
+    1,
+    1
+  );
+insert into victim(
+    sex,
+    age,
+    pwdstat,
+    activity,
+    date,
+    time,
+    lat,
+    lng,
+    image,
+    description,
+    uid,
+    oid
+  )
+values(
+    'Female',
+    15,
+    'no',
+    '',
+    CURRENT_TIMESTAMP,
+    CURRENT_TIME,
+    19.1237195,
+    72.9123476,
+    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
+    '',
+    1,
+    1
+  );
+insert into victim(
+    sex,
+    age,
+    pwdstat,
+    activity,
+    date,
+    time,
+    lat,
+    lng,
+    image,
+    description,
+    uid,
+    oid
+  )
+values(
+    'Male',
+    5,
+    'yes',
+    '',
+    CURRENT_TIMESTAMP,
+    CURRENT_TIME,
+    19.1147195,
+    72.9053476,
+    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
+    '',
+    1,
+    1
+  );
+-- INSERTING VALUES IN RESCUED CHILD TABLE
+insert into rescued_child(lat, age, sex, lng, oid, vid, pwdstat)
+values(19.0632128, 5, 'Female', 72.8975909, 2, 1, 'yes');
+insert into rescued_child(lat, age, sex, lng, oid, vid, pwdstat)
+values(19.0582128, 5, 'Male', 72.8945909, 2, 1, 'yes');
+insert into rescued_child(lat, age, sex, lng, oid, vid, pwdstat)
+values(19.0662128, 15, 'Male', 72.9005909, 2, 1, 'yes');
+insert into rescued_child(lat, age, sex, lng, oid, vid, pwdstat)
+values(19.0552128, 15, 'Female', 72.8955909, 2, 1, 'yes');
+insert into rescued_child(lat, age, sex, lng, oid, vid, pwdstat)
+values(19.0612128, 5, 'Female', 72.8995909, 2, 1, 'no');
+insert into rescued_child(lat, age, sex, lng, oid, vid, pwdstat)
+values(19.0622128, 10, 'Male', 72.9015909, 2, 1, 'no');
+insert into rescued_child(lat, age, sex, lng, oid, vid, pwdstat)
+values(19.0652128, 10, 'Female', 72.8945909, 2, 1, 'no');
+-- INSERTING VALUES IN RESCUED CHILD TALBLE ccid = 3
+insert into rescued_child(lat, age, sex, lng, ccid, vid, pwdstat)
+values(19.0073, 10, 'Male', 72.8424, 3, 1, 'yes');
+insert into rescued_child(lat, age, sex, lng, ccid, vid, pwdstat)
+values(19.0075, 15, 'Male', 72.8421, 3, 1, 'yes');
+insert into rescued_child(lat, age, sex, lng, ccid, vid, pwdstat)
+values(19.0051, 10, 'Male', 72.8426, 3, 1, 'no');
+insert into rescued_child(lat, age, sex, lng, ccid, vid, pwdstat)
+values(19.0062, 15, 'Male', 72.8423, 3, 1, 'no');
+insert into rescued_child(lat, age, sex, lng, ccid, vid, pwdstat)
+values(19.0067, 5, 'Female', 72.8437, 3, 1, 'yes');
+insert into rescued_child(lat, age, sex, lng, ccid, vid, pwdstat)
+values(19.0073, 5, 'Female', 72.8425, 3, 1, 'yes');
+insert into rescued_child(lat, age, sex, lng, ccid, vid, pwdstat)
+values(19.0064, 5, 'Female', 72.8429, 3, 1, 'no');
