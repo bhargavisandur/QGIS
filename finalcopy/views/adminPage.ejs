@@ -26,10 +26,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
+                
+                    <div class="card-header1">
                         <h1>Victim List</h1>
                     </div>
+                </div>
+                </div>
+                </div>
+    </div>
+
                     <div class="gaadiex-list">
                         <!-- <div class="gaadiex-list-item"><img class="gaadiex-list-item-img" src="http://www.free-icons-download.net/images/commercial-male-user-icon-32765.png" alt="List user">
                             <div class="gaadiex-list-item-text">
@@ -64,6 +69,7 @@
                         <h3>no child to be rescued</h3>
                         <%} else{%> <%victims.forEach((victim)=>{%>
                         <div class="gaadiex-list-item">
+                            <div class="card">
                             <img class="gaadiex-list-item-img"
                                 src="<%=victim.image.toString().substring(6,victim.image.toString().length)%>" />
                             <div class="gaadiex-list-item-text">
@@ -83,148 +89,162 @@
                                     </h4>
 
                                     <form action="/rescuedChildcc/<%=victim.ccid%>/<%=victim.id%>" method="post">
-                                        <input type="submit" name="rescued" value="rescued" />
+                                        <input type="submit" name="rescued" value="Rescue Child" class="btn btn-primary" />
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <%})%> <%}%>
                         </div>
-                        <div class="gaadiex-list-item">
+                        <div class="dropdown">
+                            <button class="dropbtn">View Statistics</button>
+                            <div class="dropdown-content">
+                        <div class="card-header">
                             <form
                                 action="/rescuedbymecc/<%=ccid%>"
                         method="get"
                         >
+                        
                         <input type="submit" name="Rescued by Me" value="Rescued by Me" class="btn btn-primary" />
                         </form>
+                    </div>
+                    <div class="card-header">
                         <form action="/rescuedbymeccmap/<%=ccid%>" method="get">
                             <input type="submit" name="View all rescued by me on map" value="Rescued by Me map"
                                 class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/rescuedmalecc/<%=ccid%>" method="get">
-                            <input type="submit" name="Display rescued males" value="Display rescued males"
+                            <input type="submit" name="Display rescued males" value="Display rescued Males"
                                 class="btn btn-primary" />
                         </form>
+                    </div>
+                    <div class="card-header">
                         <form action="/rescuedmaleccmap/<%=ccid%>" action="get">
                             <input type="submit" name="View all male victims rescued by me"
                                 value="Display rescued males map" class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/rescuedfemalecc/<%=ccid%>" method="get">
-                            <input type="submit" name="Display rescued females" value="Display rescued females"
+                            <input type="submit" name="Display rescued females" value="Display Rescued females"
                                 class="btn btn-primary" />
                         </form>
+                    </div>
+                    <div class="card-header">
                         <form action="/rescuedfemaleccmap/<%=ccid%>" action="get">
                             <input type="submit" name="View all female victims rescued by me"
-                                value="Display rescued females map" class="btn btn-primary" />
+                                value="Display Rescued females map" class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/rescuedpwdcc/<%=ccid%>" method="get">
                             <input type="submit" name="Display person with disability"
-                                value="Display person with disability" class="btn btn-primary" />
+                                value="Display PWD" class="btn btn-primary" />
                         </form>
+                    </div>
+                    <div class="card-header">
                         <form action="/rescuedpwdccmap/<%=ccid%>" action="get">
                             <input type="submit" name="View all pwd victims rescued by me"
-                                value="Display person with disability map" class="btn btn-primary" />
+                                value="Display PWD map" class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/rescuedlt5cc/<%=ccid%>" method="get">
-                            <input type="submit" name="Age less than equal to 5" value="Age less than equal to 5"
+                            <input type="submit" name="Age less than equal to 5" value="Age &lt = 5"
                                 class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/rescuedlt10cc/<%=ccid%>" method="get">
-                            <input type="submit" name="Age between 5 and 10" value="Age between 5 and 10"
+                            <input type="submit" name="Age between 5 and 10" value="Age between &lt = 10"
                                 class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/rescuedlt15cc/<%=ccid%>" method="get">
                             <input type="submit" name="Age greater than equal to 15"
-                                value="Age greater than equal to 15" class="btn btn-primary" />
+                                value="Age &lt = 15" class="btn btn-primary" />
                         </form>
                     </div>
-                    <div>
+                    <div class="card-header">
                         <form action="/rescuedfemaleccmap/<%=ccid%>" action="get">
                             <input type="submit" name="View all female victims rescued by me"
                                 value="Display rescued females map" class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/rescuedlt5ccmap/<%=ccid%>" method="get">
                             <input type="submit" name="Age greater than equal to 15"
-                                value="Age greater than equal to 5 map" class="btn btn-primary" />
+                                value="Age &lt = 5 map" class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/rescuedlt10ccmap/<%=ccid%>" method="get">
                             <input type="submit" name="Age greater than equal to 10"
-                                value="Age greater than equal to 10 map" class="btn btn-primary" />
+                                value="Age &lt = 10 map" class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/rescuedlt15ccmap/<%=ccid%>" method="get">
                             <input type="submit" name="Age greater than equal to 15"
-                                value="Age greater than equal to 15 map" class="btn btn-primary" />
+                                value="Age &lt = 15 map" class="btn btn-primary" />
                         </form>
                     </div>
-                    <div class="gaadiex-list-item">
+                    <div class="card-header">
                         <form action="/myvicccmap/<%=ccid%>" method="get">
                             <input type="submit" name="View all reported to me"
                                 value="Reported to me map" class="btn btn-primary" />
                         </form>
                     </div>
-                    <div>
-                        <div class="gaadiex-list-item">
+                    
+                        <div class="card-header">
                             <form action="/vicmaleccmap/<%=ccid%>" method="get">
                                 <input type="submit" name="Display male victims"
                                     value="Display male victims map" class="btn btn-primary" />
                             </form>
                         </div>
-                        <div>
-                            <div class="gaadiex-list-item">
+                        
+                            <div class="card-header">
                                 <form action="/vicfemaleccmap/<%=ccid%>" method="get">
                                     <input type="submit" name="Display female victims"
                                         value="Display female victims map" class="btn btn-primary" />
                                 </form>
                             </div>
-                            <div>
-                                <div class="gaadiex-list-item">
+                            
+                                <div class="card-header">
                                     <form action="/vicpwdccmap/<%=ccid%>" method="get">
                                         <input type="submit" name="Display PWD victims"
                                             value="Display PWD victims map" class="btn btn-primary" />
                                     </form>
                                 </div>
-                                <div>
-                                    <div class="gaadiex-list-item">
+                                
+                                    <div class="card-header">
                                         <form action="/viclt5ccmap/<%=ccid%>" method="get">
                                             <input type="submit" name="Display victims with age less than equal to 5"
-                                                value="Display victims with age less than equal to 5 map" class="btn btn-primary" />
+                                                value="Display Victims age &lt =5 map"  class="btn btn-primary" />
                                         </form>
                                     </div>
-                                    <div>
-                                        <div class="gaadiex-list-item">
+                                    
+                                        <div class="card-header">
                                             <form action="/viclt10ccmap/<%=ccid%>" method="get">
                                                 <input type="submit" name="Display victims with age less than equal to 10"
-                                                    value="Display victims with age less than equal to 10 map" class="btn btn-primary" />
+                                                    value="Display Victims age &lt =10 map" class="btn btn-primary" />
                                             </form>
                                         </div>
-                                        <div>
-                                            <div class="gaadiex-list-item">
+                                        
+                                            <div class="card-header">
                                                 <form action="/viclt15ccmap/<%=ccid%>" method="get">
                                                     <input type="submit" name="Display victims with age less than equal to 15"
-                                                        value="Display victims with age less than equal to 15 map" class="btn btn-primary" />
+                                                        value="Display Victims age &lt =15 map" class="btn btn-primary" />
                                                 </form>
                                             </div>
-                                            <div>
+                                        </div>
+                                    </div>
+                                            
 
-                                                <div>
+                                                <div class="card-header">
                                                     <label for="count">Count of all victims matched:
                                                         <span class="badge"><%=victims.length%></span></label><br />
                                                     <label for="count">Count of all male victims:<span class="badge">
@@ -234,11 +254,10 @@
                                                     <label for="count">Count of all PWD:
                                                         <span class="badge"><%=disabled%></span></label>
                                                 </div>
-
-                                            </div>
+                                                
                                         </div>
-                                        <div></div>
-                                    </div>
+                                        
+                                    
                                     <!-- <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
