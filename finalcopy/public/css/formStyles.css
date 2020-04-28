@@ -24,6 +24,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: cover;
+    zoom: 100%;
 }
 
 .container {
@@ -31,6 +32,8 @@ body {
   width: 100%;
   margin: 0 auto;
   position: relative;
+  zoom: 100%;
+  border-radius: 10px;
 }
 
 #contact input[type="text"],
@@ -104,7 +107,7 @@ fieldset {
   cursor: pointer;
   width: 100%;
   border: none;
-  background: #4CAF50;
+  background: #222831;
   color: #FFF;
   margin: 0 0 5px;
   padding: 10px;
@@ -146,4 +149,7 @@ fieldset {
 
 :-ms-input-placeholder {
   color: #888;
+}
+option{
+  color: #222831;
 }
