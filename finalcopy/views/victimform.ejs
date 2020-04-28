@@ -19,57 +19,52 @@
    </style> 
 
 </head>
-</html>
 
 
 
-<div class="container"> 
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <div class="container">
-  <a href="/logout" ><button class="btn btn-primary" style="margin-top: 60px;">Logout</button></a> 
+  
     <form id="contact" action="/victimform" method="post" enctype="multipart/form-data">
-      <h3>Victim Form</h3>
-      <h4>Fill the victim data</h4>
+      <h3><strong>Victim Form</strong></h3>
+      <h4><strong>Fill the victim data</strong></h4>
       <fieldset>
         <p><strong>Upload an image (required)</strong></p>
         <input type="file" accept="image/*" name="image" capture> 
       </fieldset>
+      <br>
       <fieldset>
-        <p><strong>Enter your emailID to get updates</strong></p>
+        <p><strong>Enter your Email ID to get further updates</strong></p>
         <input placeholder="Email" type="email" tabindex="4" name="uid" required>
       </fieldset>
-      <fieldset>
-        <!-- <input placeholder="Sex" type="text" name="sex" tabindex="1" required autofocus> -->
-        <div class="toggle">
-        <div style="width: auto; height: auto;">
-        <label for="female">Female</label>
-        <input placeholder="female" id="female" type="radio" value="female" name="sex" checked>
-        <label for="male">Male</label>
-        <input placeholder="male" id="male" type="radio" value="male" name="sex">
-        </div>
-        </div>
-      </fieldset>
+     <br>
       <fieldset>
         <!-- <input placeholder="Age" type="text" name="age" tabindex="2" required> -->
-        <label for="card">Age</label>
+        <label for="card">Age: </label>
         <select id="age" name="age">
           <option value=5 >5</option>
           <option value=10 >10</option>
           <option value=15 >15</option>
         </select>
       </fieldset>
+      <br>
       <fieldset>
         <!-- <input placeholder="Pwdstat" type="text" name="pwdstat" tabindex="3" required> -->
-        <strong>Pwdstat</strong>
+        <strong>Pwdstat:</strong>
         <label for="yes">Yes</label>
         <input placeholder="yes" id="yes" type="radio" value="yes" name="pwdstat" checked>
         <label for="no">No</label>
         <input placeholder="no" id="no" type="radio" value="no" name="pwdstat">
       </fieldset>
+      <br>
       <fieldset>
         <input placeholder="Activity" type="text" tabindex="4" name="activity" required>
       </fieldset>
+      
       <fieldset>
-        <textarea placeholder="Further Description (optional)" tabindex="5" name="description" required></textarea>
+        <textarea placeholder="Further Description (optional)" tabindex="5" name="description"></textarea>
       </fieldset>
       
       <fieldset>
@@ -81,4 +76,6 @@
   </div>
 
     
-  </div>
+  
+</body>
+  </html>
