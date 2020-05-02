@@ -6,6 +6,9 @@ const jimp = require('jimp');
 
 const addVictimData = async (req, res) => {
     const { path, filename } = req.file;
+    const { lat, lng } = await utility.getLocation(filename); // This is correct
+    console.log('Latitude longitude of the image', lat, lng);
+
 
     /*******************************
      * Resizing image using jimp
@@ -22,8 +25,7 @@ const addVictimData = async (req, res) => {
     let ccid = null;
     let oid = null;
 
-    const { lat, lng } = await utility.getLocation(filename); // This is correct
-    console.log('Latitude longitude of the image', lat, lng);
+    
 
     if (output[2].length > 2 && !output[2].includes('Unknown')) {
         ccid = output[2].split('_');

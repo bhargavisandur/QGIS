@@ -17,12 +17,12 @@ values(
     'Female',
     5,
     'yes',
-    '',
+    'begging',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.2496111,
     72.8592682,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
+    'public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
     2
@@ -45,13 +45,13 @@ values(
     'Female',
     5,
     'yes',
-    '',
+    'child labour',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.2396111,
     72.8592682,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
+    'public/images/ca5922cbc3f95f51a4efd661e4fbe5a6.jpg',
+    'found at an isolated place',
     1,
     2
   );
@@ -73,13 +73,13 @@ values(
     'Female',
     10,
     'no',
-    '',
+    'begging',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.2499111,
     72.8595682,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
+    'public/images/961db98e1e30d0ae9f60dfc647015360.jpg',
+    'found on the highway',
     1,
     2
   );
@@ -101,13 +101,13 @@ values(
     'Male',
     5,
     'yes',
-    '',
+    'begging',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.2446111,
     72.8552682,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
+    '/public/images/dc605374e3555d06dc3aabc4926ad75e.jpg',
+    'found on the streets',
     1,
     2
   );
@@ -129,13 +129,13 @@ values(
     'Male',
     10,
     'yes',
-    '',
+    'child labour',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.2596111,
     72.8692682,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
+    'public/images/ddf6eae60e5aded86bd3e0afc006fd18.jpg',
+    'at a factory',
     1,
     2
   );
@@ -157,73 +157,17 @@ values(
     'Male',
     10,
     'no',
-    '',
+    'begging',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.2494111,
     72.8596682,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
+    'public/images/49e6024df2c87f059b2b517c0ad266fc.jpg',
     '',
     1,
     2
   );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    ccid
-  )
-values(
-    'Female',
-    15,
-    'no',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.2497111,
-    72.8594682,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    2
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    ccid
-  )
-values(
-    'Male',
-    15,
-    'yes',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.2506111,
-    72.8602682,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    2
-  );
--- Victim data for oid = 4
+-- Victim data for oid = 8
 insert into victim(
     sex,
     age,
@@ -242,15 +186,15 @@ values(
     'Male',
     15,
     'yes',
-    '',
+    'child labour',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.2506111,
     72.8602682,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
+    'public/images/dc605374e3555d06dc3aabc4926ad75e.jpg',
+    'found at a lonely place',
     1,
-    4
+    8
   );
 insert into victim(
     sex,
@@ -270,15 +214,15 @@ values(
     'Female',
     5,
     'yes',
-    '',
+    'begging',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.0238229,
     72.8394269,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
+    'public/images/3045adc93335b608b382996ec932b26e.jpg',
     '',
     1,
-    4
+    8
   );
 insert into victim(
     sex,
@@ -298,15 +242,15 @@ values(
     'Female',
     5,
     'yes',
-    '',
+    'child labour',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.0248229,
     72.8384269,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
+    'public/images/3045adc93335b608b382996ec932b26e.jpg',
     '',
     1,
-    4
+    8
   );
 insert into victim(
     sex,
@@ -326,324 +270,18 @@ values(
     'Female',
     10,
     'no',
-    '',
+    'begging',
     CURRENT_TIMESTAMP,
     CURRENT_TIME,
     19.0258,
     72.8744,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
+    'public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
     '',
     1,
-    4
+    8
   );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Male',
-    5,
-    'yes',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.0239229,
-    72.8404269,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    4
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Male',
-    10,
-    'yes',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.0236229,
-    72.8399269,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    4
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Male',
-    10,
-    'no',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.0278229,
-    72.8404269,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    4
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Female',
-    15,
-    'no',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.0308229,
-    72.8394269,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    4
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Male',
-    15,
-    'yes',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.0244229,
-    72.8374269,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    4
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Male',
-    15,
-    'yes',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.1943294,
-    72.9701779,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    1
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Female',
-    5,
-    'yes',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.1843294,
-    72.9801779,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    1
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Female',
-    10,
-    'no',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.2043294,
-    72.9901779,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    1
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Male',
-    10,
-    'no',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.1187195,
-    72.9073476,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    1
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Female',
-    15,
-    'no',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.1237195,
-    72.9123476,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    1
-  );
-insert into victim(
-    sex,
-    age,
-    pwdstat,
-    activity,
-    date,
-    time,
-    lat,
-    lng,
-    image,
-    description,
-    uid,
-    oid
-  )
-values(
-    'Male',
-    5,
-    'yes',
-    '',
-    CURRENT_TIMESTAMP,
-    CURRENT_TIME,
-    19.1147195,
-    72.9053476,
-    '/public/images/6b19e3c46b2896a10dd230f7227a36f6.jpg',
-    '',
-    1,
-    1
-  );
+
+
 -- INSERTING VALUES IN RESCUED CHILD TABLE
 insert into rescued_child(lat, age, sex, lng, oid, vid, pwdstat)
 values(19.0632128, 5, 'Female', 72.8975909, 2, 1, 'yes');
