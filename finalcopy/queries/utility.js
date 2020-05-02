@@ -5,6 +5,7 @@ const moment = require('moment-timezone');
 const nodeGeocoder = require('node-geocoder');
 const fs = require('fs');
 const path = require('path');
+//const mapQuest= require("../mapQuest");
 
 // Get latitude and longitude from image
 
@@ -152,6 +153,7 @@ const getClosestOrphangeID = async (lat, lng, pool) => {
                     Math.sin(lngDiff / 2);
             const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             const d = R * c;
+            //const d= mapQuest.getDistance(lat1, long1, lat2, long2);
             const obj = {
                 distance: d,
                 id: r.id,
